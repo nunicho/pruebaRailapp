@@ -8,8 +8,7 @@ const winston = require("winston");
 const path = require("path");
 const fs = require("fs");
 const config = require("../config/config.js");
-
-
+const authMiddleware = require("../middleware/authMiddleware.js");
 const CustomError = require("../utils/customError.js");
 const tiposDeError = require("../utils/tiposDeError.js");
 
@@ -20,50 +19,13 @@ const dtoUsuarios = require("../dto/dtoUsuarios.js")
 const fakeDataGenerator = require("../public/assets/scripts/fakeDataGenerator.js");
 
 const mongoose = require("mongoose");
-
-const auth = (req, res, next) => {
-
-  if (req.session.usuario) {
-    next();
-  } else {
-    return res.redirect("/login");
-  }
-};
-
-const auth2 = (req, res, next) => {
-  if (req.session.usuario) {
-    return res.redirect("/");
-  } else {
-    next();
-  }
-};
-
-
-
-  const authRol = (roles) => {
-    return (req, res, next) => {
-      const user = req.session.usuario;
-
-      if (!user || !roles.includes(user.role)) {
-        throw new CustomError(
-          "ERROR_DATOS",
-          "No tienes permisos para acceder a esta ruta",
-          tiposDeError.ERROR_AUTORIZACION,
-          "No tienes permisos para acceder a esta ruta"
-        );
-      }
-
-      next();
-    };
-  };
   
 router.use((req, res, next) => {
   res.locals.usuario = req.session.usuario; // Pasar el usuario a res.locals
   next();
 });
 
-
-router.get("/", auth, (req, res) => {
+router.get("/", authMiddleware.auth, (req, res) => {
 let verLogin
  try { 
   if (req.session.usuario) {
@@ -83,7 +45,7 @@ let verLogin
 
 //---------------------------------------------------------------- RUTAS EN FILESYSTEM --------------- //
 
-router.get("/fsproducts", auth, (req, res) => {
+router.get("/fsproducts", authMiddleware.auth, (req, res) => {
   let index = parseInt(req.query.index) || 0;
   const array = arrayProducts;
   const totalProducts = array.length;
@@ -107,7 +69,7 @@ router.get("/fsproducts", auth, (req, res) => {
   });
 });
 
-router.get("/fsrealtimeproducts", auth, (req, res) => {
+router.get("/fsrealtimeproducts", authMiddleware.auth, (req, res) => {
   let index = parseInt(req.query.index) || 0;
   const array = arrayProducts;
   const totalProducts = array.length;
@@ -133,78 +95,85 @@ router.get("/fsrealtimeproducts", auth, (req, res) => {
 
 //---------------------------------------------------------------- RUTAS PARA PRODUCTOS--------------- //
 
-router.get("/DBproducts", auth, authRol(["user"]), async (req, res) => {
-  
-  try {
-    const productos = await productosController.listarProductos(req, res);
-    res.header("Content-type", "text/html");
-    res.status(200).render("DBproducts", {
-      productos: productos.docs,
-      hasProducts: productos.docs.length > 0,
-      // activeProduct: true,
-      status: productos.docs.status,
-      pageTitle: "Catálogo de",
-      estilo: "productsStyles.css",
-      totalPages: productos.totalPages,
-      hasPrevPage: productos.hasPrevPage,
-      hasNextPage: productos.hasNextPage,
-      prevPage: productos.prevPage,
-      nextPage: productos.nextPage,
-      filtro: req.query.filtro || "",
-      codeFilter: req.query.codeFilter || "",
-      sort: req.query.sort || "",
-      limit: req.query.limit || 10,
-    });
-     req.logger.info(`Acceso exitoso a productos - Usuario`);
-  } catch (error) {
-    res.status(500).json({ error: "Error interno del servidor" });   
-    req.logger.error(`Error al acceder a productos - Detalle: ${error.message}`);
+router.get(
+  "/DBproducts",
+  authMiddleware.auth,
+  authMiddleware.authRol(["user"]),
+  async (req, res) => {
+    try {
+      const productos = await productosController.listarProductos(req, res);
+      res.header("Content-type", "text/html");
+      res.status(200).render("DBproducts", {
+        productos: productos.docs,
+        hasProducts: productos.docs.length > 0,
+        // activeProduct: true,
+        status: productos.docs.status,
+        pageTitle: "Catálogo de",
+        estilo: "productsStyles.css",
+        totalPages: productos.totalPages,
+        hasPrevPage: productos.hasPrevPage,
+        hasNextPage: productos.hasNextPage,
+        prevPage: productos.prevPage,
+        nextPage: productos.nextPage,
+        filtro: req.query.filtro || "",
+        codeFilter: req.query.codeFilter || "",
+        sort: req.query.sort || "",
+        limit: req.query.limit || 10,
+      });
+      req.logger.info(`Acceso exitoso a productos - Usuario`);
+    } catch (error) {
+      res.status(500).json({ error: "Error interno del servidor" });
+      req.logger.error(
+        `Error al acceder a productos - Detalle: ${error.message}`
+      );
+    }
   }
-});
+);
 
-router.get("/DBproducts-Premium", auth, authRol(["premium"]), async (req, res) => {
-
-  try {
-    let premiumLogueado = req.session.usuario;
-    const productos = await productosController.listarProductos(req, res);
-    res.header("Content-type", "text/html");
-    res.status(200).render("DBproducts-Premium", {
-      logueado: premiumLogueado.email,
-      productos: productos.docs,
-      hasProducts: productos.docs.length > 0,
-      // activeProduct: true,
-      status: productos.docs.status,
-      pageTitle: "Catálogo de",
-      estilo: "productsStyles.css",
-      totalPages: productos.totalPages,
-      hasPrevPage: productos.hasPrevPage,
-      hasNextPage: productos.hasNextPage,
-      prevPage: productos.prevPage,
-      nextPage: productos.nextPage,
-      filtro: req.query.filtro || "",
-      codeFilter: req.query.codeFilter || "",
-      sort: req.query.sort || "",
-      limit: req.query.limit || 10,
-    });
-    req.logger.info(`Acceso exitoso a productos - Usuario`);
-  } catch (error) {
-    res.status(500).json({ error: "Error interno del servidor" });
-    req.logger.error(
-      `Error al acceder a productos - Detalle: ${error.message}`
-    );
+router.get(
+  "/DBproducts-Premium",
+  authMiddleware.auth,
+  authMiddleware.authRol(["premium"]),
+  async (req, res) => {
+    try {
+      let premiumLogueado = req.session.usuario;
+      const productos = await productosController.listarProductos(req, res);
+      res.header("Content-type", "text/html");
+      res.status(200).render("DBproducts-Premium", {
+        logueado: premiumLogueado.email,
+        productos: productos.docs,
+        hasProducts: productos.docs.length > 0,
+        // activeProduct: true,
+        status: productos.docs.status,
+        pageTitle: "Catálogo de",
+        estilo: "productsStyles.css",
+        totalPages: productos.totalPages,
+        hasPrevPage: productos.hasPrevPage,
+        hasNextPage: productos.hasNextPage,
+        prevPage: productos.prevPage,
+        nextPage: productos.nextPage,
+        filtro: req.query.filtro || "",
+        codeFilter: req.query.codeFilter || "",
+        sort: req.query.sort || "",
+        limit: req.query.limit || 10,
+      });
+      req.logger.info(`Acceso exitoso a productos - Usuario`);
+    } catch (error) {
+      res.status(500).json({ error: "Error interno del servidor" });
+      req.logger.error(
+        `Error al acceder a productos - Detalle: ${error.message}`
+      );
+    }
   }
-});
+);
 
 router.get(
   "/DBproducts-Admin",
-  auth,
-  authRol(["administrador"]),
+  authMiddleware.auth,
+  authMiddleware.authRol(["administrador"]),
   async (req, res) => {
     try {
-      const productos = await productosController.listarProductos(
-        req,
-        res
-      );
+      const productos = await productosController.listarProductos(req, res);
 
       res.header("Content-type", "text/html");
       res.status(200).render("DBproducts-Admin", {
@@ -224,7 +193,7 @@ router.get(
         sort: req.query.sort || "",
         limit: req.query.limit || 10,
       });
-       req.logger.info(`Acceso exitoso a productos - Administrador`);
+      req.logger.info(`Acceso exitoso a productos - Administrador`);
     } catch (error) {
       res.status(500).json({ error: "Error interno del servidor" });
       req.logger.error(`Error al abrir el login - Detalle: ${error.message}`);
@@ -235,50 +204,52 @@ router.get(
 
 router.get(
   "/DBproducts/:id",
-  auth,
+  authMiddleware.auth,
   productosController.obtenerProducto,
   (req, res) => {
-  try {
-        const productoDB = res.locals.productoDB;
-        if (!productoDB) {
-          return res.status(404).send("Producto no encontrado");
-        }
-        res.header("Content-type", "text/html");
-        res.status(200).render("DBproductsDetails", {
-          productoDB,
-          estilo: "productDetails.css",
-        });
-        req.logger.info(`Acceso exitoso a detalle producto Id: ${productoDB._id} - Nombre: ${productoDB.title}`);
-  } catch (error) {
-        res.status(500).json({ error: "Error interno del servidor" });
-        req.logger.error(`Error al abrir detalle de producto - Detalle: ${error.message}`);
-  }
+    try {
+      const productoDB = res.locals.productoDB;
+      if (!productoDB) {
+        return res.status(404).send("Producto no encontrado");
+      }
+      res.header("Content-type", "text/html");
+      res.status(200).render("DBproductsDetails", {
+        productoDB,
+        estilo: "productDetails.css",
+      });
+      req.logger.info(
+        `Acceso exitoso a detalle producto Id: ${productoDB._id} - Nombre: ${productoDB.title}`
+      );
+    } catch (error) {
+      res.status(500).json({ error: "Error interno del servidor" });
+      req.logger.error(
+        `Error al abrir detalle de producto - Detalle: ${error.message}`
+      );
+    }
   }
 );
 
-//router.post("/DBProducts", auth, productosController.crearProducto);
-
-
-
-router.post("/DBProducts", auth, async (req, res, next) => {
+router.post("/DBProducts", authMiddleware.auth, async (req, res, next) => {
   try {
     await productosController.crearProducto(req, res, next);
     const nombreProducto = res.locals.nombreProducto;
-    const codeProducto = res.locals.codeProducto; 
+    const codeProducto = res.locals.codeProducto;
     if (nombreProducto) {
-      req.logger.info(`Producto creado correctamente - Id: ${codeProducto} Nombre: ${nombreProducto}`);
+      req.logger.info(
+        `Producto creado correctamente - Id: ${codeProducto} Nombre: ${nombreProducto}`
+      );
     } else {
       req.logger.warn("No se pudo obtener el nombre del producto creado.");
     }
   } catch (error) {
-    req.logger.error("No se pudo crear correctamente el producto", error);    
+    req.logger.error("No se pudo crear correctamente el producto", error);
   }
 });
 
 
 router.delete(
   "/eliminarProducto/:id",
-  auth,
+  authMiddleware.auth,
   productosController.borrarProducto,
   (req, res) => {
     try {
@@ -289,7 +260,6 @@ router.delete(
       } else {
         req.logger.warn("No se pudo obtener el nombre del producto borrado.");
       }
-      //res.status(200).render("DBproducts-Admin");
     } catch (error) {
       req.logger.error(`Error al borrar producto - Detalle: ${error.message}`);
     }
@@ -299,7 +269,7 @@ router.delete(
 
 router
   .route("/editarProducto/:id")
-  .all(auth, productosController.obtenerProducto)
+  .all(authMiddleware.auth, productosController.obtenerProducto)
   .get((req, res) => {
     const productoDB = res.locals.productoDB;
     if (!productoDB) {
@@ -329,16 +299,14 @@ router
         res.redirect("/DBProducts-Admin");
       } else {
         if (error) {
-         req.logger.error(
+          req.logger.error(
             `Error al editar producto de nombre ${productoEditado.title}`
           );
           res.status(error.codigo).send(error.detalle);
         }
       }
     } catch (error) {
-       req.logger.error(
-        `Error al editar producto`
-      );
+      req.logger.error(`Error al editar producto`);
       res.status(500).send("Error interno del servidor");
     }
   });
@@ -347,7 +315,7 @@ router
 
   router.delete(
     "/eliminarProducto-Premium/:id",
-    auth,
+    authMiddleware.auth,
     productosController.borrarProducto,
     (req, res) => {
       try {
@@ -358,7 +326,6 @@ router
         } else {
           req.logger.warn("No se pudo obtener el nombre del producto borrado.");
         }
-        //res.status(200).render("DBproducts-Admin");
       } catch (error) {
         req.logger.error(
           `Error al borrar producto - Detalle: ${error.message}`
@@ -369,7 +336,7 @@ router
 
   router
     .route("/editarProducto-Premium/:id")
-    .all(auth, productosController.obtenerProducto)
+    .all(authMiddleware.auth, productosController.obtenerProducto)
     .get((req, res) => {
       const productoDB = res.locals.productoDB;
       if (!productoDB) {
@@ -416,23 +383,22 @@ router
 
 router.get(
   "/carts/:cid",
-  auth,
+  authMiddleware.auth,
   carritosController.verCarritoConId,
   (req, res) => {
     const carritoDB = res.locals.carritoDB;
 
     if (!carritoDB) {
       req.logger.error(`Carrito no encontrado - Detalle: ${error.message}`);
-        throw new CustomError(
-          "ERROR_DATOS",
-          "Carrito no encontrado",
-          tiposDeError.CARRITO_NO_ENCONTRADO,
-          "Carrito no encontrado"
-        );
-        }
+      throw new CustomError(
+        "ERROR_DATOS",
+        "Carrito no encontrado",
+        tiposDeError.CARRITO_NO_ENCONTRADO,
+        "Carrito no encontrado"
+      );
+    }
 
-
-  req.logger.info(`Carrito de id ${carritoDB._id} encontrado exitosamente`);
+    req.logger.info(`Carrito de id ${carritoDB._id} encontrado exitosamente`);
     res.header("Content-type", "text/html");
     res.status(200).render("DBcartDetails", {
       carritoDB,
@@ -444,25 +410,30 @@ router.get(
 
 //---------------------------------------------------------------- RUTAS PARA EL CHAT --------------- //
 
-router.get("/chat", auth, authRol(["user"]), (req, res) => {
-  try {
-    req.logger.info(
-      `Ingreso al chat exitoso - Usuario ${req.session.usuario.email}`
-    );
-    res.setHeader("Content-type", "text/html");
-    res.status(200).render("chat", {
-      estilo: "chat.css",
-      usuario: req.session.usuario,
-    });
-  } catch (error) {
-    req.logger.error(`Error al ingresar al chat - Detalle: ${error.message}`);
-    res.status(500).send("Error interno del servidor");
+router.get(
+  "/chat",
+  authMiddleware.auth,
+  authMiddleware.authRol(["user"]),
+  (req, res) => {
+    try {
+      req.logger.info(
+        `Ingreso al chat exitoso - Usuario ${req.session.usuario.email}`
+      );
+      res.setHeader("Content-type", "text/html");
+      res.status(200).render("chat", {
+        estilo: "chat.css",
+        usuario: req.session.usuario,
+      });
+    } catch (error) {
+      req.logger.error(`Error al ingresar al chat - Detalle: ${error.message}`);
+      res.status(500).send("Error interno del servidor");
+    }
   }
-});
+);
 
 //---------------------------------------------------------------- RUTAS PARA EL USERS ---------------//
 
-router.get("/registro", auth2, (req, res) => {
+router.get("/registro", authMiddleware.auth2, (req, res) => {
   try {
     let error = false;
     let errorDetalle = "";
@@ -487,8 +458,8 @@ router.get("/registro", auth2, (req, res) => {
   }
 });
 
-router.get("/login", auth2, (req, res) => {
-  try {   
+router.get("/login", authMiddleware.auth2, (req, res) => {
+  try {
     let error = false;
     let errorDetalle = "";
     if (req.query.error) {
@@ -521,7 +492,7 @@ router.get("/login", auth2, (req, res) => {
   }
 });
 
-router.get("/perfil", auth, (req, res) => {
+router.get("/perfil", authMiddleware.auth2, (req, res) => {
   try {
     req.logger.info(
       `Acceso exitoso al perfil - Usuario: ${req.session.usuario.email}`
@@ -697,13 +668,13 @@ const renderCambiaRole = (res, options) => {
     res.render("cambiaRole", options);
 };
 
-router.get("/api/users/premium/", auth, (req, res) => {
+router.get("/api/users/premium/", authMiddleware.auth, (req, res) => {
   UsersController.userRoleVista(req, res, renderCambiaRole);
 });
 
 router.post(
   "/api/users/premium/:id",
-  auth,
+  authMiddleware.auth,
   UsersController.changeUserRoleEnVista
 );
 
