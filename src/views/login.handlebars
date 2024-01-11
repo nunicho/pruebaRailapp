@@ -1,0 +1,52 @@
+<h1> Bienvenido a Retro Gamer - Menú de Login</h1>
+<hr>
+
+<h2>  USUARIOS </h2>
+<hr>
+<h3>Ingresar con GitHub</h3>
+<a class="login-button" href="/api/sessions/github">GITHUB</a>
+
+<hr>
+<h3>Ingresar con Usuario Local</h3>
+
+<form action="/api/sessions/login" method="POST">
+
+{{#if successPasswordMessage}}
+  <div class="success">{{successPasswordMessage}}</div>
+{{/if}}
+
+
+{{#if error}}
+  <div class="error">{{errorDetalle}}</div>
+{{/if}}
+
+{{#if usuarioCreado}}
+    <div class="success">Se ha creado correctamente el usuario {{usuarioCreadoDetalle}}</div>
+{{/if}}
+
+    {{!-- {{#if logoutExitoso}}
+        <div class="mensaje">Se ha creado correctamente el usuario {{usuarioCreadoDetalle}}</div>
+    {{/if}} --}}
+
+<input type="email" name="email" placeholder="email">   
+<input type="password" name="password" placeholder="password"> 
+    
+<button type="submit" value="Login" class="login-button">Login</button>     
+<a  href="/forgotPassword"  class="login-button">Olvidé mi Password</a>
+<a href="/registro" class="login-button">Quiero registrarme</a>
+</form>
+
+<hr>
+
+<h2>ADMINISTRADORES</h2>
+
+<a class="login-button" href="/loginAdmin"> Login como Administrador</a>
+<br>
+
+
+
+
+
+
+
+    

@@ -1,0 +1,234 @@
+paths:
+  /api/products:
+    get:
+      summary: Obtiene todos los productos
+      tags:
+        - Productos
+      parameters:
+        - name: pagina
+          in: query
+          description: Número de página a obtener
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: filtro
+          in: query
+          description: Filtro por título
+          required: false
+          schema:
+            type: string
+        - name: codeFilter
+          in: query
+          description: Filtro por código
+          required: false
+          schema:
+            type: string
+        - name: sort
+          in: query
+          description: Opción de ordenamiento
+          required: false
+          schema:
+            type: string
+            enum: ["price_asc", "price_desc"]
+        - name: limit
+          in: query
+          description: Límite de resultados por página
+          required: false
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: Los Productos fueron obtenidos OK desde la Base de Datos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        "500":
+          description: Error interno del servidor
+    post:
+      summary: Graba un producto
+      tags:
+        - Productos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        "201":
+          description: Producto creado      
+        "400":
+          description: "El código proporcionado ya está en uso por otro producto."
+        "500":
+          description: Error interno del servidor
+
+  /api/products/{id}:
+    get:
+      summary: Obtiene un producto de la base de datos por id
+      tags:
+        - Productos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id del producto que se está solicitando
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Recupera un producto de la DB, según el id que enviamos en la ruta como parámetro
+        "500":
+          description: Error interno del servidor
+    put:
+      summary: Actualiza un producto existente por ID
+      tags:
+        - Productos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto que se está editando
+          schema:
+            type: string
+        # - in: header
+          # name: Authorization
+          # description: Token de autenticación
+          # required: true
+          # schema:
+          #   type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateProduct'
+      responses:
+        "200":
+          description: Producto actualizado correctamente
+        "404":
+          description: Producto no encontrado
+        "400":
+          description: El código ..... ya está siendo usado por otro producto.
+        "500":
+          description: Error interno del servidor
+    delete: 
+      summary: Elimina un producto por ID
+      tags:
+        - Productos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto que se está eliminando
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Producto eliminado correctamente
+        "404":
+          description: Producto no encontrado
+        "500":
+          description: Error interno del servidor
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Id autogenerado de mongo.
+        status:
+          type: boolean
+          default: true
+          description: Status del producto, si no se aclara es "true".
+        title:
+          type: string
+          required: true
+          description: Título del producto.
+        description:
+          type: string
+          required: true
+          description: Descripción del producto.
+        price:
+          type: number
+          required: true
+          description: Precio del producto.
+        thumbnail:
+          type: string
+          required: true
+          description: Imagen del producto.
+        code:
+          type: string
+          unique: true
+          required: true
+          description: Código del producto, el cual no puede repetirse, es único.
+        stock:
+          type: number
+          required: true
+          description: Existencias, en unidades, del producto.
+        owner:
+          type: string
+          default: "admin"
+          description: Si no se aclara nada, será "admin"
+      example:
+        status: true
+        title: "Producto genérico"
+        description: "Hecho de madera y metal"
+        price: 10000  
+        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIchk6d9Hkf_yXi_AIvPQ1tNUSqNBmccWVZvHOTUi-i9r0Cv1TcM-MPkD8uzlpMWiareg&usqp=CAU"
+        code: "Producto-1"
+        stock: 3
+        owner: "admin"
+    updateProduct:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Id autogenerado de mongo.
+        status:
+          type: boolean
+          default: true
+          description: Status del producto, si no se aclara es "true".
+        title:
+          type: string
+          required: true
+          description: Título del producto.
+        description:
+          type: string
+          required: true
+          description: Descripción del producto.
+        price:
+          type: number
+          required: true
+          description: Precio del producto.
+        thumbnail:
+          type: string
+          required: true
+          description: Imagen del producto.
+        code:
+          type: string
+          unique: true
+          required: true
+          description: Código del producto, el cual no puede repetirse, es único.
+        stock:
+          type: number
+          required: true
+          description: Existencias, en unidades, del producto.
+        owner:
+          type: string
+          default: "admin"
+          description: Si no se aclara nada, será "admin"
+      example:
+        status: true
+        title: "Producto genérico ACTUALIZADO"
+        description: "Hecho de madera, metal y plástico"
+        price: 10000  
+        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIchk6d9Hkf_yXi_AIvPQ1tNUSqNBmccWVZvHOTUi-i9r0Cv1TcM-MPkD8uzlpMWiareg&usqp=CAU"
+        code: "Producto-1"
+        stock: 3
+        owner: "admin"

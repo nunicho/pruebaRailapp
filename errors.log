@@ -1,0 +1,64 @@
+{"level":"error","message":"Error al abrir el login - Detalle: dasd is not defined","timestamp":"2023-11-27T03:18:32.486Z"}
+{"level":"error","message":"Error al abrir el login - Detalle: productosController.listarProductos1 is not a function","timestamp":"2023-11-27T16:55:03.485Z"}
+{"level":"error","message":"Error al acceder a productos - Detalle: productosController.listarProductos1 is not a function","timestamp":"2023-11-27T16:55:52.835Z"}
+{"level":"error","message":"Error al acceder a productos - Detalle: productos1981 is not defined","timestamp":"2023-11-27T16:57:00.864Z"}
+{"level":"error","message":"Error al abrir detalle de producto - Detalle: productoDB1981 is not defined","timestamp":"2023-11-27T17:07:54.812Z"}
+{"level":"fatal","message":"Error al abrir detalle de producto - Detalle: productoDB1981 is not defined","timestamp":"2023-11-27T17:08:32.509Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto","timestamp":"2023-11-27T18:14:11.725Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\def14-AlonsoMauricio\\src\\router\\vistas.router.js:239:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-11-27T18:21:26.599Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\def14-AlonsoMauricio\\src\\router\\vistas.router.js:239:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-11-27T18:21:45.387Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\def14-AlonsoMauricio\\src\\router\\vistas.router.js:239:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-11-27T18:22:24.933Z"}
+{"level":"error","message":"Error al ingresar al chat - Detalle: pepito is not defined","timestamp":"2023-11-27T22:14:10.224Z"}
+{"level":"error","message":"Error al acceder a la página de registro - Detalle: pepito is not defined","timestamp":"2023-11-27T22:23:28.876Z"}
+{"level":"error","message":"Error al acceder al perfil - Detalle: pepito is not defined","timestamp":"2023-11-27T22:32:15.995Z"}
+{"level":"fatal","message":"Error al acceder a la página de inicio de sesión - Detalle: cacheuta is not defined","timestamp":"2023-11-27T22:36:39.877Z"}
+{"level":"fatal","message":"Error al acceder a la página de administrador - Detalle: cacheuta is not defined","timestamp":"2023-11-27T22:38:45.953Z"}
+{"level":"error","message":"Error al acceder a la ruta de productos simulados - Detalle: pepito is not defined","timestamp":"2023-11-27T22:42:12.299Z"}
+{"level":"error","message":"Error al acceder a la ruta de detalles del producto simulado - Detalle: pepito is not defined","timestamp":"2023-11-27T22:42:40.638Z"}
+{"level":"error","message":"Error al acceder a la ruta de crear carrito - Detalle: pepito is not defined","timestamp":"2023-11-27T22:51:49.036Z"}
+{"level":"fatal","message":"Error al acceder a la ruta de crear carrito - Detalle: pepito is not defined","timestamp":"2023-11-27T22:52:10.320Z"}
+{"level":"error","message":"Error al manejar la ruta de login - Detalle: prueba is not defined","timestamp":"2023-11-28T00:17:10.209Z"}
+{"level":"error","message":"Error al destruir la sesión - Detalle: Cannot read properties of undefined (reading 'usuario')","timestamp":"2023-11-28T00:19:33.486Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Cannot read properties of undefined (reading 'email')","timestamp":"2023-11-28T00:23:14.945Z"}
+{"level":"error","message":"Error al manejar la solicitud de inicio de sesión como administrador - Detalle: pepito is not defined","timestamp":"2023-11-28T00:37:51.966Z"}
+{"level":"fatal","message":"Error al manejar la solicitud de inicio de sesión como administrador - Detalle: pepito is not defined","timestamp":"2023-11-28T00:38:34.727Z"}
+{"level":"error","message":"Faltan datos en la solicitud","timestamp":"2023-11-28T23:23:06.758Z"}
+{"level":"error","message":"Error al acceder a productos - Detalle: premiumLogueado is not defined","timestamp":"2023-12-07T00:27:12.943Z"}
+{"level":"error","message":"Error al acceder a productos - Detalle: premiumLogueado is not defined","timestamp":"2023-12-07T00:28:53.677Z"}
+{"level":"error","message":"Error al acceder a productos - Detalle: premiumLogueado is not defined","timestamp":"2023-12-07T00:29:01.580Z"}
+{"level":"error","message":"Error al acceder a productos - Detalle: premiumLogueado is not defined","timestamp":"2023-12-07T00:29:09.292Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\def16-AlonsoMauricio\\src\\router\\vistas.router.js:271:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-09T20:07:19.856Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\def16-AlonsoMauricio\\src\\router\\vistas.router.js:271:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-09T21:19:13.227Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\def16-AlonsoMauricio\\src\\router\\vistas.router.js:271:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-09T21:48:17.434Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\def16-AlonsoMauricio\\src\\router\\vistas.router.js:271:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-09T21:48:17.595Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\def16-AlonsoMauricio\\src\\router\\vistas.router.js:271:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-09T21:48:17.748Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\def16-AlonsoMauricio\\src\\router\\vistas.router.js:271:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-09T21:48:17.900Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\def16-AlonsoMauricio\\src\\router\\vistas.router.js:271:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-09T21:52:52.046Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\def16-AlonsoMauricio\\src\\router\\vistas.router.js:271:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-09T21:59:37.861Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\def16-AlonsoMauricio\\src\\router\\products.router.js:74:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2023-12-12T02:02:48.602Z"}
+{"level":"error","message":"Error al acceder a la ruta de ver carrito con ID - Detalle: carritoResponse is not defined","timestamp":"2023-12-14T03:05:51.690Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Cannot read properties of undefined (reading 'email')","timestamp":"2023-12-21T00:01:17.764Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Cannot read properties of undefined (reading 'email')","timestamp":"2023-12-21T00:07:08.480Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Cannot read properties of undefined (reading 'email')","timestamp":"2023-12-21T00:10:30.054Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Cannot read properties of undefined (reading 'email')","timestamp":"2023-12-21T00:16:02.952Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Cannot read properties of undefined (reading 'email')","timestamp":"2024-01-08T15:58:59.857Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Cannot read properties of undefined (reading 'email')","timestamp":"2024-01-08T18:53:57.664Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: modeloUsers is not defined","timestamp":"2024-01-08T19:54:15.127Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-08T20:29:51.532Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-08T20:30:40.152Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-08T20:30:47.793Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-08T20:31:41.560Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-08T20:32:28.072Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-08T22:59:24.938Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: usuarioGithubController is not defined","timestamp":"2024-01-08T23:09:37.316Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Cannot read properties of undefined (reading 'email')","timestamp":"2024-01-08T23:17:01.820Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-08T23:43:25.802Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Cannot read properties of undefined (reading 'email')","timestamp":"2024-01-08T23:48:23.378Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Cannot read properties of undefined (reading 'email')","timestamp":"2024-01-08T23:48:51.060Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Cannot read properties of undefined (reading 'email')","timestamp":"2024-01-08T23:50:27.303Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-09T00:01:15.403Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: updateLastConnectionGithub is not defined","timestamp":"2024-01-09T00:15:56.246Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: updateLastConnectionGithub is not defined","timestamp":"2024-01-09T00:16:54.610Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: updateLastConnectionGithub is not defined","timestamp":"2024-01-09T00:24:00.261Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection en GitHub","timestamp":"2024-01-09T00:24:59.216Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection en GitHub","timestamp":"2024-01-09T00:38:00.061Z"}
