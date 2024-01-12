@@ -1252,3 +1252,6 @@
 {"level":"info","message":"Ingreso al chat exitoso - Usuario mauricio@gmail.com","timestamp":"2024-01-12T00:20:17.725Z"}
 {"level":"info","message":"Ingreso al chat exitoso - Usuario mauricio@gmail.com","timestamp":"2024-01-12T01:08:22.195Z"}
 {"level":"info","message":"Ingreso al chat exitoso - Usuario mauricio@gmail.com","timestamp":"2024-01-12T01:16:14.251Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-12T03:50:45.120Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-12T03:50:52.600Z"}
+{"level":"info","message":"Ingreso al chat exitoso - Usuario mauricio@gmail.com","timestamp":"2024-01-12T03:50:55.259Z"}

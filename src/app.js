@@ -236,7 +236,7 @@ app.post("/forgotPassword", async (req, res) => {
   }
 });
 
-// WEBSOCKET Y CHAT
+
 app.engine("handlebars", hbs.engine);
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
@@ -248,14 +248,14 @@ const serverExpress = app.listen(PORT, () => {
   console.log(`Server escuchando en puerto ${PORT}`);
 });
 
-const serverSocket = socketIO(serverExpress);
-
-serverSocket.on("connection", (socket) => {});
-
 moongose
   .connect(config.MONGO_URL, { dbName: config.DB_NAME })
   .then(console.log("DB Conectada"))
   .catch((error) => console.log(error));
+
+// WEBSOCKET Y CHAT
+const serverSocket = socketIO(serverExpress);
+serverSocket.on("connection", (socket) => {});
 
 let mensajes = [
   {
@@ -298,41 +298,6 @@ serverSocketChat.on("connection", (socket) => {
     usuarios.splice(indice, 1);
   });
 
-  socket.on("productoAgregado", (data) => {
-    serverSocket.emit("productoAgregado", data);
-  });
-
-  function getProducts() {
-    const ruta = path.join(__dirname, "archivos", "productos.json");
-    if (fs.existsSync(ruta)) {
-      return JSON.parse(fs.readFileSync(ruta, "utf-8"));
-    } else {
-      return [];
-    }
-  }
-
-  socket.on("eliminarProducto", (productId) => {
-    const productos = getProducts();
-
-    function saveProducts(products) {
-      const ruta = path.join(__dirname, "archivos", "productos.json");
-      try {
-        fs.writeFileSync(ruta, JSON.stringify(products, null, 2), "utf8");
-      } catch (error) {
-        console.error("Error al guardar productos:", error);
-      }
-    }
-    const productoIndex = productos.findIndex(
-      (producto) => producto.id === productId
-    );
-    if (productoIndex !== -1) {
-      productos.splice(productoIndex, 1);
-      saveProducts(productos);
-      serverSocket.emit("productosActualizados", productos);
-    }
-  });
-
-  socket.emit("productosActualizados", getProducts());
 });
 
 app.use(errorHandler);
