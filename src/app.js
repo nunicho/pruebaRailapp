@@ -3,15 +3,12 @@ const swagger_jsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const fs = require("fs");
 const http = require("http");
-const chatWebsocket = require("./config/chatWebsocket.config.js");
-const initializeSocketChat = require("./config/chatWebsocket.config.js");
-
+const socketIO = require("socket.io");
 const MessageModel = require("./dao/DB/models/messages.modelo.js");
+
 const moongose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
-
-
 
 const app = express();
 
@@ -21,7 +18,6 @@ const errorHandler = require("./middleware/errorHandler.js");
 // DOTENV
 const config = require("./config/config.js");
 
-
 //SESSION
 const session = require("express-session");
 const ConnectMongo = require("connect-mongo");
@@ -30,7 +26,6 @@ const ConnectMongo = require("connect-mongo");
 
 const inicializaPassport = require("./config/passport.config.js");
 const passport = require("passport");
-
 
 // NODEMAILER y JWT
 const nodemailer = require("nodemailer");
@@ -42,11 +37,9 @@ const handlebars = require("express-handlebars");
 
 const PORT = config.PORT;
 
-
 // LOGGER
 const { middLog } = require("./util.js");
 app.use(middLog);
-
 
 //SWAGGER
 
@@ -94,7 +87,6 @@ app.use(passport.session());
 // PARA EL MANEJO DE COOKIES
 app.use(cookieParser());
 
-
 // Routers de FileSystem (FS)
 const FSproductsRouter = require("./dao/fileSystem/routes/FSproducts.router.js");
 const FScartsRouter = require("./dao/fileSystem/routes/FScarts.router.js");
@@ -108,7 +100,6 @@ const vistasRouter = require("./router/vistas.router.js");
 
 // Router de Users
 const usersRouter = require("./router/users.router.js");
-
 
 // Router de Session
 const sessionsRouter = require("./router/sessions.router.js");
@@ -128,19 +119,17 @@ app.use("/", vistasRouter);
 const multer = require("multer");
 const upload = multer({ dest: "src/uploads/" });
 
-app.post('api/users/:id/documents', upload.single('avatar'), (req,res)=>  {
-  console.log(req.file)
+app.post("api/users/:id/documents", upload.single("avatar"), (req, res) => {
+  console.log(req.file);
 
-console.log(req.body);
-    res.status(200).send('Imagen procesada')
-})
-
+  console.log(req.body);
+  res.status(200).send("Imagen procesada");
+});
 
 app.post("/profile", upload.single("avatar"), function (req, res, next) {
   // req.file is the `avatar` file
   // req.body will hold the text fields, if there were any
 });
-
 
 // HANDLEBARS - inicialización
 const hbs = handlebars.create({
@@ -183,7 +172,7 @@ const hbs = handlebars.create({
   },
 });
 // NODEMAILER Y JWT PARA CAMBIO DE CONTRASEÑA
-const UsersController= require("./controllers/users.controller.js")
+const UsersController = require("./controllers/users.controller.js");
 // Configuración del transporte de nodemailer (usando un servicio de prueba)
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -218,7 +207,7 @@ app.post("/forgotPassword", async (req, res) => {
 
     const resetToken = createResetToken(user, secret);
     user.reset_password_token = resetToken;
-    user.reset_password_expires = Date.now() + 3600000; 
+    user.reset_password_expires = Date.now() + 3600000;
 
     await user.save();
 
@@ -235,21 +224,19 @@ app.post("/forgotPassword", async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    res
-   res.status(200).render("login", {
-     successPasswordMessage:
-       "Se ha enviado un correo con las instrucciones para restablecer la contraseña.",
-     estilo: "login.css",
-   });
-
+    res;
+    res.status(200).render("login", {
+      successPasswordMessage:
+        "Se ha enviado un correo con las instrucciones para restablecer la contraseña.",
+      estilo: "login.css",
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error interno del servidor");
   }
 });
 
-
-
+// WEBSOCKET Y CHAT
 app.engine("handlebars", hbs.engine);
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
@@ -261,9 +248,91 @@ const serverExpress = app.listen(PORT, () => {
   console.log(`Server escuchando en puerto ${PORT}`);
 });
 
+const serverSocket = socketIO(serverExpress);
 
-// WEBSOCKET Y CHAT
-const serverSocket = chatWebsocket(serverExpress);
-const serverSocketChat = initializeSocketChat(serverExpress);
+serverSocket.on("connection", (socket) => {});
+
+moongose
+  .connect(config.MONGO_URL, { dbName: config.DB_NAME })
+  .then(console.log("DB Conectada"))
+  .catch((error) => console.log(error));
+
+let mensajes = [
+  {
+    emisor: "Server",
+    mensaje: "Bienvenido al chat de ferretería el Tornillo... !!!",
+  },
+];
+
+let usuarios = [];
+
+const serverSocketChat = socketIO(serverExpress);
+
+serverSocketChat.on("connection", (socket) => {
+  socket.on("id", (nombre) => {
+    usuarios.push({
+      id: socket.id,
+      nombre,
+    });
+    socket.emit("bienvenida", mensajes);
+    socket.broadcast.emit("nuevoUsuario", nombre);
+  });
+
+  socket.on("nuevoMensaje", (mensaje) => {
+    // Guarda el mensaje en MongoDB
+    const newMessage = new MessageModel({
+      user: mensaje.emisor,
+      message: mensaje.mensaje,
+    });
+
+    newMessage.save().then(() => {});
+
+    mensajes.push(mensaje);
+    serverSocketChat.emit("llegoMensaje", mensaje);
+  });
+  // PARA HACER UN USUARIO QUE SE DESCONECTÓ
+  socket.on("disconnect", () => {
+    let indice = usuarios.findIndex((usuario) => usuario.id === socket.id);
+    let usuario = usuarios[indice];
+    serverSocketChat.emit("usuarioDesconectado", usuario);
+    usuarios.splice(indice, 1);
+  });
+
+  socket.on("productoAgregado", (data) => {
+    serverSocket.emit("productoAgregado", data);
+  });
+
+  function getProducts() {
+    const ruta = path.join(__dirname, "archivos", "productos.json");
+    if (fs.existsSync(ruta)) {
+      return JSON.parse(fs.readFileSync(ruta, "utf-8"));
+    } else {
+      return [];
+    }
+  }
+
+  socket.on("eliminarProducto", (productId) => {
+    const productos = getProducts();
+
+    function saveProducts(products) {
+      const ruta = path.join(__dirname, "archivos", "productos.json");
+      try {
+        fs.writeFileSync(ruta, JSON.stringify(products, null, 2), "utf8");
+      } catch (error) {
+        console.error("Error al guardar productos:", error);
+      }
+    }
+    const productoIndex = productos.findIndex(
+      (producto) => producto.id === productId
+    );
+    if (productoIndex !== -1) {
+      productos.splice(productoIndex, 1);
+      saveProducts(productos);
+      serverSocket.emit("productosActualizados", productos);
+    }
+  });
+
+  socket.emit("productosActualizados", getProducts());
+});
 
 app.use(errorHandler);
