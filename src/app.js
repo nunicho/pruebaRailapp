@@ -7,6 +7,8 @@ const socketIO = require("socket.io");
 const MessageModel = require("./dao/DB/models/messages.modelo.js");
 const configureChat = require("./config/chat.config.js");
 
+const configureHandlebars = require("./config/handlebars.config.js")
+
 const moongose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -33,8 +35,6 @@ const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 const async = require("async");
 
-// HANDLEBARS - importación
-const handlebars = require("express-handlebars");
 
 const PORT = config.PORT;
 
@@ -133,45 +133,12 @@ app.post("/profile", upload.single("avatar"), function (req, res, next) {
 });
 
 // HANDLEBARS - inicialización
-const hbs = handlebars.create({
-  helpers: {
-    add: function (value, addition) {
-      return value + addition;
-    },
-    subtract: function (value, subtraction) {
-      return value - subtraction;
-    },
-    ifEquals: function (arg1, arg2, options) {
-      return arg1 === arg2 ? options.fn(this) : options.inverse(this);
-    },
-    json: function (context) {
-      return JSON.stringify(context);
-    },
-    fileRead: function (filePath, options) {
-      fs.readFile(filePath, "utf-8", (error, data) => {
-        if (error) {
-          console.error(
-            `Error al leer el archivo ${filePath}: ${error.message}`
-          );
-          if (options && options.fn) {
-            options.fn("Error al leer el archivo");
-          }
-        } else {
-          if (options && options.fn) {
-            options.fn(data);
-          }
-        }
-      });
-    },
-    compareOwners: function (owner1, owner2, options) {
-      if (owner1 === owner2) {
-        return options.fn(this);
-      } else {
-        return options.inverse(this);
-      }
-    },
-  },
-});
+const hbs = configureHandlebars();
+app.engine("handlebars", hbs.engine);
+app.set("views", __dirname + "/views");
+app.set("view engine", "handlebars");
+
+
 // NODEMAILER Y JWT PARA CAMBIO DE CONTRASEÑA
 const UsersController = require("./controllers/users.controller.js");
 // Configuración del transporte de nodemailer (usando un servicio de prueba)
@@ -238,9 +205,7 @@ app.post("/forgotPassword", async (req, res) => {
 });
 
 
-app.engine("handlebars", hbs.engine);
-app.set("views", __dirname + "/views");
-app.set("view engine", "handlebars");
+
 
 //app.use(express.static(__dirname + "/public"));
 app.use(express.static(path.join(__dirname, "public")));
