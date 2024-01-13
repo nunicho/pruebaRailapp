@@ -8,6 +8,7 @@ const MessageModel = require("./dao/DB/models/messages.modelo.js");
 const configureChat = require("./config/chat.config.js");
 
 const configureHandlebars = require("./config/handlebars.config.js")
+const configureSwagger = require("./config/swagger.config.js");
 
 const moongose = require("mongoose");
 const path = require("path");
@@ -44,21 +45,10 @@ app.use(middLog);
 
 //SWAGGER
 
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Ecommerce Retro Gamer",
-      version: "1.0.0",
-      description: "Documentación del proyecto: productos y carritos de compra",
-    },
-  },
-  apis: ["./docs/*.yaml"],
-};
-
-const specs = swagger_jsdoc(options);
-
+const specs = configureSwagger();
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
