@@ -458,6 +458,7 @@ router.get("/registro", authMiddleware.auth2, (req, res) => {
   }
 });
 
+
 router.get("/login", authMiddleware.auth2, (req, res) => {
   try {
     let error = false;
@@ -483,6 +484,7 @@ router.get("/login", authMiddleware.auth2, (req, res) => {
       error,
       errorDetalle,
       estilo: "login.css",
+      //estilo: "../public/assets/css/login",
     });
   } catch (error) {
     req.logger.fatal(
