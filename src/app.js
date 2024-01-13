@@ -79,7 +79,7 @@ app.use("/", vistasRouter);
 //MULTER
 const multer = require("multer");
 const upload = multer({ dest: "src/uploads/" });
-
+/*
 app.post("api/users/:id/documents", upload.single("avatar"), (req, res) => {
   console.log(req.file);
 
@@ -91,7 +91,7 @@ app.post("/profile", upload.single("avatar"), function (req, res, next) {
   // req.file is the `avatar` file
   // req.body will hold the text fields, if there were any
 });
-
+*/
 // HANDLEBARS - inicialización
 const hbs = configureHandlebars();
 app.engine("handlebars", hbs.engine);

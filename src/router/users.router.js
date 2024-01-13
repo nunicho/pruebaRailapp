@@ -147,7 +147,6 @@ router.post(
 // ---------------- PREMIUM ----------------------------///
 
 
-
 router.get("/premium/:id", UsersController.getUserRoleById);
 
 router.post("/premium/:id/changeRole", UsersController.changeUserRole);
@@ -155,30 +154,3 @@ router.post("/premium/:id/changeRole", UsersController.changeUserRole);
 
 module.exports = router;
 
-
-/*
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./src/uploads/"); 
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + "-" + uniqueSuffix + "-" + file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage });
-
-router.post("/:id/documents", upload.single("foto"), async (req, res) => {
-  try {
-    const userId = req.params.id;
-    const file = req.file;
-
-    const updatedUser = await UsersController.handleDocumentUpload(userId, file);
-
-    res.status(200).json({ message: "Documento subido exitosamente", user: updatedUser });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-*/
