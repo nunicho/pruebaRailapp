@@ -4,9 +4,9 @@ const configureChat = require("./config/chat.config.js");
 const configureHandlebars = require("./config/handlebars.config.js")
 const configureSwagger = require("./config/swagger.config.js");
 const connectToDatabase = require("./config/database.config.js")
+const sessionsConfig = require("./config/sessions.config.js")
+const session = require("express-session");
 
-
-const moongose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
@@ -18,9 +18,6 @@ const errorHandler = require("./middleware/errorHandler.js");
 // DOTENV
 const config = require("./config/config.js");
 
-//SESSION
-const session = require("express-session");
-const ConnectMongo = require("connect-mongo");
 
 //PASSPORT
 const inicializaPassport = require("./config/passport.config.js");
@@ -41,20 +38,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //PARA SESSION Y LOGIN
-const sessionStore = ConnectMongo.create({
-  mongoUrl: `${config.MONGO_URL}&dbName=${config.DB_NAME}`,
-
-  ttl: 3600,
-});
-
-app.use(
-  session({
-    secret: config.SESSIONS_PASSWORD,
-    resave: true,
-    saveUninitialized: true,
-    store: sessionStore,
-  })
-);
+app.use(session(sessionsConfig));
 
 //PARA INICIAR PASSPORT
 inicializaPassport();

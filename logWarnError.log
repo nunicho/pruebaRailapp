@@ -1299,3 +1299,8 @@
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-13T16:04:13.399Z"}
 {"level":"fatal","message":"Error al acceder a la página de inicio de sesión - Detalle: estiloLogin is not defined","timestamp":"2024-01-13T16:04:13.400Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-13T16:08:57.941Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-13T16:09:20.286Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-13T16:40:52.356Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-13T16:40:58.443Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-13T16:41:03.271Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-13T16:41:03.673Z"}
