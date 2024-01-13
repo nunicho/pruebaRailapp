@@ -4,7 +4,9 @@ const config = require("../config/config.js");
 const util = require("../util.js");
 const usersController = require("../controllers/users.controller.js");
 
-
+const nodemailerJwtConfig = require("../config/nodemailer-jwt.config.js");
+const { transporter, createResetToken } = nodemailerJwtConfig;
+//const UsersController = require("./controllers/users.controller.js");
 
 //PARA TRAER PASSPORT
 
@@ -27,32 +29,27 @@ router.get("/errorRegistro", (req, res) => {
 });
 
 // Ruta de registro
-router.post(
-  "/registro",
-  util.passportCallRegister("registro"), 
-  (req, res) => {
-    try {
-      if (req.user) {
-        req.session.usuario = req.user;
-        req.logger.info(`Registro exitoso - Usuario: ${req.user.username}`);
-        return res.redirect("/");
-      } else {
-        const error = req.body.error;
-        req.logger.fatal(`Error en la ruta de registro - Detalle: ${error}`);
-        return res.redirect("login", { error });
-      }
-    } catch (error) {
-      req.logger.error(
-        `Error al manejar la ruta de registro - Detalle: ${error.message}`
-      );
-      res.status(500).send("Error interno del servidor");
+router.post("/registro", util.passportCallRegister("registro"), (req, res) => {
+  try {
+    if (req.user) {
+      req.session.usuario = req.user;
+      req.logger.info(`Registro exitoso - Usuario: ${req.user.username}`);
+      return res.redirect("/");
+    } else {
+      const error = req.body.error;
+      req.logger.fatal(`Error en la ruta de registro - Detalle: ${error}`);
+      return res.redirect("login", { error });
     }
+  } catch (error) {
+    req.logger.error(
+      `Error al manejar la ruta de registro - Detalle: ${error.message}`
+    );
+    res.status(500).send("Error interno del servidor");
   }
-);
-
+});
 
 router.post("/login", util.passportCall("loginLocal"), (req, res) => {
-  try {       
+  try {
     if (req.user) {
       req.session.usuario = req.user;
       req.logger.info(
@@ -76,28 +73,30 @@ router.get("/logout", async (req, res) => {
   try {
     const usuario = req.session.usuario;
 
-  if (usuario && usuario.email) {
-    if (usuario.github) {
-      await usersController.updateLastConnectionGithub(usuario.email);
-    } else {
-      await usersController.updateLastConnection(usuario.email);
-    }
-
-    req.logger.info(`Logout exitoso - Mail: ${usuario.email}`);
-    req.session.destroy((e) => {
-      if (e) {
-        req.logger.error(`Error al destruir la sesión - Detalle: ${e.message}`);
-        res.status(500).send("Error interno del servidor");
+    if (usuario && usuario.email) {
+      if (usuario.github) {
+        await usersController.updateLastConnectionGithub(usuario.email);
       } else {
-        res.redirect("/login?mensaje=Logout correcto!");
+        await usersController.updateLastConnection(usuario.email);
       }
-    });
-  } else {
-    req.logger.error(
-      `No se encontró información de usuario en la sesión durante el logout`
-    );
-    res.status(500).send("Error interno del servidor");
-  }
+
+      req.logger.info(`Logout exitoso - Mail: ${usuario.email}`);
+      req.session.destroy((e) => {
+        if (e) {
+          req.logger.error(
+            `Error al destruir la sesión - Detalle: ${e.message}`
+          );
+          res.status(500).send("Error interno del servidor");
+        } else {
+          res.redirect("/login?mensaje=Logout correcto!");
+        }
+      });
+    } else {
+      req.logger.error(
+        `No se encontró información de usuario en la sesión durante el logout`
+      );
+      res.status(500).send("Error interno del servidor");
+    }
   } catch (error) {
     req.logger.error(
       `Error al manejar la ruta de logout - Detalle: ${error.message}`
@@ -120,10 +119,10 @@ router.get(
         req.logger.info(
           `Inicio de sesión exitoso con GitHub - Usuario: ${req.user.username}`
         );
-        } else {
+      } else {
         req.logger.fatal(`Fallo en la autenticación con GitHub`);
       }
-     } catch (error) {
+    } catch (error) {
       req.logger.error(
         `Error al manejar la autenticación con GitHub - Detalle: ${error.message}`
       );
@@ -137,7 +136,7 @@ router.get(
   passport.authenticate("loginGithub", {
     failureRedirect: "/api/sessions/errorGithub",
   }),
-  (req, res) => {    
+  (req, res) => {
     req.session.usuario = req.user;
     res.redirect("/");
   }
@@ -183,7 +182,6 @@ router.post("/loginAdmin", async (req, res) => {
   }
 });
 
-
 router.get("/", async (req, res) => {
   try {
     await usersController.getUsers(req, res);
@@ -222,8 +220,36 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.post("/forgotPassword", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await usersController.getUserByEmail(email);
 
-
+    if (!user) {
+      return res.status(404).send("Usuario no encontrado");
+    }
+    const resetToken = createResetToken(user);
+    user.reset_password_token = resetToken;
+    user.reset_password_expires = Date.now() + 3600000;
+    await user.save();
+    req.session.resetToken = resetToken;
+    const resetLink = `http://localhost:${config.PORT}/resetPassword?token=${resetToken}`;
+    const mailOptions = {
+      from: "noresponder-ferreteriaeltornillo@gmail.com",
+      to: user.email,
+      subject: "Restablecimiento de contraseña",
+      html: `Haga clic en el siguiente enlace para restablecer su contraseña: <a href="${resetLink}">${resetLink}</a>`,
+    };
+    await transporter.sendMail(mailOptions);
+    res.status(200).render("login", {
+      successPasswordMessage:
+        "Se ha enviado un correo con las instrucciones para restablecer la contraseña.",
+      estilo: "login.css",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error interno del servidor");
+  }
+});
 
 module.exports = router;
-

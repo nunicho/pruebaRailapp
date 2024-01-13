@@ -4,9 +4,7 @@ const configureChat = require("./config/chat.config.js");
 const configureHandlebars = require("./config/handlebars.config.js")
 const configureSwagger = require("./config/swagger.config.js");
 const connectToDatabase = require("./config/database.config.js")
-const nodemailerJwtConfig = require("./config/nodemailer-jwt.config.js");
-const { transporter, createResetToken } = nodemailerJwtConfig;
-const UsersController = require("./controllers/users.controller.js");
+
 
 const moongose = require("mongoose");
 const path = require("path");
@@ -119,44 +117,44 @@ app.set("view engine", "handlebars");
 
 // NODEMAILER Y JWT PARA CAMBIO DE CONTRASEÑA
 
-app.post("/forgotPassword", async (req, res) => {
-  try {
-    const { email } = req.body;
-    const user = await UsersController.getUserByEmail(email);
+// app.post("/forgotPassword", async (req, res) => {
+//   try {
+//     const { email } = req.body;
+//     const user = await UsersController.getUserByEmail(email);
 
-    if (!user) {
-      return res.status(404).send("Usuario no encontrado");
-    }
+//     if (!user) {
+//       return res.status(404).send("Usuario no encontrado");
+//     }
 
-    const resetToken = createResetToken(user);
-    user.reset_password_token = resetToken;
-    user.reset_password_expires = Date.now() + 3600000;
+//     const resetToken = createResetToken(user);
+//     user.reset_password_token = resetToken;
+//     user.reset_password_expires = Date.now() + 3600000;
 
-    await user.save();
+//     await user.save();
 
-    // Almacena el token completo en la sesión
-    req.session.resetToken = resetToken;
+//     // Almacena el token completo en la sesión
+//     req.session.resetToken = resetToken;
 
-    const resetLink = `http://localhost:${config.PORT}/resetPassword?token=${resetToken}`;
-    const mailOptions = {
-      from: "noresponder-ferreteriaeltornillo@gmail.com",
-      to: user.email,
-      subject: "Restablecimiento de contraseña",
-      html: `Haga clic en el siguiente enlace para restablecer su contraseña: <a href="${resetLink}">${resetLink}</a>`,
-    };
+//     const resetLink = `http://localhost:${config.PORT}/resetPassword?token=${resetToken}`;
+//     const mailOptions = {
+//       from: "noresponder-ferreteriaeltornillo@gmail.com",
+//       to: user.email,
+//       subject: "Restablecimiento de contraseña",
+//       html: `Haga clic en el siguiente enlace para restablecer su contraseña: <a href="${resetLink}">${resetLink}</a>`,
+//     };
 
-    await transporter.sendMail(mailOptions);
+//     await transporter.sendMail(mailOptions);
 
-    res.status(200).render("login", {
-      successPasswordMessage:
-        "Se ha enviado un correo con las instrucciones para restablecer la contraseña.",
-      estilo: "login.css",
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error interno del servidor");
-  }
-});
+//     res.status(200).render("login", {
+//       successPasswordMessage:
+//         "Se ha enviado un correo con las instrucciones para restablecer la contraseña.",
+//       estilo: "login.css",
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Error interno del servidor");
+//   }
+// });
 
 //app.use(express.static(__dirname + "/public"));
 app.use(express.static(path.join(__dirname, "public")));
