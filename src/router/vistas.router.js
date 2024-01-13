@@ -494,7 +494,7 @@ router.get("/login", authMiddleware.auth2, (req, res) => {
   }
 });
 
-router.get("/perfil", authMiddleware.auth2, (req, res) => {
+router.get("/perfil", authMiddleware.auth, (req, res) => {
   try {
     req.logger.info(
       `Acceso exitoso al perfil - Usuario: ${req.session.usuario.email}`
