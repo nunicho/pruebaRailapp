@@ -10,9 +10,6 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const app = express();
 
-// Routers de FileSystem (FS)
-const FSproductsRouter = require("./dao/fileSystem/routes/FSproducts.router.js");
-const FScartsRouter = require("./dao/fileSystem/routes/FScarts.router.js");
 
 // Routers de MongoDB (DB)
 const productsRouter = require("./router/products.router.js");
@@ -62,8 +59,6 @@ app.use(passport.session());
 app.use(cookieParser());
 
 // Inicialización de routers
-app.use("/api/fsproducts", FSproductsRouter);
-app.use("/api/fscarts", FScartsRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/api/sessions", sessionsRouter);

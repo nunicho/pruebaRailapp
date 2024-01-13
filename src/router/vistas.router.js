@@ -1,6 +1,5 @@
 const Router = require("express").Router;
 const router = Router();
-const arrayProducts = require("../archivos/productos.json");
 const productosController = require("../controllers/productos.controller.js");
 const carritosController = require("../controllers/carritos.controller.js");
 const UsersController = require("../controllers/users.controller.js");
@@ -42,55 +41,6 @@ router.get("/", authMiddleware.auth, (req, res) => {
   }
 });
 
-//---------------------------------------------------------------- RUTAS EN FILESYSTEM --------------- //
-
-router.get("/fsproducts", authMiddleware.auth, (req, res) => {
-  let index = parseInt(req.query.index) || 0;
-  const array = arrayProducts;
-  const totalProducts = array.length;
-
-  const lastIndex = array.length - 1;
-
-  if (index < 0) {
-    index = lastIndex;
-  } else if (index >= totalProducts) {
-    index = 0;
-  }
-
-  const product = array[index];
-
-  res.header("Content-type", "text/html");
-  res.status(200).render("FSproducts", {
-    product: product,
-    index: index,
-    titlePage: "Página de productos",
-    estilo: "productsStyles.css",
-  });
-});
-
-router.get("/fsrealtimeproducts", authMiddleware.auth, (req, res) => {
-  let index = parseInt(req.query.index) || 0;
-  const array = arrayProducts;
-  const totalProducts = array.length;
-
-  const lastIndex = array.length - 1;
-
-  if (index < 0) {
-    index = lastIndex;
-  } else if (index >= totalProducts) {
-    index = 0;
-  }
-
-  const product = array[index];
-
-  res.header("Content-type", "text/html");
-  res.status(200).render("realTimeProducts", {
-    product: product,
-    index: index,
-    titlePage: "Página de productos en tiempo real",
-    estilo: "realTimeProducts.css",
-  });
-});
 
 //---------------------------------------------------------------- RUTAS PARA PRODUCTOS--------------- //
 

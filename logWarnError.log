@@ -1330,3 +1330,6 @@
 {"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-13T18:07:49.302Z"}
 {"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-13T18:07:53.046Z"}
 {"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-13T18:07:56.508Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-13T19:32:48.783Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-13T19:32:56.001Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-13T19:32:59.933Z"}
