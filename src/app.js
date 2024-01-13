@@ -1,15 +1,12 @@
 const express = require("express");
-const swagger_jsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-const fs = require("fs");
-const http = require("http");
-const socketIO = require("socket.io");
-const MessageModel = require("./dao/DB/models/messages.modelo.js");
 const configureChat = require("./config/chat.config.js");
-
 const configureHandlebars = require("./config/handlebars.config.js")
 const configureSwagger = require("./config/swagger.config.js");
 const connectToDatabase = require("./config/database.config.js")
+const nodemailerJwtConfig = require("./config/nodemailer-jwt.config.js");
+const { transporter, createResetToken } = nodemailerJwtConfig;
+const UsersController = require("./controllers/users.controller.js");
 
 const moongose = require("mongoose");
 const path = require("path");
@@ -28,15 +25,8 @@ const session = require("express-session");
 const ConnectMongo = require("connect-mongo");
 
 //PASSPORT
-
 const inicializaPassport = require("./config/passport.config.js");
 const passport = require("passport");
-
-// NODEMAILER y JWT
-const nodemailer = require("nodemailer");
-const jwt = require("jsonwebtoken");
-const async = require("async");
-
 
 const PORT = config.PORT;
 
@@ -45,7 +35,6 @@ const { middLog } = require("./util.js");
 app.use(middLog);
 
 //SWAGGER
-
 const specs = configureSwagger();
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
@@ -54,7 +43,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //PARA SESSION Y LOGIN
-
 const sessionStore = ConnectMongo.create({
   mongoUrl: `${config.MONGO_URL}&dbName=${config.DB_NAME}`,
 
@@ -71,7 +59,6 @@ app.use(
 );
 
 //PARA INICIAR PASSPORT
-
 inicializaPassport();
 app.use(passport.initialize());
 app.use(passport.session());
@@ -131,29 +118,6 @@ app.set("view engine", "handlebars");
 
 
 // NODEMAILER Y JWT PARA CAMBIO DE CONTRASEÑA
-const UsersController = require("./controllers/users.controller.js");
-// Configuración del transporte de nodemailer (usando un servicio de prueba)
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: config.SMTP_USER, // Coloca tu dirección de correo aquí
-    pass: config.SMTP_PASSWORD, // Coloca tu contraseña aquí
-  },
-});
-
-const secret = config.SECRET;
-
-const createResetToken = (user) => {
-  const tokenObject = {
-    email: user.email,
-    id: user._id,
-  };
-  const expirationTime = 3600;
-  const resetToken = jwt.sign(tokenObject, secret, {
-    expiresIn: expirationTime,
-  });
-  return resetToken;
-};
 
 app.post("/forgotPassword", async (req, res) => {
   try {
@@ -164,7 +128,7 @@ app.post("/forgotPassword", async (req, res) => {
       return res.status(404).send("Usuario no encontrado");
     }
 
-    const resetToken = createResetToken(user, secret);
+    const resetToken = createResetToken(user);
     user.reset_password_token = resetToken;
     user.reset_password_expires = Date.now() + 3600000;
 
@@ -183,7 +147,6 @@ app.post("/forgotPassword", async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    res;
     res.status(200).render("login", {
       successPasswordMessage:
         "Se ha enviado un correo con las instrucciones para restablecer la contraseña.",
@@ -194,9 +157,6 @@ app.post("/forgotPassword", async (req, res) => {
     res.status(500).send("Error interno del servidor");
   }
 });
-
-
-
 
 //app.use(express.static(__dirname + "/public"));
 app.use(express.static(path.join(__dirname, "public")));
