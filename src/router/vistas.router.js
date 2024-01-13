@@ -7,40 +7,39 @@ const UsersController = require("../controllers/users.controller.js");
 const winston = require("winston");
 const path = require("path");
 const fs = require("fs");
-const config = require("../config/config.js");
+const entornoConfig = require("../config/entorno.config.js");
 const authMiddleware = require("../middleware/authMiddleware.js");
 const CustomError = require("../utils/customError.js");
 const tiposDeError = require("../utils/tiposDeError.js");
 
 //DTO para la vista CURRENT
-const dtoUsuarios = require("../dto/dtoUsuarios.js")
+const dtoUsuarios = require("../dto/dtoUsuarios.js");
 
 // FAKER
 const fakeDataGenerator = require("../public/assets/scripts/fakeDataGenerator.js");
 
 const mongoose = require("mongoose");
-  
+
 router.use((req, res, next) => {
   res.locals.usuario = req.session.usuario; // Pasar el usuario a res.locals
   next();
 });
 
 router.get("/", authMiddleware.auth, (req, res) => {
-let verLogin
- try { 
-  if (req.session.usuario) {
-  verLogin = false;
+  let verLogin;
+  try {
+    if (req.session.usuario) {
+      verLogin = false;
+    }
+    //req.logger.info(`Login exitoso`);
+    res.status(200).render("home", {
+      verLogin,
+      titlePage: "Home Page de la ferretería El Tornillo",
+      estilo: "styles.css",
+    });
+  } catch (error) {
+    req.logger.error(`Error al abrir el login - Detalle: ${error.message}`);
   }
- //req.logger.info(`Login exitoso`);
-  res.status(200).render("home", {
-    verLogin,
-    titlePage: "Home Page de la ferretería El Tornillo",
-    estilo: "styles.css",
-  });
- 
-} catch (error) {
-  req.logger.error(`Error al abrir el login - Detalle: ${error.message}`);
-}
 });
 
 //---------------------------------------------------------------- RUTAS EN FILESYSTEM --------------- //
@@ -201,7 +200,6 @@ router.get(
   }
 );
 
-
 router.get(
   "/DBproducts/:id",
   authMiddleware.auth,
@@ -246,7 +244,6 @@ router.post("/DBProducts", authMiddleware.auth, async (req, res, next) => {
   }
 });
 
-
 router.delete(
   "/eliminarProducto/:id",
   authMiddleware.auth,
@@ -265,7 +262,6 @@ router.delete(
     }
   }
 );
-
 
 router
   .route("/editarProducto/:id")
@@ -311,75 +307,70 @@ router
     }
   });
 
-
-
-  router.delete(
-    "/eliminarProducto-Premium/:id",
-    authMiddleware.auth,
-    productosController.borrarProducto,
-    (req, res) => {
-      try {
-        res.header("Content-type", "text/html");
-        const nombreProducto = res.locals.nombreProducto;
-        if (nombreProducto) {
-          req.logger.info(`Producto "${nombreProducto}" borrado exitosamente`);
-        } else {
-          req.logger.warn("No se pudo obtener el nombre del producto borrado.");
-        }
-      } catch (error) {
-        req.logger.error(
-          `Error al borrar producto - Detalle: ${error.message}`
-        );
-      }
-    }
-  );
-
-  router
-    .route("/editarProducto-Premium/:id")
-    .all(authMiddleware.auth, productosController.obtenerProducto)
-    .get((req, res) => {
-      const productoDB = res.locals.productoDB;
-      if (!productoDB) {
-        throw new CustomError(
-          "ERROR_DATOS",
-          "Producto no encontrado",
-          tiposDeError.PRODUCTO_NO_ENCONTRADO,
-          "Producto no encontrado"
-        );
-      }
+router.delete(
+  "/eliminarProducto-Premium/:id",
+  authMiddleware.auth,
+  productosController.borrarProducto,
+  (req, res) => {
+    try {
       res.header("Content-type", "text/html");
-      res.status(200).render("editarProducto", {
-        productoDB,
-        estilo: "editarProducto.css",
-      });
-    })
-    .post(async (req, res, next) => {
-      try {
-        await productosController.editarProducto(req, res, next);
-
-        const { redireccionar, productoEditado, error } = res.locals;
-
-        if (redireccionar) {
-          req.logger.info(
-            `Producto de nombre ${productoEditado.title} editado correctamente`
-          );
-          res.redirect("/DBProducts-Premium");
-        } else {
-          if (error) {
-            req.logger.error(
-              `Error al editar producto de nombre ${productoEditado.title}`
-            );
-            res.status(error.codigo).send(error.detalle);
-          }
-        }
-      } catch (error) {
-        req.logger.error(`Error al editar producto`);
-        res.status(500).send("Error interno del servidor");
+      const nombreProducto = res.locals.nombreProducto;
+      if (nombreProducto) {
+        req.logger.info(`Producto "${nombreProducto}" borrado exitosamente`);
+      } else {
+        req.logger.warn("No se pudo obtener el nombre del producto borrado.");
       }
-    });
-  
-//---------------------------------------------------------------- RUTAS PARA CARRITOS--------------- //
+    } catch (error) {
+      req.logger.error(`Error al borrar producto - Detalle: ${error.message}`);
+    }
+  }
+);
 
+router
+  .route("/editarProducto-Premium/:id")
+  .all(authMiddleware.auth, productosController.obtenerProducto)
+  .get((req, res) => {
+    const productoDB = res.locals.productoDB;
+    if (!productoDB) {
+      throw new CustomError(
+        "ERROR_DATOS",
+        "Producto no encontrado",
+        tiposDeError.PRODUCTO_NO_ENCONTRADO,
+        "Producto no encontrado"
+      );
+    }
+    res.header("Content-type", "text/html");
+    res.status(200).render("editarProducto", {
+      productoDB,
+      estilo: "editarProducto.css",
+    });
+  })
+  .post(async (req, res, next) => {
+    try {
+      await productosController.editarProducto(req, res, next);
+
+      const { redireccionar, productoEditado, error } = res.locals;
+
+      if (redireccionar) {
+        req.logger.info(
+          `Producto de nombre ${productoEditado.title} editado correctamente`
+        );
+        res.redirect("/DBProducts-Premium");
+      } else {
+        if (error) {
+          req.logger.error(
+            `Error al editar producto de nombre ${productoEditado.title}`
+          );
+          res.status(error.codigo).send(error.detalle);
+        }
+      }
+    } catch (error) {
+      req.logger.error(`Error al editar producto`);
+      res.status(500).send("Error interno del servidor");
+    }
+  });
+
+//---------------------------------------------------------------- RUTAS PARA CARRITOS--------------- //
 
 router.get(
   "/carts/:cid",
@@ -406,7 +397,6 @@ router.get(
     });
   }
 );
-
 
 //---------------------------------------------------------------- RUTAS PARA EL CHAT --------------- //
 
@@ -457,7 +447,6 @@ router.get("/registro", authMiddleware.auth2, (req, res) => {
     res.status(500).send("Error interno del servidor");
   }
 });
-
 
 router.get("/login", authMiddleware.auth2, (req, res) => {
   try {
@@ -554,7 +543,6 @@ router.get("/current", (req, res) => {
 
 //---------------------------------------------------------------- RUTA FAKER---------------//
 
-
 router.get("/mockingproducts", (req, res) => {
   try {
     req.logger.info(`Acceso exitoso a la ruta de productos simulados`);
@@ -579,7 +567,7 @@ router.get("/mockingproducts/:id", (req, res) => {
       `Acceso exitoso a la ruta de detalles del producto simulado`
     );
     const productId = req.params.id;
-    const fakeProduct = fakeDataGenerator.generateFakeProducts(1)[0]; 
+    const fakeProduct = fakeDataGenerator.generateFakeProducts(1)[0];
 
     res.render("FAKERproductsDetails", {
       product: fakeProduct,
@@ -596,17 +584,15 @@ router.get("/mockingproducts/:id", (req, res) => {
 
 //---------------------------------------------------------------- RUTA LOGS---------------//
 
-router.post('/logs', (req, res) =>{
-  res.setHeader('Content-type', 'application/json')
+router.post("/logs", (req, res) => {
+  res.setHeader("Content-type", "application/json");
   res.status(200).json({
-      log: req.body
-  })
-})
-
-
+    log: req.body,
+  });
+});
 
 router.get("/loggerTest", (req, res) => {
-  const environment = config.MODO;
+  const environment = entornoConfig.MODO;
   const logFileName =
     environment === "production" ? "errors.log" : "logWarnError.log";
   const logFilePath = path.join(__dirname, "..", "..", logFileName);
@@ -630,12 +616,12 @@ router.get("/loggerTest", (req, res) => {
       }
     });
 
-  res.render("loggerTest", {
-    logFilePath,
-    logs, 
-    environment, 
-    logFileName, 
-  });
+    res.render("loggerTest", {
+      logFilePath,
+      logs,
+      environment,
+      logFileName,
+    });
   } catch (error) {
     console.error(`Error al leer el archivo ${logFilePath}: ${error.message}`);
     res.render("loggerTest", {
@@ -661,13 +647,10 @@ router.get("/resetPassword", (req, res) => {
 
 router.post("/updatePassword/:token", UsersController.updatePassword);
 
-
-
 //---------------------------------------------------------------- RUTA PARA CAMBIAR ROLE---------------//
 
-
 const renderCambiaRole = (res, options) => {
-    res.render("cambiaRole", options);
+  res.render("cambiaRole", options);
 };
 
 router.get("/api/users/premium/", authMiddleware.auth, (req, res) => {
@@ -680,7 +663,6 @@ router.post(
   UsersController.changeUserRoleEnVista
 );
 
-
 //---------------------------------------------------------------- MULTER ---------------//
 
 router.get("/subirArchivos", (req, res) => {
@@ -688,4 +670,3 @@ router.get("/subirArchivos", (req, res) => {
 });
 
 module.exports = router;
-

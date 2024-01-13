@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const config = require("../config/config.js");
+const entornoConfig = require("../config/entorno.config.js");
 const util = require("../util.js");
 const usersController = require("../controllers/users.controller.js");
 
@@ -158,14 +158,17 @@ router.post("/loginAdmin", async (req, res) => {
       req.logger.error("Faltan datos en la solicitud");
       return res.redirect("/loginAdmin?error=Faltan datos");
     }
-    if (email === config.ADMIN_EMAIL && password === config.ADMIN_PASSWORD) {
+    if (
+      email === entornoConfig.ADMIN_EMAIL &&
+      password === entornoConfig.ADMIN_PASSWORD
+    ) {
       req.session.usuario = {
-        nombre: config.ADMIN_USER,
-        email: config.ADMIN_EMAIL,
+        nombre: entornoConfig.ADMIN_USER,
+        email: entornoConfig.ADMIN_EMAIL,
         role: "administrador",
       };
       req.logger.info(
-        `Inicio de sesión exitoso como administrador - Administrador: ${config.ADMIN_EMAIL}`
+        `Inicio de sesión exitoso como administrador - Administrador: ${entornoConfig.ADMIN_EMAIL}`
       );
       return res.redirect("/");
     } else {
@@ -233,7 +236,7 @@ router.post("/forgotPassword", async (req, res) => {
     user.reset_password_expires = Date.now() + 3600000;
     await user.save();
     req.session.resetToken = resetToken;
-    const resetLink = `http://localhost:${config.PORT}/resetPassword?token=${resetToken}`;
+    const resetLink = `http://localhost:${entornoConfig.PORT}/resetPassword?token=${resetToken}`;
     const mailOptions = {
       from: "noresponder-ferreteriaeltornillo@gmail.com",
       to: user.email,

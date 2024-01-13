@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-const config = require("./config.js"); // Asume que config.js contiene las configuraciones generales
+const entornoConfig = require("./entorno.config.js"); // Asume que config.js contiene las configuraciones generales
 
 const connectToDatabase = async () => {
   try {
-    await mongoose.connect(config.MONGO_URL, {
-      dbName: config.DB_NAME,
+    await mongoose.connect(entornoConfig.MONGO_URL, {
+      dbName: entornoConfig.DB_NAME,
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

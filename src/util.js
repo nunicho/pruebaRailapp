@@ -3,16 +3,15 @@ const { dirname } = require("path");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const { nextTick } = require("process");
-const winston  = require("winston");
-const config = require("./config/config.js");
+const winston = require("winston");
+const entornoConfig = require("./config/entorno.config.js");
 
-const entorno = config.MODO
+const entorno = entornoConfig.MODO;
 
 const generaHash = (password) =>
   bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 const validaHash = (usuario, password) =>
   bcrypt.compareSync(password, usuario.password);
-
 
 const passportCall = (estrategia) => {
   return function (req, res, next) {
@@ -67,23 +66,23 @@ const passportCallRegister = (estrategia) => {
 };
 
 const customLevels = {
-    niveles: {
-      fatal:0,
-      error:1,
-      warning:2,
-      info:3,
-      http:4,
-      debug:5
-    },
-    colores:{
-      fatal: "bold white redBG",
-      error: "bold red",
-      warning:"bold yellow",
-      info: "bold blue",
-      http:"bold magenta",
-      debug:"bold cyan"
-    }
-}
+  niveles: {
+    fatal: 0,
+    error: 1,
+    warning: 2,
+    info: 3,
+    http: 4,
+    debug: 5,
+  },
+  colores: {
+    fatal: "bold white redBG",
+    error: "bold red",
+    warning: "bold yellow",
+    info: "bold blue",
+    http: "bold magenta",
+    debug: "bold cyan",
+  },
+};
 
 const logger = winston.createLogger({
   levels: customLevels.niveles,
@@ -110,20 +109,19 @@ const logger = winston.createLogger({
   ],
 });
 
-
 const transporteConsola = new winston.transports.Console({
-  level:'debug',
+  level: "debug",
   format: winston.format.combine(
     winston.format.colorize({
       colors: customLevels.colores,
     }),
     winston.format.simple()
-  )
-})
+  ),
+});
 
 if (entorno !== "production") {
-    logger.add(transporteConsola)
-}   
+  logger.add(transporteConsola);
+}
 
 const middLog = (req, res, next) => {
   req.logger = logger;
@@ -136,34 +134,6 @@ module.exports = {
   validaHash,
   passportCall,
   passportCallRegister,
-  middLog
+  middLog,
 };
 
-
-/*
-const logger = winston.createLogger({
-  levels: customLevels.niveles,
-  transports: [
-  new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.colorize({ colors: { error: "bold white redBG" } }),
-        winston.format.simple()
-      ),
-    }),
-    new winston.transports.File({
-      filename: "./logWarnError.log",
-      level: "warn",
-    }),
-    new winston.transports.File({
-      filename: "./soloInfo.log",
-      level: "info",
-      format: winston.format.combine(
-        filtroInfo(),
-        winston.format.timestamp(),
-        winston.format.json()
-      ),
-    }),
-  ],
-});
-*/

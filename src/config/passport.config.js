@@ -1,6 +1,6 @@
 //PARA LAS VARIABLES DE ENTORNO
 
-const config = require("./config.js");
+const entornoConfig = require("./entorno.config.js");
 
 //PASSPORT
 const passport = require("passport");
@@ -18,7 +18,6 @@ const util = require("../util.js");
 
 const usersController = require("../controllers/users.controller.js");
 //const usersService =require("../services/users.service.js")
-
 
 const inicializaPassport = () => {
   passport.use(
@@ -73,88 +72,86 @@ const inicializaPassport = () => {
       }
     )
   );
-passport.use(
-  "loginLocal",
-  new local.Strategy(
-    {
-      usernameField: "email",
-    },
-    async (username, password, done) => {
-      try {
-        if (!username || !password) {
-          return done(null, false, {
-            message: "Faltan datos",
-            detalle: "Contacte a RRHH",
-          });
-        }
-
-        let usuario = await usersController.getUserByEmail(username);
-        if (!usuario) {
-          return done(null, false, {
-            message: "Credenciales incorrectas",
-            detalle: "Vuelva a ingresar los datos",
-          });
-        } else {
-          if (!util.validaHash(usuario, password)) {
+  passport.use(
+    "loginLocal",
+    new local.Strategy(
+      {
+        usernameField: "email",
+      },
+      async (username, password, done) => {
+        try {
+          if (!username || !password) {
             return done(null, false, {
-              message: "Clave inválida",
-              detalle: "Vuelva a ingresar los datos",
+              message: "Faltan datos",
+              detalle: "Contacte a RRHH",
             });
           }
+
+          let usuario = await usersController.getUserByEmail(username);
+          if (!usuario) {
+            return done(null, false, {
+              message: "Credenciales incorrectas",
+              detalle: "Vuelva a ingresar los datos",
+            });
+          } else {
+            if (!util.validaHash(usuario, password)) {
+              return done(null, false, {
+                message: "Clave inválida",
+                detalle: "Vuelva a ingresar los datos",
+              });
+            }
+          }
+
+          usuario.last_connection = new Date();
+          await usuario.save();
+
+          usuario = {
+            nombre: usuario.first_name,
+            email: usuario.email,
+            _id: usuario._id,
+            role: usuario.role,
+            last_connection: usuario.last_connection,
+          };
+
+          return done(null, usuario);
+        } catch (error) {
+          return done(error);
         }
-
-        usuario.last_connection = new Date();
-        await usuario.save();
-
-        usuario = {
-          nombre: usuario.first_name,
-          email: usuario.email,
-          _id: usuario._id,
-          role: usuario.role,
-          last_connection: usuario.last_connection,
-        };
-
-        return done(null, usuario);
-      } catch (error) {
-        return done(error);
       }
-    }
-  )
-);
- passport.use(
-   "loginGithub",
-   new github.Strategy(
-     {
-       clientID: config.CLIENT_ID,
-       clientSecret: config.CLIENT_SECRECT,
-       callbackURL: config.CALLBACK_URL,
-     },
-     async (token, tokenRefresh, profile, done) => {
-       try {
-         let usuario = await modeloUsuariosGithub.findOne({
-           email: profile._json.email,
-         });
-         if (!usuario) {
-           usuario = await modeloUsuariosGithub.create({
-             nombre: profile._json.name,
-             email: profile._json.email,
-             github: profile,
-             role: "user",
-           });
-         }
+    )
+  );
+  passport.use(
+    "loginGithub",
+    new github.Strategy(
+      {
+        clientID: entornoConfig.CLIENT_ID,
+        clientSecret: entornoConfig.CLIENT_SECRECT,
+        callbackURL: entornoConfig.CALLBACK_URL,
+      },
+      async (token, tokenRefresh, profile, done) => {
+        try {
+          let usuario = await modeloUsuariosGithub.findOne({
+            email: profile._json.email,
+          });
+          if (!usuario) {
+            usuario = await modeloUsuariosGithub.create({
+              nombre: profile._json.name,
+              email: profile._json.email,
+              github: profile,
+              role: "user",
+            });
+          }
 
-         usuario.last_connection = new Date();
-         await usuario.save();
+          usuario.last_connection = new Date();
+          await usuario.save();
 
-         done(null, usuario);
-       } catch (error) {
-         return done(error);
-       }
-     }
-   )
- );
-  
-
+          done(null, usuario);
+        } catch (error) {
+          return done(error);
+        }
+      }
+    )
+  );
 
   passport.serializeUser((usuario, done) => {
     return done(null, usuario._id);
@@ -164,7 +161,7 @@ passport.use(
     let usuario = await modeloUsuariosGithub.findById(id);
     return done(null, usuario);
   });
-}; 
+};
 
 // FUNCION PARA ASIGNAR UN ID ÚNICO A CART
 

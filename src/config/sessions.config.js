@@ -1,14 +1,14 @@
 //const session = require("express-session");
 const ConnectMongo = require("connect-mongo");
-const config = require("./config.js"); 
+const entornoConfig = require("./entorno.config.js");
 
 const sessionStore = ConnectMongo.create({
-  mongoUrl: `${config.MONGO_URL}&dbName=${config.DB_NAME}`,
+  mongoUrl: `${entornoConfig.MONGO_URL}&dbName=${entornoConfig.DB_NAME}`,
   ttl: 3600,
 });
 
 const sessionsConfig = {
-  secret: config.SESSIONS_PASSWORD,
+  secret: entornoConfig.SESSIONS_PASSWORD,
   resave: true,
   saveUninitialized: true,
   store: sessionStore,

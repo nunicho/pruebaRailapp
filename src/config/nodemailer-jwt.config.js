@@ -1,16 +1,16 @@
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
-const config = require("./config.js");
+const entornoConfig = require("./entorno.config.js");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: config.SMTP_USER,
-    pass: config.SMTP_PASSWORD,
+    user: entornoConfig.SMTP_USER,
+    pass: entornoConfig.SMTP_PASSWORD,
   },
 });
 
-const secret = config.SECRET;
+const secret = entornoConfig.SECRET;
 
 const createResetToken = (user) => {
   const tokenObject = {

@@ -23,7 +23,7 @@ dotenv.config({
 
 
 
-const config = {
+const entornoConfig = {
   PORT: process.env.PORT || 3000,
   MONGO_URL: process.env.MONGO_URL,
   DB_NAME: process.env.DB_NAME,
@@ -43,9 +43,9 @@ const config = {
   PRODUCTO_TEST_EJEMPLO: process.env.PRODUCTO_TEST_EJEMPLO
 };
 
-const modo = config.MODO
+const modo = entornoConfig.MODO;
 
 
-module.exports = config
+module.exports = entornoConfig; 
 
 
