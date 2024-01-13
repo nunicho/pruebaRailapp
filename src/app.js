@@ -9,6 +9,7 @@ const configureChat = require("./config/chat.config.js");
 
 const configureHandlebars = require("./config/handlebars.config.js")
 const configureSwagger = require("./config/swagger.config.js");
+const connectToDatabase = require("./config/database.config.js")
 
 const moongose = require("mongoose");
 const path = require("path");
@@ -204,10 +205,8 @@ const serverExpress = app.listen(PORT, () => {
   console.log(`Server escuchando en puerto ${PORT}`);
 });
 
-moongose
-  .connect(config.MONGO_URL, { dbName: config.DB_NAME })
-  .then(console.log("DB Conectada"))
-  .catch((error) => console.log(error));
+connectToDatabase();
+
 
 // WEBSOCKET Y CHAT
 configureChat(serverExpress);
