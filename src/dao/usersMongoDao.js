@@ -92,6 +92,29 @@ class UsersMongoDao {
       );
     }
   }
+  async updateLastConnection(email) {
+    try {
+      const updatedUser = await UserModel.findOneAndUpdate(
+        { email: email },
+        { last_connection: new Date() },
+        { new: true }
+      );
+
+      if (!updatedUser) {
+        throw new Error(
+          `Usuario no encontrado al intentar actualizar last_connection`
+        );
+      }
+
+      return updatedUser;
+    } catch (error) {
+      // Manejar el error según tus necesidades
+      throw new Error(
+        `Error al actualizar last_connection en la base de datos: ${error.message}`
+      );
+    }
+  }
 }
+
 
 module.exports = new UsersMongoDao();

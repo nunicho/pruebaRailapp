@@ -72,7 +72,6 @@ router.post("/login", util.passportCall("loginLocal"), (req, res) => {
 router.get("/logout", async (req, res) => {
   try {
     const usuario = req.session.usuario;
-
     if (usuario && usuario.email) {
       if (usuario.github) {
         await usersController.updateLastConnectionGithub(usuario.email);

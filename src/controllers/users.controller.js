@@ -418,31 +418,12 @@ const changeUserRoleEnVista = async (req, res) => {
 
 const updateLastConnection = async (email) => {
   try {
-    const updatedUser = await UsuarioModelo.findOneAndUpdate(
-      { email: email },
-      { last_connection: new Date() },
-      { new: true }
-    );
-
-    if (!updatedUser) {
-      throw new CustomError(
-        "USUARIO_NO_ENCONTRADO",
-        "Usuario no encontrado",
-        tiposDeError.USUARIO_NO_ENCONTRADO,
-        `El usuario con email ${email} no existe.`
-      );
-    }
-
-    return updatedUser;
-  } catch (error) {
-    throw new CustomError(
-      "ERROR_ACTUALIZACION",
-      "Error al actualizar last_connection",
-      tiposDeError.ERROR_ACTUALIZACION,
-      error.message
-    );
+    return await UsersRepository.updateLastConnection(email);
+  } catch (error) { 
+    throw new Error(`Error al actualizar last_connection: ${error.message}`);
   }
 };
+
 
 const updateLastConnectionGithub = async (email) => {
   try {

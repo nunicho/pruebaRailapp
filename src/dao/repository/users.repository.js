@@ -39,6 +39,15 @@ class UserRepository {
   async getUserByIdGithub(userId) {
     return await UsersMongoDao.getUserByIdGithub(userId);
   }
+  async updateLastConnection(email) {
+      try {
+        return await UsersMongoDao.updateLastConnection(email);
+      } catch (error) {
+        throw new Error(
+          `Error al actualizar last_connection: ${error.message}`
+        );
+      }
+  }
 }
 
 

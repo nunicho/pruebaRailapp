@@ -64,3 +64,17 @@
 {"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection en GitHub","timestamp":"2024-01-09T00:38:00.061Z"}
 {"level":"fatal","message":"Error al acceder a la página de inicio de sesión - Detalle: estiloLogin is not defined","timestamp":"2024-01-13T16:04:09.839Z"}
 {"level":"fatal","message":"Error al acceder a la página de inicio de sesión - Detalle: estiloLogin is not defined","timestamp":"2024-01-13T16:04:13.401Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T03:29:26.903Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T03:31:12.059Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T04:55:46.388Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: usuario is not defined","timestamp":"2024-01-14T05:00:38.252Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: usuario is not defined","timestamp":"2024-01-14T05:00:45.637Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T05:07:09.701Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T17:09:31.138Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T17:14:25.893Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T17:15:13.253Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T17:24:47.523Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T17:27:30.380Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T17:31:26.719Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T17:32:29.447Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T17:32:54.925Z"}
