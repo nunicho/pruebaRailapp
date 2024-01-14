@@ -1343,3 +1343,6 @@
 {"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-14T01:53:44.532Z"}
 {"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-14T01:54:16.742Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T02:22:24.586Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: nunicho@yahoo.com.ar","timestamp":"2024-01-14T02:36:41.203Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-14T02:36:43.482Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T02:36:43.865Z"}

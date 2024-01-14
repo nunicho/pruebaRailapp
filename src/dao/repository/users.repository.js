@@ -32,7 +32,10 @@ class UserRepository {
   async getUserByGithubEmail(githubEmail) {
     return await UsersMongoDao.getUserByGithubEmail(githubEmail);
   }
-  
+
+  async createUser(userData) {
+    return await UsersMongoDao.createUser(userData);
+  }
 }
 
 

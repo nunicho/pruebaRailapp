@@ -509,6 +509,19 @@ const getUserByGithubEmail = async (githubEmail) => {
 };
 
 
+const createUserFromGithub = async (userData) => {
+  try {
+    const user = await UsersRepository.createUser(userData);
+    return user;
+  } catch (error) {
+    throw new CustomError(
+      "ERROR_CREAR_USUARIO_GITHUB",
+      "Error al crear usuario desde GitHub",
+      tiposDeError.ERROR_INTERNO_SERVIDOR,
+      error.message
+    );
+  }
+};
 
 module.exports = {
   createUser,
@@ -526,4 +539,5 @@ module.exports = {
   updateLastConnectionGithub,
   handleDocumentUpload,
   getUserByGithubEmail,
+  createUserFromGithub,
 };

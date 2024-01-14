@@ -71,6 +71,17 @@ class UsersMongoDao {
       );
     }
   }
+
+  async createUser(userData) {
+    try {
+      const user = await modeloUsuariosGithub.create(userData);
+      return user;
+    } catch (error) {
+      throw new Error(
+        "Error al crear usuario desde GitHub en la base de datos"
+      );
+    }
+  }
 }
 
 module.exports = new UsersMongoDao();

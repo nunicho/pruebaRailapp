@@ -120,11 +120,10 @@ const inicializaPassport = () => {
         callbackURL: entornoConfig.CALLBACK_URL,
       },
       async (token, tokenRefresh, profile, done) => {
-        try {
-          //let usuario = await usersController.getUserByGithubEmail({email: profile._json.email,});
+        try {          
           let usuario = await usersController.getUserByGithubEmail(profile._json.email);
           if (!usuario) {
-            usuario = await modeloUsuariosGithub.create({
+            usuario = await usersController.createUserFromGithub({
               nombre: profile._json.name,
               email: profile._json.email,
               github: profile,
