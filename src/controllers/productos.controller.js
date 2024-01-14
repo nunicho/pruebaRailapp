@@ -4,8 +4,6 @@ const ProductosRepository = require("../dao/repository/productos.repository.js")
 const CustomError = require("../utils/customError.js");
 const tiposDeError = require("../utils/tiposDeError.js");
 
-//const productosModelo = require("../dao/DB/models/productos.modelo.js")
-
 const listarProductos = async (req, res) => {
   try {
     let pagina = req.query.pagina || 1;
