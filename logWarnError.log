@@ -1379,3 +1379,4 @@
 {"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-14T17:56:27.870Z"}
 {"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-14T17:57:11.455Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T17:57:11.836Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-14T18:45:46.840Z"}

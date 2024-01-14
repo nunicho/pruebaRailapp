@@ -40,13 +40,19 @@ class UserRepository {
     return await UsersMongoDao.getUserByIdGithub(userId);
   }
   async updateLastConnection(email) {
-      try {
-        return await UsersMongoDao.updateLastConnection(email);
-      } catch (error) {
-        throw new Error(
-          `Error al actualizar last_connection: ${error.message}`
-        );
-      }
+    try {
+      return await UsersMongoDao.updateLastConnection(email);
+    } catch (error) {
+      throw new Error(`Error al actualizar last_connection: ${error.message}`);
+    }
+  }
+
+  async updateLastConnectionGithub(email) {
+    try {
+      return await UsersMongoDao.updateLastConnectionGithub(email);
+    } catch (error) {
+      throw new Error(`Error al actualizar last_connection: ${error.message}`);
+    }
   }
 }
 

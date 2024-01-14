@@ -78,3 +78,4 @@
 {"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T17:31:26.719Z"}
 {"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T17:32:29.447Z"}
 {"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection","timestamp":"2024-01-14T17:32:54.925Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-14T18:45:46.843Z"}

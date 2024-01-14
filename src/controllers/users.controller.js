@@ -424,7 +424,17 @@ const updateLastConnection = async (email) => {
   }
 };
 
+const updateLastConnectionGithub = async (email) => {
+  try {
+    return await UsersRepository.updateLastConnectionGithub(email);
+  } catch (error) {
+    throw new Error(`Error al actualizar last_connection: ${error.message}`);
+  }
+};
 
+
+
+/*
 const updateLastConnectionGithub = async (email) => {
   try {
     const updatedUser = await modeloUsuariosGithub.findOneAndUpdate(
@@ -452,6 +462,8 @@ const updateLastConnectionGithub = async (email) => {
     );
   }
 };
+*/
+
 
 const handleDocumentUpload = async (userId, file) => {
   try {
