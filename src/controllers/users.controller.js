@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const UsersRepository = require("../dao/repository/users.repository");
 const UsuarioModelo = require("../dao/DB/models/users.modelo.js");
-const modeloUsuariosGithub = require("../dao/DB/models/usuariosGithub.modelo.js");
+
 
 const bcrypt = require("bcrypt");
 
@@ -309,7 +309,7 @@ const changeUserRole = async (req, res) => {
       });
     }
 
-    const usuario = await UsuarioModelo.findById(userId);
+    const usuario = await UsersRepository.getUserById(userId);
 
     if (!usuario) {
       return res.status(404).json({
@@ -366,7 +366,7 @@ const changeUserRoleEnVista = async (req, res) => {
       throw new Error("Rol no válido");
     }
 
-    const usuario = await UsuarioModelo.findById(userId);
+    const usuario = await UsersRepository.getUserById(userId);
     if (!usuario) {
       throw new Error("Usuario no encontrado");
     }
@@ -431,39 +431,6 @@ const updateLastConnectionGithub = async (email) => {
     throw new Error(`Error al actualizar last_connection: ${error.message}`);
   }
 };
-
-
-
-/*
-const updateLastConnectionGithub = async (email) => {
-  try {
-    const updatedUser = await modeloUsuariosGithub.findOneAndUpdate(
-      { email: email },
-      { last_connection: new Date() },
-      { new: true }
-    );
-
-    if (!updatedUser) {
-      throw new CustomError(
-        "USUARIO_NO_ENCONTRADO",
-        "Usuario de GitHub no encontrado",
-        tiposDeError.USUARIO_NO_ENCONTRADO,
-        `El usuario de GitHub con email ${email} no existe.`
-      );
-    }
-
-    return updatedUser;
-  } catch (error) {
-    throw new CustomError(
-      "ERROR_ACTUALIZACION",
-      "Error al actualizar last_connection en GitHub",
-      tiposDeError.ERROR_ACTUALIZACION,
-      error.message
-    );
-  }
-};
-*/
-
 
 const handleDocumentUpload = async (userId, file) => {
   try {

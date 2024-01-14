@@ -1380,3 +1380,23 @@
 {"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-14T17:57:11.455Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T17:57:11.836Z"}
 {"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-14T18:45:46.840Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-14T18:46:32.870Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T18:46:33.275Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: negra@gmail.com","timestamp":"2024-01-14T19:53:35.874Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: negra@gmail.com","timestamp":"2024-01-14T19:55:07.784Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: negra@gmail.com","timestamp":"2024-01-14T19:55:12.535Z"}
+{"level":"info","message":"Logout exitoso - Mail: negra@gmail.com","timestamp":"2024-01-14T19:55:14.539Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T19:55:14.927Z"}
+{"level":"error","message":"No se encontró información de usuario en la sesión durante el logout","timestamp":"2024-01-14T19:55:15.131Z"}
+{"level":"error","message":"No se encontró información de usuario en la sesión durante el logout","timestamp":"2024-01-14T19:55:36.067Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T19:55:40.022Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: negra@gmail.com","timestamp":"2024-01-14T19:55:53.707Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: negra@gmail.com","timestamp":"2024-01-14T19:55:56.164Z"}
+{"level":"info","message":"Logout exitoso - Mail: negra@gmail.com","timestamp":"2024-01-14T19:56:00.904Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T19:56:01.277Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T19:57:47.647Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: negra@gmail.com","timestamp":"2024-01-14T19:57:58.489Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: negra@gmail.com","timestamp":"2024-01-14T19:58:09.699Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: negra@gmail.com","timestamp":"2024-01-14T19:58:12.193Z"}
+{"level":"info","message":"Logout exitoso - Mail: negra@gmail.com","timestamp":"2024-01-14T19:58:33.697Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T19:58:34.072Z"}
