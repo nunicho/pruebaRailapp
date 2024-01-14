@@ -6,13 +6,12 @@ const modeloUsuariosGithub = require("../dao/DB/models/usuariosGithub.modelo.js"
 const bcrypt = require("bcrypt");
 
 // DOTENV
-const config = require("../config/entorno.config.js");
+const entornoConfig = require("../config/entorno.config.js");
 
 const jwt = require("jsonwebtoken");
 
 const CustomError = require("../utils/customError.js");
 const tiposDeError = require("../utils/tiposDeError.js");
-const usersRepository = require("../dao/repository/users.repository");
 
 const createUser = async (userData) => {
   try {
@@ -180,7 +179,7 @@ const deleteUser = async (req, res) => {
   }
 };
 
-const secret = config.SECRET;
+const secret = entornoConfig.SECRET;
 
 const updatePassword = async (req, res) => {
   try {
@@ -417,38 +416,6 @@ const changeUserRoleEnVista = async (req, res) => {
   }
 };
 
-/*
-const changeUserRoleEnVista = async (req, res) => {
-    try {
-      const userId = req.params.id;
-      const { newRole } = req.body;
-
-      if (!["user", "premium"].includes(newRole)) {
-        throw new Error("Rol no válido");
-      }
-
-      const usuario = await UsuarioModelo.findById(userId);
-      if (!usuario) {
-        throw new Error("Usuario no encontrado");
-      }
-
-      usuario.role = newRole;
-
-      await usuario.save();
-
-      req.session.usuario.role = newRole;
-
-      res.redirect(`/`);
-    } catch (error) {
-      res.render("cambiaRole", {
-        title: "Error al Cambiar el Rol",
-        success: false,
-        error: error.message,
-      });
-    }
-  };
-  */
-
 const updateLastConnection = async (email) => {
   try {
     const updatedUser = await UsuarioModelo.findOneAndUpdate(
@@ -527,6 +494,22 @@ const handleDocumentUpload = async (userId, file) => {
   }
 };
 
+const getUserByGithubEmail = async (githubEmail) => {
+  try {
+    const user = await UsersRepository.getUserByGithubEmail(githubEmail);
+    return user;
+  } catch (error) {
+    throw new CustomError(
+      "ERROR_OBTENER_USUARIO_GITHUB",
+      "Error al obtener usuario de GitHub por correo electrónico",
+      tiposDeError.ERROR_INTERNO_SERVIDOR,
+      error.message
+    );
+  }
+};
+
+
+
 module.exports = {
   createUser,
   getUserByEmail,
@@ -542,4 +525,5 @@ module.exports = {
   updateLastConnection,
   updateLastConnectionGithub,
   handleDocumentUpload,
+  getUserByGithubEmail,
 };

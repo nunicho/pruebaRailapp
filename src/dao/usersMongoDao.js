@@ -1,4 +1,5 @@
 const UserModel = require("./DB/models/users.modelo.js");
+const modeloUsuariosGithub = require ("./DB/models/usuariosGithub.modelo.js")
 
 class UsersMongoDao {
   async createUser(userData) {
@@ -58,6 +59,16 @@ class UsersMongoDao {
       await UserModel.findOne({ email });
     } catch (error) {
       throw new Error("El correo electrónico ya está registrado");
+    }
+  }
+  async getUserByGithubEmail(githubEmail) {
+    try {
+      const user = await modeloUsuariosGithub.findOne({ email: githubEmail });
+      return user;
+    } catch (error) {
+      throw new Error(
+        "Error al obtener usuario de GitHub por correo electrónico desde la base de datos"
+      );
     }
   }
 }

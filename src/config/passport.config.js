@@ -1,15 +1,6 @@
-//PARA LAS VARIABLES DE ENTORNO
-
 const entornoConfig = require("./entorno.config.js");
-
-//PASSPORT
 const passport = require("passport");
-
-// PARA PASSPORT LOCAL
 const local = require("passport-local");
-const modeloUsers = require("../dao/DB/models/users.modelo.js");
-
-//PARA PASSPORT GITHUB
 const github = require("passport-github2");
 const modeloUsuariosGithub = require("../dao/DB/models/usuariosGithub.modelo.js");
 
@@ -17,7 +8,6 @@ const modeloUsuariosGithub = require("../dao/DB/models/usuariosGithub.modelo.js"
 const util = require("../util.js");
 
 const usersController = require("../controllers/users.controller.js");
-//const usersService =require("../services/users.service.js")
 
 const inicializaPassport = () => {
   passport.use(
@@ -44,7 +34,8 @@ const inicializaPassport = () => {
             });
           }
 
-          let existe = await modeloUsers.findOne({ email });
+          //let existe = await modeloUsers.findOne({ email });
+          let existe = await usersController.getUserByEmail(email);
           if (existe) {
             return done(null, false, {
               message: "El correo electrónico ya está registrado",
@@ -130,9 +121,8 @@ const inicializaPassport = () => {
       },
       async (token, tokenRefresh, profile, done) => {
         try {
-          let usuario = await modeloUsuariosGithub.findOne({
-            email: profile._json.email,
-          });
+          //let usuario = await usersController.getUserByGithubEmail({email: profile._json.email,});
+          let usuario = await usersController.getUserByGithubEmail(profile._json.email);
           if (!usuario) {
             usuario = await modeloUsuariosGithub.create({
               nombre: profile._json.name,

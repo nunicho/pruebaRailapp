@@ -28,6 +28,13 @@ class UserRepository {
   async getUserByEmailRegister(email) {
     return await UsersMongoDao.getUserByEmailRegister(email);
   }
+
+  async getUserByGithubEmail(githubEmail) {
+    return await UsersMongoDao.getUserByGithubEmail(githubEmail);
+  }
+  
 }
+
+
 
 module.exports = new UserRepository();

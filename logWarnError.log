@@ -1333,3 +1333,13 @@
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-13T19:32:48.783Z"}
 {"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-13T19:32:56.001Z"}
 {"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-13T19:32:59.933Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T01:39:53.651Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-14T01:39:56.852Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-14T01:48:02.964Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T01:53:29.654Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: bendy@gmail.com","timestamp":"2024-01-14T01:53:38.799Z"}
+{"level":"info","message":"Logout exitoso - Mail: bendy@gmail.com","timestamp":"2024-01-14T01:53:42.048Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T01:53:42.434Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-14T01:53:44.532Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-14T01:54:16.742Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T02:22:24.586Z"}
