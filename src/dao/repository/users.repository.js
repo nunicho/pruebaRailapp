@@ -36,6 +36,9 @@ class UserRepository {
   async createUser(userData) {
     return await UsersMongoDao.createUser(userData);
   }
+  async getUserByIdGithub(userId) {
+    return await UsersMongoDao.getUserByIdGithub(userId);
+  }
 }
 
 

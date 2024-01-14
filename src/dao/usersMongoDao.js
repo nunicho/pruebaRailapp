@@ -82,6 +82,16 @@ class UsersMongoDao {
       );
     }
   }
+  async getUserByIdGithub(userId) {
+    try {
+      const user = await modeloUsuariosGithub.findById(userId);
+      return user;
+    } catch (error) {
+      throw new Error(
+        "Error al obtener usuario de GitHub por ID desde la base de datos"
+      );
+    }
+  }
 }
 
 module.exports = new UsersMongoDao();

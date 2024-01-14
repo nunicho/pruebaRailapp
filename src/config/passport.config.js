@@ -2,7 +2,6 @@ const entornoConfig = require("./entorno.config.js");
 const passport = require("passport");
 const local = require("passport-local");
 const github = require("passport-github2");
-const modeloUsuariosGithub = require("../dao/DB/models/usuariosGithub.modelo.js");
 
 //const crypto = require("crypto");
 const util = require("../util.js");
@@ -34,7 +33,6 @@ const inicializaPassport = () => {
             });
           }
 
-          //let existe = await modeloUsers.findOne({ email });
           let existe = await usersController.getUserByEmail(email);
           if (existe) {
             return done(null, false, {
@@ -147,7 +145,7 @@ const inicializaPassport = () => {
   });
 
   passport.deserializeUser(async (id, done) => {
-    let usuario = await modeloUsuariosGithub.findById(id);
+    let usuario = await usersController.getUserByIdGithub(id);
     return done(null, usuario);
   });
 };

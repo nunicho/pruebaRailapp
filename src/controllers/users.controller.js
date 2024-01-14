@@ -523,6 +523,20 @@ const createUserFromGithub = async (userData) => {
   }
 };
 
+const getUserByIdGithub = async (userId) => {
+  try {
+    const user = await UsersRepository.getUserByIdGithub(userId);
+    return user;
+  } catch (error) {
+    throw new CustomError(
+      "ERROR_OBTENER_USUARIO_GITHUB_POR_ID",
+      "Error al obtener usuario de GitHub por ID",
+      tiposDeError.ERROR_INTERNO_SERVIDOR,
+      error.message
+    );
+  }
+};
+
 module.exports = {
   createUser,
   getUserByEmail,
@@ -540,4 +554,5 @@ module.exports = {
   handleDocumentUpload,
   getUserByGithubEmail,
   createUserFromGithub,
+  getUserByIdGithub,
 };
