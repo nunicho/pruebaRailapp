@@ -1400,3 +1400,4 @@
 {"level":"info","message":"Acceso exitoso al perfil - Usuario: negra@gmail.com","timestamp":"2024-01-14T19:58:12.193Z"}
 {"level":"info","message":"Logout exitoso - Mail: negra@gmail.com","timestamp":"2024-01-14T19:58:33.697Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T19:58:34.072Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-14T20:09:15.360Z"}

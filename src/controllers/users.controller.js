@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const UsersRepository = require("../dao/repository/users.repository");
-const UsuarioModelo = require("../dao/DB/models/users.modelo.js");
-
 
 const bcrypt = require("bcrypt");
 
@@ -239,7 +237,7 @@ const userRoleVista = async (req, res, render) => {
     if (!["user", "premium"].includes(newRole)) {
       throw new Error("Rol no válido");
     }
-    const usuario = await UsuarioModelo.findById(userId);
+    const usuario = await UsersRepository.getUserById(userId);
 
     if (!usuario) {
       throw new Error("Usuario no encontrado");
@@ -276,7 +274,7 @@ const getUserRoleById = async (req, res) => {
       );
     }
 
-    const usuario = await UsuarioModelo.findById(userId);
+    const usuario = await UsersRepository.getUserById(userId);
 
     if (!usuario) {
       throw new CustomError(
@@ -434,7 +432,7 @@ const updateLastConnectionGithub = async (email) => {
 
 const handleDocumentUpload = async (userId, file) => {
   try {
-    const user = await UsuarioModelo.findById(userId);
+    const user = await UsersRepository.getUserById(userId);
     if (!user) {
       throw new Error("Usuario no encontrado");
     }
