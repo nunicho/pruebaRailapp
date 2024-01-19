@@ -1,4 +1,4 @@
-const ticketMongoDao = require("../ticketsMongoDao.js");
+const ticketMongoDao = require("../Mongo/ticketsMongoDao");
 
 async function createTicket(ticketData) {
   return ticketMongoDao.createTicket(ticketData);

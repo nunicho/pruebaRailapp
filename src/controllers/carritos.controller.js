@@ -1,7 +1,5 @@
-  const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const carritosRepository = require("../dao/repository/carritos.repository.js");
-const carritosModelo = require("../dao/DB/models/carritos.modelo.js");
-const productosModelo = require("../dao/DB/models/productos.modelo.js");
 const ticketController = require("./tickets.controller");
 
 const productosController = require("../controllers/productos.controller.js");
@@ -57,8 +55,7 @@ const verCarritoConId = async (req, res, next) => {
 
     res.status(200).json(carritoResponse);
   } catch (error) {
-    // Manejar errores y enviar una respuesta de error al cliente
-    res.status(500).json({ error: "Error interno del servidor" });
+      res.status(500).json({ error: "Error interno del servidor" });
   }
 };
 
@@ -159,12 +156,7 @@ const crearCarrito = async (req, res) => {
     };
 
     let carritoInsertado = await carritosRepository.crearCarrito(carritoData);
-/*
-    const ticketInsertado = await ticketController.createTicket(
-      totalAmount,
-      req.session.usuario.email
-    );
-*/
+
 const ticketInsertado = await ticketController.createTicket(
   totalAmount,
   req.session.usuario ? req.session.usuario.email : "usuario_desconocido"

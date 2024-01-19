@@ -1,5 +1,5 @@
 // productos.repository.js
-const ProductosMongoDao = require("../productosMongoDao.js");
+const ProductosMongoDao = require("../Mongo/productosMongoDao.js");
 
 class ProductosRepository {
   async listarProductos(query, limit, pagina, sortQuery) {
@@ -39,9 +39,9 @@ class ProductosRepository {
           `El código ${producto.code} ya está siendo usado por otro producto.`
         );
       }
-       if (!producto.owner) {
-         producto.owner = "admin";
-       }
+      if (!producto.owner) {
+        producto.owner = "admin";
+      }
 
       return await ProductosMongoDao.crearProducto(producto);
     } catch (error) {
@@ -86,8 +86,5 @@ class ProductosRepository {
     }
   }
 }
-
-
-
 
 module.exports = new ProductosRepository();

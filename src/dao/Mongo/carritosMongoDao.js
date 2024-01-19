@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const Producto = require("../dao/DB/models/productos.modelo.js");
-const carritosModelo = require("./DB/models/carritos.modelo.js");
+const Producto = require("./models/productos.modelo.js");
+const carritosModelo = require("./models/carritos.modelo.js");
 
 class CarritosMongoDao {
   async verCarritos() {

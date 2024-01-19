@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const ProductosModelo = require("./DB/models/productos.modelo.js");
+const ProductosModelo = require("./models/productos.modelo.js");
 
 class ProductosMongoDao {
   async listarProductos(query, limit, pagina, sortQuery) {

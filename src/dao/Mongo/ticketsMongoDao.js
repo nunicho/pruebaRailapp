@@ -1,4 +1,4 @@
-const ticketsModelo = require("./DB/models/ticket.modelo.js");
+const ticketsModelo = require("./models/ticket.modelo.js");
 
 async function createTicket(ticketData) {
   const ticket = new ticketsModelo(ticketData);

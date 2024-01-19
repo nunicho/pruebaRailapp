@@ -1401,3 +1401,9 @@
 {"level":"info","message":"Logout exitoso - Mail: negra@gmail.com","timestamp":"2024-01-14T19:58:33.697Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T19:58:34.072Z"}
 {"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-14T20:09:15.360Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-14T20:43:25.703Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T20:43:26.094Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-14T20:43:31.450Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-14T20:43:35.148Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-14T20:43:40.791Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-14T20:43:41.194Z"}

@@ -1,5 +1,5 @@
-const UserModel = require("./DB/models/users.modelo.js");
-const modeloUsuariosGithub = require ("./DB/models/usuariosGithub.modelo.js")
+const UserModel = require("./models/users.modelo.js");
+const modeloUsuariosGithub = require("./models/usuariosGithub.modelo.js");
 
 class UsersMongoDao {
   async createUser(userData) {
@@ -137,6 +137,5 @@ class UsersMongoDao {
     }
   }
 }
-
 
 module.exports = new UsersMongoDao();

@@ -1,5 +1,5 @@
 const socketIO = require("socket.io");
-const MessageModel = require("../dao/DB/models/messages.modelo.js");
+const MessageModel = require("../dao/Mongo/models/messages.modelo.js");
 
 const configureChat = (serverExpress) => {
   const serverSocket = socketIO(serverExpress);

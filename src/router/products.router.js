@@ -7,7 +7,6 @@ const mongoose = require("mongoose");
 
 // CONECCION A MONGODB
 const productosController = require("../controllers/productos.controller.js");
-const productosModelo = require("../dao/DB/models/productos.modelo");
 const tiposDeError = require("../utils/tiposDeError.js");
 
 //------------------------------------------------------------------------ PETICION GET

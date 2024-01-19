@@ -1,4 +1,4 @@
-const UsersMongoDao = require("../usersMongoDao.js");
+const UsersMongoDao = require("../Mongo/usersMongoDao.js");
 
 class UserRepository {
   async createUser(userData) {
@@ -55,7 +55,5 @@ class UserRepository {
     }
   }
 }
-
-
 
 module.exports = new UserRepository();
