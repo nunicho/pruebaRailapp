@@ -180,10 +180,119 @@ async function createEmptyCart() {
   return carrito
 }
 
+
+const agregarProductosAlCarrito = async (carritoId, productosToAdd) => {
+  try {
+    const carrito = await carritosRepository.verCarritoConId(carritoId);
+
+    if (!carrito) {
+      throw new CustomError(
+        "CARRITO_NO_ENCONTRADO",
+        `El carrito con ID ${carritoId} no existe`,
+        tiposDeError.CARRITO_NO_ENCONTRADO,
+        `El carrito con ID ${carritoId} no existe.`
+      );
+    }
+
+    const insufficientStockProducts = [];
+
+    for (const product of productosToAdd) {
+      const { id, quantity } = product;
+
+      const productInDB = await productosController.obtenerProductoById(id);
+
+      if (!productInDB) {
+        throw new CustomError(
+          "PRODUCTO_NO_ENCONTRADO",
+          `Producto con ID ${id} no encontrado`,
+          tiposDeError.PRODUCTO_NO_ENCONTRADO,
+          `El producto con ID ${id} no existe.`
+        );
+      }
+
+      if (productInDB.stock < quantity) {
+        insufficientStockProducts.push({
+          id,
+          quantity,
+          availableStock: productInDB.stock,
+        });
+      }
+    }
+
+    if (insufficientStockProducts.length > 0) {
+      return {
+        error: "No hay suficiente stock para algunos productos en el carrito.",
+        insufficientStockProducts,
+      };
+    }
+
+    const groupedProducts = {};
+
+    for (const product of productosToAdd) {
+      const { id, quantity } = product;
+
+      const productInDB = await productosController.obtenerProductoById(id);
+
+      if (!productInDB) {
+        throw new CustomError(
+          "PRODUCTO_NO_ENCONTRADO",
+          `Producto con ID ${id} no encontrado`,
+          tiposDeError.PRODUCTO_NO_ENCONTRADO,
+          `El producto con ID ${id} no existe.`
+        );
+      }
+
+      if (!groupedProducts[id]) {
+        groupedProducts[id] = parseInt(quantity, 10);
+      } else {
+        groupedProducts[id] += parseInt(quantity, 10);
+      }
+    }
+
+    const productosAgregados = Object.keys(groupedProducts).map((id) => ({
+      producto: id,
+      cantidad: groupedProducts[id],
+    }));
+
+    carrito.productos = [...carrito.productos, ...productosAgregados];
+
+    let totalAmount = 0;
+
+    for (const productoAgregado of productosAgregados) {
+      const { producto, cantidad } = productoAgregado;
+
+      const productInDB = await productosController.obtenerProductoById(
+        producto
+      );
+
+      if (!productInDB) {
+        throw new CustomError(
+          "PRODUCTO_NO_ENCONTRADO",
+          `Producto con ID ${producto} no encontrado`,
+          tiposDeError.PRODUCTO_NO_ENCONTRADO,
+          `El producto con ID ${producto} no existe.`
+        );
+      }
+
+      totalAmount += productInDB.price * cantidad;
+    }
+
+    carrito.amount += totalAmount;
+
+    await carrito.save();
+
+    return { carritoActualizado: carrito, totalAmount };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
+
 module.exports = {
   verCarritos,
   verCarritoConId,
   crearCarrito,
-  createEmptyCart, 
+  createEmptyCart,
+  agregarProductosAlCarrito,
 };
 

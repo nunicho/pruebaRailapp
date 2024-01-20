@@ -41,6 +41,29 @@ router.post("/purchase", (req, res) => {
   }
 });
 
+router.post("/agregar", async (req, res) => {
+  try {
+    const { carritoId, productos } = req.body;
+    const result = await cartsController.agregarProductosAlCarrito(
+      carritoId,
+      productos
+    );
+
+    if (result.error) {
+      return res.status(400).json({ error: result.error });
+    }
+
+    res
+      .status(200)
+      .json({
+        carritoActualizado: result.carritoActualizado,
+        totalAmount: result.totalAmount,
+      });
+  } catch (error) {
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
 
 module.exports = router;
 
