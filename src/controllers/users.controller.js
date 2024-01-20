@@ -469,7 +469,7 @@ const getUserByGithubEmail = async (githubEmail) => {
 
 const createUserFromGithub = async (userData) => {
   try {
-    const user = await UsersRepository.createUser(userData);
+    const user = await UsersRepository.createUserGithub(userData);
     return user;
   } catch (error) {
     throw new CustomError(

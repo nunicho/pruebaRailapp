@@ -72,7 +72,7 @@ class UsersMongoDao {
     }
   }
 
-  async createUser(userData) {
+  async createUserGithub(userData) {
     try {
       const user = await modeloUsuariosGithub.create(userData);
       return user;

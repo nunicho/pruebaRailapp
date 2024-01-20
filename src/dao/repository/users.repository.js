@@ -33,8 +33,8 @@ class UserRepository {
     return await UsersMongoDao.getUserByGithubEmail(githubEmail);
   }
 
-  async createUser(userData) {
-    return await UsersMongoDao.createUser(userData);
+  async createUserGithub(userData) {
+    return await UsersMongoDao.createUserGithub(userData);
   }
   async getUserByIdGithub(userId) {
     return await UsersMongoDao.getUserByIdGithub(userId);
