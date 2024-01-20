@@ -174,11 +174,16 @@ const ticketInsertado = await ticketController.createTicket(
     res.status(500).json({ error: "Error inesperado", detalle: error.message });
   }
 };
+async function createEmptyCart() {
+  const carritoData = { productos: [], amount: 0 };
+  const carrito = await carritosRepository.crearCarrito(carritoData);
+  return carrito
+}
 
 module.exports = {
   verCarritos,
   verCarritoConId,
   crearCarrito,
- 
+  createEmptyCart, 
 };
 

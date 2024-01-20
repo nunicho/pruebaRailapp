@@ -7,6 +7,7 @@ const github = require("passport-github2");
 const util = require("../util.js");
 
 const usersController = require("../controllers/users.controller.js");
+const carritosController = require("../controllers/carritos.controller.js");
 
 const inicializaPassport = () => {
   passport.use(
@@ -40,7 +41,7 @@ const inicializaPassport = () => {
             });
           }
 
-          const cartId = generateCustomCartId();
+          const cartId = await carritosController.createEmptyCart();
 
           let usuario = await usersController.createUser({
             first_name,
