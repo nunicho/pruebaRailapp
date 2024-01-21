@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const carritosController = require("../controllers/carritos.controller.js")
-
+const usersController = require("../controllers/users.controller.js")
 
 
 
@@ -40,29 +40,27 @@ router.post("/purchase", (req, res) => {
     res.status(500).send("Error interno del servidor");
   }
 });
+/*
+router.post(
+  "/:id/crear-carrito",
+  usersController.getUserById,
+  carritosController.crearCarrito
+);
+*/
 
-router.post("/agregar", async (req, res) => {
-  try {
-    const { carritoId, productos } = req.body;
-    const result = await cartsController.agregarProductosAlCarrito(
-      carritoId,
-      productos
-    );
-
-    if (result.error) {
-      return res.status(400).json({ error: result.error });
-    }
-
-    res
-      .status(200)
-      .json({
-        carritoActualizado: result.carritoActualizado,
-        totalAmount: result.totalAmount,
-      });
-  } catch (error) {
-    res.status(500).json({ error: "Error interno del servidor" });
-  }
+/*
+router.post("/:id/crear-carrito", async (req, res) => {
+  await carritosController.crearCarrito(req, res);
 });
+
+*/
+
+router.post(
+  "/:id/agregarProducto",
+  usersController.getUserById,
+  carritosController.agregarProducto
+);
+
 
 
 module.exports = router;

@@ -12,6 +12,10 @@ class CarritosRepository {
   async crearCarrito(carritoData) {
     return CarritosMongoDao.crearCarrito(carritoData);
   }
+
+  async obtenerCarritoPorUsuario(usuarioId) {
+    return CarritosMongoDao.obtenerCarritoPorUsuario(usuarioId);
+  }
 }
 
 module.exports = new CarritosRepository();

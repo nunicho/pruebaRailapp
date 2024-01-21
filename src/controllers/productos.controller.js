@@ -55,16 +55,16 @@ const listarProductos = async (req, res) => {
 };
 
 
-const obtenerProducto = async (req, res, next) => {
-  try {
-    let id = req.params.id;
-    if (!mongoose.Types.ObjectId.isValid(id))
-           throw new CustomError(
-             "ERROR_DATOS",
-             "ID inválido",
-             tiposDeError.ERROR_DATOS,
-             "El id proporcionado no es válido"
-           );
+  const obtenerProducto = async (req, res, next) => {
+    try {
+      let id = req.params.id;
+      if (!mongoose.Types.ObjectId.isValid(id))
+            throw new CustomError(
+              "ERROR_DATOS",
+              "ID inválido",
+              tiposDeError.ERROR_DATOS,
+              "El id proporcionado no es válido"
+            );
     let productoDB = await ProductosRepository.obtenerProducto(id);
     if (!productoDB)
      throw new CustomError(

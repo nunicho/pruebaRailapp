@@ -18,6 +18,14 @@ class CarritosMongoDao {
     const carrito = new carritosModelo(carritoData);
     return carrito.save();
   }
+  async obtenerCarritoPorUsuario(usuarioId) {
+    try {
+      const carrito = await carritosModelo.findOne({ usuario: usuarioId });
+      return carrito;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = new CarritosMongoDao();
