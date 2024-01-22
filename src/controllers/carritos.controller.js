@@ -222,134 +222,6 @@ module.exports = {
   crearCarrito,
 };
 
-/*
-const crearCarrito = async (req, res) => {
-  try {
-    const userId = req.params.id; 
-       const usuario = await usersController.getUserById(userId);
-    if (!usuario) {
-      return res
-        .status(404)
-        .json({ error: `Usuario con id ${userId} no encontrado` });
-    }
-
-    const carritoToAdd = req.body;
-
-    const hasMissingFields = carritoToAdd.products.some(
-      (product) => !product.id || !product.quantity
-    );
-
-    if (hasMissingFields || carritoToAdd.products.length === 0) {
-      throw new CustomError(
-        "ERROR_DATOS",
-        'Los productos deben tener campos "id" y "quantity" completos',
-        tiposDeError.ERROR_DATOS,
-        "Faltan datos obligatorios para crear el carrito."
-      );
-    }
-
-    const productIds = carritoToAdd.products.map((product) => product.id);
-
-    for (const productId of productIds) {
-      if (!mongoose.Types.ObjectId.isValid(productId)) {
-        throw new CustomError(
-          "ERROR_DATOS",
-          "ID inválido",
-          tiposDeError.ERROR_ID_CARRITO,
-          "El ID proporcionado no es válido."
-        );
-      }
-    }
-
-    const insufficientStockProducts = [];
-
-    for (const product of carritoToAdd.products) {
-      const { id, quantity } = product;
-
-      const productInDB = await productosController.obtenerProductoById(id);
-
-      if (!productInDB) {
-        throw new CustomError(
-          "PRODUCTO_NO_ENCONTRADO",
-          `Producto con ID ${id} no encontrado`,
-          tiposDeError.PRODUCTO_NO_ENCONTRADO,
-          `El producto con ID ${id} no existe.`
-        );
-      }
-
-      if (productInDB.stock < quantity) {
-        insufficientStockProducts.push({
-          id,
-          quantity,
-          availableStock: productInDB.stock,
-        });
-      }
-    }
-
-    if (insufficientStockProducts.length > 0) {
-      return res.status(400).json({
-        error: "No hay suficiente stock para algunos productos en el carrito.",
-        insufficientStockProducts,
-      });
-    }
-
-    const groupedProducts = {};
-    let totalAmount = 0;
-
-    for (const product of carritoToAdd.products) {
-      const { id, quantity } = product;
-
-      const productInDB = await productosController.obtenerProductoById(id);
-
-      if (!productInDB) {
-        return res
-          .status(404)
-          .json({ error: `Producto con id ${id} no encontrado` });
-      }
-
-      totalAmount += productInDB.price * quantity;
-
-      if (!groupedProducts[id]) {
-        groupedProducts[id] = parseInt(quantity, 10);
-      } else {
-        groupedProducts[id] += parseInt(quantity, 10);
-      }
-    }
-
-    // Crear el objeto carritoData con el ID del usuario
-    const carritoData = {
-      usuario: userId, // Asociar el carrito al usuario
-      productos: Object.keys(groupedProducts).map((id) => ({
-        producto: id,
-        cantidad: groupedProducts[id],
-      })),
-      amount: totalAmount,
-    };
-
-    let carritoInsertado = await carritosRepository.crearCarrito(carritoData);
-
-    const ticketInsertado = await ticketController.createTicket(
-      totalAmount,
-      req.session.usuario ? req.session.usuario.email : "usuario_desconocido"
-    );
-
-    for (const product of carritoToAdd.products) {
-      const id = product.id;
-      const productInDB = await productosController.obtenerProductoById(id);
-      productInDB.stock -= product.quantity;
-      await productInDB.save();
-    }
-
-    res.status(201).json({ carritoInsertado, ticketInsertado });
-  } catch (error) {
-    res.status(500).json({ error: "Error inesperado", detalle: error.message });
-  }
-};
-*/
-
-
-
-
 
 async function createEmptyCart() {
   const carritoData = { productos: [], amount: 0 };
@@ -357,25 +229,30 @@ async function createEmptyCart() {
   return carrito
 }
 
-
 async function agregarProducto(req, res) {
   try {
-    let { id } = req.params; // ID del usuario
-    let { productoId, cantidad } = req.body; // ID del producto y cantidad a agregar
-      console.log("El body es", JSON.stringify(req.body));
-    // Buscar el carrito del usuario
-    const usuario = await Usuario.findById(id).populate("cart");
-    const carrito = usuario.cart;
+    const { id } = req.params; // ID del usuario
+    const products = req.body.products;
 
-   // productoId = "6574c70f0b46a1b44e031ebc";
-  // cantidad = 1
+    if (!Array.isArray(products) || products.length === 0) {
+      return res
+        .status(400)
+        .json({ mensaje: "Formato de productos incorrecto" });
+    }
+
+    // Tomar el primer producto del array
+    const productoId = products[0].productoId;
+    const cantidad = products[0].quantity;
 
     console.log("El producto Id es:" + productoId);
     console.log("La cantidad es:" + cantidad);
 
+    // Buscar el carrito del usuario
+    const usuario = await Usuario.findById(id).populate("cart");
+    const carrito = usuario.cart;
+
     // Verificar si el producto existe y hay suficiente stock
-    //const producto = await Producto.findById(productoId);
-    const producto = await productosController.obtenerProductoById(productoId)
+    const producto = await productosController.obtenerProductoById(productoId);
 
     console.log("Producto encontrado:", producto);
 
@@ -419,121 +296,3 @@ module.exports = {
 };
 
 
-
-/*
-const crearCarrito = async (req, res) => {
-  try {
-    const carritoToAdd = req.body;
-
-    const hasMissingFields = carritoToAdd.products.some(
-      (product) => !product.id || !product.quantity
-    );
-
-    if (hasMissingFields || carritoToAdd.products.length === 0) {
-      throw new CustomError(
-        "ERROR_DATOS",
-        'Los productos deben tener campos "id" y "quantity" completos',
-        tiposDeError.ERROR_DATOS,
-        "Faltan datos obligatorios para crear el carrito."
-      );
-    }
-
-    const productIds = carritoToAdd.products.map((product) => product.id);
-
-    for (const productId of productIds) {
-      if (!mongoose.Types.ObjectId.isValid(productId)) {
-        if (!mongoose.Types.ObjectId.isValid(productId)) {
-          throw new CustomError(
-            "ERROR_DATOS",
-            "ID inválido",
-            tiposDeError.ERROR_ID_CARRITO,
-            "El ID proporcionado no es válido."
-          );
-        }
-      }
-    }
-
-    const insufficientStockProducts = [];
-
-    for (const product of carritoToAdd.products) {
-      const { id, quantity } = product;
-
-      const productInDB = await productosController.obtenerProductoById(id);
-
-      if (!productInDB) {
-        throw new CustomError(
-          "PRODUCTO_NO_ENCONTRADO",
-          `Producto con ID ${id} no encontrado`,
-          tiposDeError.PRODUCTO_NO_ENCONTRADO,
-          `El producto con ID ${id} no existe.`
-        );
-      }
-
-      if (productInDB.stock < quantity) {
-        insufficientStockProducts.push({
-          id,
-          quantity,
-          availableStock: productInDB.stock,
-        });
-      }
-    }
-
-    if (insufficientStockProducts.length > 0) {
-      return res.status(400).json({
-        error: "No hay suficiente stock para algunos productos en el carrito.",
-        insufficientStockProducts,
-      });
-    }
-
-  
-    const groupedProducts = {};
-    let totalAmount = 0;
-
-    for (const product of carritoToAdd.products) {
-      const { id, quantity } = product;
-
-      const productInDB = await productosController.obtenerProductoById(id);
-
-      if (!productInDB) {
-        return res
-          .status(404)
-          .json({ error: `Producto con id ${id} no encontrado` });
-      }
-
-      totalAmount += productInDB.price * quantity;
-
-      if (!groupedProducts[id]) {
-        groupedProducts[id] = parseInt(quantity, 10);
-      } else {
-        groupedProducts[id] += parseInt(quantity, 10);
-      }
-    }
-
-    const carritoData = {
-      productos: Object.keys(groupedProducts).map((id) => ({
-        producto: id,
-        cantidad: groupedProducts[id],
-      })),
-      amount: totalAmount,
-    };
-
-    let carritoInsertado = await carritosRepository.crearCarrito(carritoData);
-
-const ticketInsertado = await ticketController.createTicket(
-  totalAmount,
-  req.session.usuario ? req.session.usuario.email : "usuario_desconocido"
-);
-
-    for (const product of carritoToAdd.products) {
-      const id = product.id;
-      const productInDB = await productosController.obtenerProductoById(id);
-      productInDB.stock -= product.quantity;
-      await productInDB.save();
-    }
-
-    res.status(201).json({ carritoInsertado, ticketInsertado });
-  } catch (error) {
-    res.status(500).json({ error: "Error inesperado", detalle: error.message });
-  }
-};
-*/
