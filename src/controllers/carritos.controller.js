@@ -240,9 +240,22 @@ async function agregarProducto(req, res) {
         .json({ mensaje: "Formato de productos incorrecto" });
     }
 
-    // Buscar el carrito del usuario
+    // Buscar el usuario
     const usuario = await Usuario.findById(id).populate("cart");
-    const carrito = usuario.cart;
+
+    // Verificar si el usuario tiene un carrito
+    let carrito = usuario.cart;
+
+    // Si el usuario no tiene un carrito, crear uno
+    if (!carrito) {
+      carrito = await createEmptyCart();
+      // Asignar el nuevo carrito al usuario
+      usuario.cart = carrito;
+      await usuario.save();
+    }
+
+    // Inicializar el total del carrito
+    let totalCarrito = carrito.amount || 0;
 
     for (const product of products) {
       const productoId = product.productoId;
@@ -268,10 +281,25 @@ async function agregarProducto(req, res) {
           .json({ mensaje: "Producto no encontrado o stock insuficiente" });
       }
 
-      // Agregar el producto al carrito
-      carrito.productos.push({ producto: productoId, cantidad });
-      carrito.amount += producto.price * cantidad;
+      // Buscar si ya existe el producto en el carrito
+      const productoExistente = carrito.productos.find(
+        (item) => item.producto.toString() === productoId
+      );
+
+      // Si ya existe, actualizar la cantidad
+      if (productoExistente) {
+        productoExistente.cantidad += cantidad;
+      } else {
+        // Si no existe, agregar un nuevo elemento al array
+        carrito.productos.push({ producto: productoId, cantidad });
+      }
+
+      // Sumar al total del carrito
+      totalCarrito += producto.price * cantidad;
     }
+
+    // Actualizar el total del carrito
+    carrito.amount = totalCarrito;
 
     // Guardar los cambios en el carrito
     await carrito.save();
@@ -289,6 +317,7 @@ async function agregarProducto(req, res) {
     return res.status(500).json({ mensaje: "Error interno del servidor" });
   }
 }
+
 
 module.exports = {
   verCarritos,
