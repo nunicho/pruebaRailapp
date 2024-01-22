@@ -29,17 +29,7 @@ router.get("/:cid", async (req, res) => {
   }
 });
 
-router.post("/purchase", (req, res) => {
-  try {
-    req.logger.info(`Acceso exitoso a la ruta de crear carrito`);
-    carritosController.crearCarrito(req, res);
-  } catch (error) {
-    req.logger.fatal(
-      `Error al acceder a la ruta de crear carrito - Detalle: ${error.message}`
-    );
-    res.status(500).send("Error interno del servidor");
-  }
-});
+router.post("/:id/purchase", carritosController.realizarCompra);
 /*
 router.post(
   "/:id/crear-carrito",

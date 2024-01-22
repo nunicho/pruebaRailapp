@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const carritosRepository = require("../dao/repository/carritos.repository.js");
-const ticketController = require("./tickets.controller");
+const ticketController = require("../controllers/tickets.controller.js");
 const usersController = require("../controllers/users.controller.js")
 
 const productosController = require("../controllers/productos.controller.js");
@@ -318,6 +318,61 @@ async function agregarProducto(req, res) {
   }
 }
 
+async function realizarCompra(req, res) {
+  try {
+    const { id } = req.params; // ID del usuario
+
+    // Buscar el usuario
+    const usuario = await Usuario.findById(id).populate("cart");
+
+    // Verificar si el usuario tiene un carrito
+    let carrito = usuario.cart;
+
+    // Si el usuario no tiene un carrito, crear uno
+    if (!carrito) {
+      return res
+        .status(400)
+        .json({ mensaje: "El usuario no tiene un carrito activo" });
+    }
+
+    // Verificar si el carrito tiene productos
+    if (carrito.productos.length === 0) {
+      return res.status(400).json({ mensaje: "El carrito está vacío" });
+    }
+
+    // Generar un ticket
+    const ticket = await ticketController.createTicket(
+      carrito.amount,
+      usuario.email
+    );
+
+    // Restar el stock de los productos
+    for (const item of carrito.productos) {
+      const producto = await productosController.obtenerProductoById(
+        item.producto
+      );
+      if (producto) {
+        producto.stock -= item.cantidad;
+        await producto.save();
+      }
+    }
+
+    // Vaciar el carrito
+    carrito.productos = [];
+    carrito.amount = 0;
+    await carrito.save();
+
+    console.log("Compra realizada con éxito. Carrito actualizado:", carrito);
+
+    return res
+      .status(200)
+      .json({ mensaje: "Compra realizada con éxito", ticket });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ mensaje: "Error interno del servidor" });
+  }
+}
+
 
 module.exports = {
   verCarritos,
@@ -325,6 +380,7 @@ module.exports = {
   crearCarrito,
   createEmptyCart,
   agregarProducto,
+  realizarCompra,
 };
 
 
