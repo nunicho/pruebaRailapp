@@ -240,47 +240,50 @@ async function agregarProducto(req, res) {
         .json({ mensaje: "Formato de productos incorrecto" });
     }
 
-    // Tomar el primer producto del array
-    const productoId = products[0].productoId;
-    const cantidad = products[0].quantity;
-
-    console.log("El producto Id es:" + productoId);
-    console.log("La cantidad es:" + cantidad);
-
     // Buscar el carrito del usuario
     const usuario = await Usuario.findById(id).populate("cart");
     const carrito = usuario.cart;
 
-    // Verificar si el producto existe y hay suficiente stock
-    const producto = await productosController.obtenerProductoById(productoId);
+    for (const product of products) {
+      const productoId = product.productoId;
+      const cantidad = product.quantity;
 
-    console.log("Producto encontrado:", producto);
+      console.log("El producto Id es:" + productoId);
+      console.log("La cantidad es:" + cantidad);
 
-    if (!producto || producto.stock < cantidad) {
-      console.log(
-        "Producto no encontrado o stock insuficiente. Producto:",
-        producto
+      // Verificar si el producto existe y hay suficiente stock
+      const producto = await productosController.obtenerProductoById(
+        productoId
       );
-      return res
-        .status(400)
-        .json({ mensaje: "Producto no encontrado o stock insuficiente" });
-    }
 
-    // Agregar el producto al carrito
-    carrito.productos.push({ producto: productoId, cantidad });
-    carrito.amount += producto.price * cantidad;
+      console.log("Producto encontrado:", producto);
+
+      if (!producto || producto.stock < cantidad) {
+        console.log(
+          "Producto no encontrado o stock insuficiente. Producto:",
+          producto
+        );
+        return res
+          .status(400)
+          .json({ mensaje: "Producto no encontrado o stock insuficiente" });
+      }
+
+      // Agregar el producto al carrito
+      carrito.productos.push({ producto: productoId, cantidad });
+      carrito.amount += producto.price * cantidad;
+    }
 
     // Guardar los cambios en el carrito
     await carrito.save();
 
     console.log(
-      "Producto agregado al carrito con éxito. Carrito actualizado:",
+      "Productos agregados al carrito con éxito. Carrito actualizado:",
       carrito
     );
 
     return res
       .status(200)
-      .json({ mensaje: "Producto agregado al carrito con éxito" });
+      .json({ mensaje: "Productos agregados al carrito con éxito" });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ mensaje: "Error interno del servidor" });
