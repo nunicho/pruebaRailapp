@@ -85,3 +85,9 @@
 {"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-20T06:08:28.242Z"}
 {"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-20T06:08:34.596Z"}
 {"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-20T06:09:11.638Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading 'id')","timestamp":"2024-01-23T18:59:32.611Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading 'id')","timestamp":"2024-01-23T19:06:25.245Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading 'id')","timestamp":"2024-01-23T19:07:12.945Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading '_id')","timestamp":"2024-01-23T19:18:54.224Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading '_id')","timestamp":"2024-01-23T19:19:36.202Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading '_id')","timestamp":"2024-01-23T19:27:42.326Z"}

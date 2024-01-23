@@ -1472,3 +1472,27 @@
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-22T04:14:14.973Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-23T04:55:23.427Z"}
 {"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-23T04:55:34.273Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-23T07:57:11.656Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-23T07:57:12.075Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-23T07:57:22.176Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-23T17:21:47.832Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-23T17:21:54.396Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-23T17:53:06.909Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-23T17:53:07.378Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-23T17:53:15.164Z"}
+{"level":"info","message":"Acceso exitoso a la ruta de ver carrito","timestamp":"2024-01-23T17:58:59.681Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-23T18:15:43.377Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-23T18:18:44.525Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-23T18:18:50.641Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-23T18:18:56.711Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-23T18:18:57.196Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: javier@gmail.com","timestamp":"2024-01-23T18:19:05.051Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: javier@gmail.com","timestamp":"2024-01-23T18:19:22.309Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-23T18:19:31.021Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-23T18:59:28.276Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading 'id')","timestamp":"2024-01-23T18:59:32.611Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading 'id')","timestamp":"2024-01-23T19:06:25.243Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading 'id')","timestamp":"2024-01-23T19:07:12.943Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading '_id')","timestamp":"2024-01-23T19:18:54.222Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading '_id')","timestamp":"2024-01-23T19:19:36.201Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading '_id')","timestamp":"2024-01-23T19:27:42.324Z"}

@@ -441,6 +441,7 @@ async function limpiarCarrito(req, res) {
     return res.status(500).json({ mensaje: "Error interno del servidor" });
   }
 }
+
 async function mostrarCarrito(req, res) {
   try {
     const { id } = req.params;
@@ -488,6 +489,7 @@ async function mostrarCarrito(req, res) {
   }
 }
 
+
 module.exports = {
   verCarritos,
   verCarritoConId,
@@ -497,7 +499,7 @@ module.exports = {
   realizarCompra,
   quitarProducto,
   limpiarCarrito,
-  mostrarCarrito
+  mostrarCarrito,
 };
 
 

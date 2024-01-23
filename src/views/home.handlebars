@@ -34,9 +34,9 @@
         <div>
               <a href="/api/users/premium/{{usuario.id}}">Cambiar Rol</a>
         </div>
-        <div>
-            <a href="/carrito/{{usuario.id}}">Mi carrito</a>
-        </div>
+<div>
+  <a href="/mi-carrito/{{usuario._id}}">Mi carrito</a>
+</div>
     {{/ifEquals}}
         {{#ifEquals usuario.role 'premium'}}
         <div>
@@ -48,9 +48,9 @@
         <div>
               <a href="/api/users/premium/{{usuario.id}}">Cambiar Rol</a>
         </div>
-        <div>
-            <a href="/carrito/{{usuario.id}}">Mi carrito</a>
-        </div>
+<div>
+  <a href="/mi-carrito/{{usuario._id}}">Mi carrito</a>
+</div>
     {{/ifEquals}}
   
 

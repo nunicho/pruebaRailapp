@@ -11,6 +11,8 @@ const authMiddleware = require("../middleware/authMiddleware.js");
 const CustomError = require("../utils/customError.js");
 const tiposDeError = require("../utils/tiposDeError.js");
 
+const Usuario = require("../dao/Mongo/models/users.modelo.js")
+
 //DTO para la vista CURRENT
 const dtoUsuarios = require("../dto/dtoUsuarios.js");
 
@@ -321,51 +323,82 @@ router
   });
 
 //---------------------------------------------------------------- RUTAS PARA CARRITOS--------------- //
-
 router.get(
-  "/carts/:cid",
+  "/mi-carrito/:id",
   authMiddleware.auth,
-  carritosController.verCarritoConId,
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const usuario = await Usuario.findById(id).populate("cart");
+      const carrito = usuario.cart;
+
+      if (!carrito) {
+        throw new CustomError(
+          "ERROR_DATOS",
+          "Carrito no encontrado",
+          tiposDeError.CARRITO_NO_ENCONTRADO,
+          "Carrito no encontrado"
+        );
+      }
+
+      const productosEnCarrito = [];
+
+      for (const product of carrito.productos) {
+        const productoId = product.producto.toString();
+        const producto = await productosController.obtenerProductoById(
+          productoId
+        );
+
+        if (!producto) {
+          throw new CustomError(
+            "ERROR_DATOS",
+            "Producto no encontrado",
+            tiposDeError.PRODUCTO_NO_ENCONTRADO,
+            "Producto no encontrado"
+          );
+        }
+
+        productosEnCarrito.push({
+          id: productoId,
+          nombre: producto.title,
+          cantidad: product.cantidad,
+          precioUnitario: producto.price,
+          imagen: producto.thumbnail,
+          code: producto.code,
+          subtotal: producto.price * product.cantidad,
+        });
+      }
+
+      const totalCarrito = carrito.amount || 0;
+
+      // Almacenar el carrito en res.locals para que pueda ser accedido en el siguiente middleware
+      res.locals.carritoDB = {
+        productos: productosEnCarrito,
+        total: totalCarrito,
+      };
+
+      next(); // Llamar al siguiente middleware
+    } catch (error) {
+      console.error(error);
+      req.logger.error(
+        `Error al mostrar el carrito - Detalle: ${error.message}`
+      );
+      next(error); // Llamar al siguiente middleware con el error
+    }
+  },
   (req, res) => {
     const carritoDB = res.locals.carritoDB;
 
-    if (!carritoDB) {
-      req.logger.error(`Carrito no encontrado - Detalle: ${error.message}`);
-      throw new CustomError(
-        "ERROR_DATOS",
-        "Carrito no encontrado",
-        tiposDeError.CARRITO_NO_ENCONTRADO,
-        "Carrito no encontrado"
-      );
-    }
-
-    req.logger.info(`Carrito de id ${carritoDB._id} encontrado exitosamente`);
+    req.logger.info(`Carrito encontrado exitosamente`);
     res.header("Content-type", "text/html");
-    res.status(200).render("DBcartDetails", {
-      carritoDB,
-      estilo: "DBcartDetails.css",
+    res.status(200).render("carrito", {
+      carrito: carritoDB,
+      estilo: "DBcartDetails.css", // Ajusta esto según tus necesidades
     });
   }
 );
 
-router.get("/carrito/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const usuario = await usersController.getUserById(id);
-
-    if (!usuario) {
-      return res.status(404).json({ mensaje: "Usuario no encontrado" });
-    }
-
-    // Lógica para obtener datos necesarios para la vista del carrito
-    const datosCarrito = obtenerDatosCarrito(); // Reemplaza con tu lógica real
-
-    res.render("carrito", { carrito: datosCarrito });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ mensaje: "Error interno del servidor" });
-  }
-});
+module.exports = router;
 
 //---------------------------------------------------------------- RUTAS PARA EL CHAT --------------- //
 
