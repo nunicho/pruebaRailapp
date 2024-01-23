@@ -43,6 +43,12 @@ router.post(
   carritosController.quitarProducto
 );
 
+router.post(
+  "/:id/limpiarCarrito",
+  usersController.getUserById,
+  carritosController.limpiarCarrito
+);
+
 
 module.exports = router;
 

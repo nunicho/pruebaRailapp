@@ -422,6 +422,29 @@ async function quitarProducto(req, res) {
 }
 
 
+async function limpiarCarrito(req, res) {
+  try {
+    const { id } = req.params;
+    const usuario = await Usuario.findById(id).populate("cart");
+    const carrito = usuario.cart;
+
+    if (!carrito) {
+      return res.status(400).json({ mensaje: "El carrito no existe" });
+    }
+
+    // Limpiar carrito
+    carrito.productos = [];
+    carrito.amount = 0;
+
+    await carrito.save();
+
+    return res.status(200).json({ mensaje: "Carrito limpiado con éxito" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ mensaje: "Error interno del servidor" });
+  }
+}
+
 module.exports = {
   verCarritos,
   verCarritoConId,
@@ -430,6 +453,7 @@ module.exports = {
   agregarProducto,
   realizarCompra,
   quitarProducto,
+  limpiarCarrito,
 };
 
 
