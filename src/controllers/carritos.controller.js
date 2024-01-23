@@ -231,7 +231,7 @@ async function createEmptyCart() {
 
 async function agregarProducto(req, res) {
   try {
-    const { id } = req.params; // ID del usuario
+    const { id } = req.params; 
     const products = req.body.products;
 
     if (!Array.isArray(products) || products.length === 0) {
@@ -239,22 +239,14 @@ async function agregarProducto(req, res) {
         .status(400)
         .json({ mensaje: "Formato de productos incorrecto" });
     }
-
-    // Buscar el usuario
     const usuario = await Usuario.findById(id).populate("cart");
-
-    // Verificar si el usuario tiene un carrito
     let carrito = usuario.cart;
 
-    // Si el usuario no tiene un carrito, crear uno
     if (!carrito) {
       carrito = await createEmptyCart();
-      // Asignar el nuevo carrito al usuario
       usuario.cart = carrito;
       await usuario.save();
     }
-
-    // Consolidar las cantidades de productos con el mismo ID
     const productosConsolidados = {};
     products.forEach((product) => {
       const productoId = product.productoId;
@@ -265,18 +257,12 @@ async function agregarProducto(req, res) {
         productosConsolidados[productoId] = cantidad;
       }
     });
-
-    // Inicializar el total del carrito
-    let totalCarrito = carrito.amount || 0;
-
-    // Verificar el stock antes de agregar productos al carrito
+    let totalCarrito = carrito.amount || 0;    
     for (const [productoId, cantidad] of Object.entries(
       productosConsolidados
     )) {
       console.log("El producto Id es:" + productoId);
       console.log("La cantidad es:" + cantidad);
-
-      // Verificar si el producto existe
       const producto = await productosController.obtenerProductoById(
         productoId
       );
@@ -287,15 +273,11 @@ async function agregarProducto(req, res) {
         console.log("Producto no encontrado. Producto:", producto);
         return res.status(400).json({ mensaje: "Producto no encontrado" });
       }
-
-      // Calcular la cantidad total (nueva cantidad + cantidad en el carrito)
       const cantidadTotal =
         cantidad +
         carrito.productos
           .filter((item) => item.producto.toString() === productoId)
           .reduce((total, item) => total + item.cantidad, 0);
-
-      // Verificar si hay suficiente stock
       if (producto.stock < cantidadTotal) {
         console.log("Stock insuficiente. Producto:", producto);
         return res
@@ -304,28 +286,17 @@ async function agregarProducto(req, res) {
             mensaje: `No hay suficiente stock para el producto con ID ${productoId}`,
           });
       }
-
-      // Buscar si ya existe el producto en el carrito
       const productoExistente = carrito.productos.find(
         (item) => item.producto.toString() === productoId
       );
-
-      // Si ya existe, actualizar la cantidad
       if (productoExistente) {
         productoExistente.cantidad += cantidad;
       } else {
-        // Si no existe, agregar un nuevo elemento al array
         carrito.productos.push({ producto: productoId, cantidad });
-      }
-
-      // Sumar al total del carrito
+      }   
       totalCarrito += producto.price * cantidad;
     }
-
-    // Actualizar el total del carrito
     carrito.amount = totalCarrito;
-
-    // Guardar los cambios en el carrito
     await carrito.save();
 
     console.log(
@@ -344,21 +315,16 @@ async function agregarProducto(req, res) {
 
 async function realizarCompra(req, res) {
   try {
-    const { id } = req.params; // ID del usuario
+    const { id } = req.params; 
     const usuario = await Usuario.findById(id).populate("cart");
-
-    // Verificar si el usuario tiene un carrito
     let carrito = usuario.cart;
 
-    // Si el usuario no tiene un carrito, retornar un mensaje
     if (!carrito || carrito.productos.length === 0) {
       return res.status(400).json({ mensaje: "El carrito está vacío" });
     }
 
-    // Inicializar el total del carrito
     let totalCarrito = carrito.amount || 0;
 
-    // Verificar el stock antes de realizar la compra
     for (const product of carrito.productos) {
       const productoId = product.producto.toString();
       const cantidadDeseada = product.cantidad;
@@ -368,49 +334,87 @@ async function realizarCompra(req, res) {
       );
 
       if (!producto || producto.stock < cantidadDeseada) {
-        // Detener la compra y devolver un mensaje al cliente
-        return res.status(400).json({
+         return res.status(400).json({
           mensaje: `No hay suficiente stock para el producto con ID ${productoId}`,
         });
       }
-
-      // Restar la cantidad deseada del stock en la base de datos
       producto.stock -= cantidadDeseada;
-
-      // Guardar los cambios en el producto
       await producto.save();
-
-      // Sumar al total del carrito
       totalCarrito += producto.price * cantidadDeseada;
     }
 
-    // Generar el ticket
-    const ticketInsertado = await ticketController.createTicket(
+     const ticketInsertado = await ticketController.createTicket(
       totalCarrito,
       usuario.email
     );
 
-    // Verificar si el ticket se generó correctamente
     if (!ticketInsertado) {
       return res.status(500).json({ mensaje: "Error al generar el ticket" });
     }
-
-    // Realizar otras operaciones relacionadas con la compra (si es necesario)
-
-    // Actualizar el total del carrito
     carrito.amount = totalCarrito;
 
-    // Vaciar el carrito
     carrito.productos = [];
     carrito.amount = 0;
 
-    // Guardar los cambios en el carrito
     await carrito.save();
 
-    // Devolver una respuesta exitosa
     return res
       .status(200)
       .json({ mensaje: "Compra realizada con éxito", ticket: ticketInsertado });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ mensaje: "Error interno del servidor" });
+  }
+}
+
+async function quitarProducto(req, res) {
+  try {
+    const { id } = req.params;
+    const productId = req.body.productId;
+
+    if (!productId) {
+      return res
+        .status(400)
+        .json({ mensaje: "ID de producto no proporcionado" });
+    }
+
+    const usuario = await Usuario.findById(id).populate("cart");
+    const carrito = usuario.cart;
+
+    if (!carrito) {
+      return res.status(400).json({ mensaje: "El carrito no existe" });
+    }
+
+    const productoIndex = carrito.productos.findIndex(
+      (item) => item.producto.toString() === productId
+    );
+
+    if (productoIndex === -1) {
+      return res
+        .status(404)
+        .json({ mensaje: "Producto no encontrado en el carrito" });
+    }
+
+    const producto = carrito.productos[productoIndex];
+    const productoObject = await productosController.obtenerProductoById(
+      productId
+    );
+
+    if (!productoObject) {
+      return res.status(400).json({ mensaje: "Producto no encontrado" });
+    }
+
+    // Resta la cantidad del producto al total del carrito
+    carrito.amount -= productoObject.price * producto.cantidad;
+
+    // Elimina el producto del array de productos en el carrito
+    carrito.productos.splice(productoIndex, 1);
+
+    await carrito.save();
+
+    return res
+      .status(200)
+      .json({ mensaje: "Producto quitado del carrito con éxito" });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ mensaje: "Error interno del servidor" });
@@ -425,6 +429,7 @@ module.exports = {
   createEmptyCart,
   agregarProducto,
   realizarCompra,
+  quitarProducto,
 };
 
 

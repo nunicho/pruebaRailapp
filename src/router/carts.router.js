@@ -30,20 +30,6 @@ router.get("/:cid", async (req, res) => {
 });
 
 router.post("/:id/purchase", carritosController.realizarCompra);
-/*
-router.post(
-  "/:id/crear-carrito",
-  usersController.getUserById,
-  carritosController.crearCarrito
-);
-*/
-
-/*
-router.post("/:id/crear-carrito", async (req, res) => {
-  await carritosController.crearCarrito(req, res);
-});
-
-*/
 
 router.post(
   "/:id/agregarProducto",
@@ -51,6 +37,11 @@ router.post(
   carritosController.agregarProducto
 );
 
+router.post(
+  "/:id/quitarProducto",
+  usersController.getUserById,
+  carritosController.quitarProducto
+);
 
 
 module.exports = router;
