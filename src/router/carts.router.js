@@ -50,5 +50,7 @@ router.post(
 );
 
 
+router.get("/:id/mostrarCarrito", usersController.getUserById, carritosController.mostrarCarrito)
+
 module.exports = router;
 

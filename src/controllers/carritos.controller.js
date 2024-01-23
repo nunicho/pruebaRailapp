@@ -404,10 +404,8 @@ async function quitarProducto(req, res) {
       return res.status(400).json({ mensaje: "Producto no encontrado" });
     }
 
-    // Resta la cantidad del producto al total del carrito
     carrito.amount -= productoObject.price * producto.cantidad;
 
-    // Elimina el producto del array de productos en el carrito
     carrito.productos.splice(productoIndex, 1);
 
     await carrito.save();
@@ -432,13 +430,58 @@ async function limpiarCarrito(req, res) {
       return res.status(400).json({ mensaje: "El carrito no existe" });
     }
 
-    // Limpiar carrito
     carrito.productos = [];
     carrito.amount = 0;
 
     await carrito.save();
 
     return res.status(200).json({ mensaje: "Carrito limpiado con éxito" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ mensaje: "Error interno del servidor" });
+  }
+}
+async function mostrarCarrito(req, res) {
+  try {
+    const { id } = req.params;
+    const usuario = await Usuario.findById(id).populate("cart");
+    const carrito = usuario.cart;
+
+    if (!carrito) {
+      return res.status(400).json({ mensaje: "El carrito no existe" });
+    }
+
+    const productosEnCarrito = [];
+
+    for (const product of carrito.productos) {
+      const productoId = product.producto.toString();
+      const producto = await productosController.obtenerProductoById(
+        productoId
+      );
+
+      if (!producto) {
+        return res.status(400).json({ mensaje: "Producto no encontrado" });
+      }
+
+      productosEnCarrito.push({
+        id: productoId,
+        nombre: producto.title,
+        cantidad: product.cantidad,
+        precioUnitario: producto.price,
+        imagen: producto.thumbnail,
+        code: producto.code,
+        subtotal: producto.price * product.cantidad,
+      });
+    }
+
+    const totalCarrito = carrito.amount || 0;
+
+    return res.status(200).json({
+      carrito: {
+        productos: productosEnCarrito,
+        total: totalCarrito,
+      },
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ mensaje: "Error interno del servidor" });
@@ -454,6 +497,7 @@ module.exports = {
   realizarCompra,
   quitarProducto,
   limpiarCarrito,
+  mostrarCarrito
 };
 
 

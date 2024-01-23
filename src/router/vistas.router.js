@@ -348,6 +348,25 @@ router.get(
   }
 );
 
+router.get("/carrito/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const usuario = await usersController.getUserById(id);
+
+    if (!usuario) {
+      return res.status(404).json({ mensaje: "Usuario no encontrado" });
+    }
+
+    // Lógica para obtener datos necesarios para la vista del carrito
+    const datosCarrito = obtenerDatosCarrito(); // Reemplaza con tu lógica real
+
+    res.render("carrito", { carrito: datosCarrito });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ mensaje: "Error interno del servidor" });
+  }
+});
+
 //---------------------------------------------------------------- RUTAS PARA EL CHAT --------------- //
 
 router.get(

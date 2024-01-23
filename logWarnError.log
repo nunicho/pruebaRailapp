@@ -1470,3 +1470,5 @@
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-22T04:13:53.497Z"}
 {"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-22T04:13:56.524Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-22T04:14:14.973Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-23T04:55:23.427Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-23T04:55:34.273Z"}

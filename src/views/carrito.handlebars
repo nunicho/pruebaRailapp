@@ -1,0 +1,36 @@
+<span><a  href="/">Regresar</a></span>
+
+<head>
+  <title>Carrito de Compras</title>
+</head>
+
+<body>
+  <h1>Carrito de Compras</h1>
+
+  {{#if carrito.productos.length}}
+    <ul>
+      {{#each carrito.productos}}
+        <li>
+          <span>{{this.cantidad}} x {{this.producto.title}} - Precio Unitario: {{this.producto.price}}</span>
+          <button onclick="quitarProducto('{{this.producto._id}}')">Quitar</button>
+        </li>
+      {{/each}}
+    </ul>
+
+    <p>Total del Carrito: {{carrito.amount}}</p>
+
+    <button onclick="limpiarCarrito()">Limpiar Carrito</button>
+  {{else}}
+    <p>El carrito está vacío.</p>
+  {{/if}}
+
+  <script>
+    function quitarProducto(productoId) {
+      // Lógica para enviar la solicitud para quitar un producto (puedes usar fetch o axios)
+    }
+
+    function limpiarCarrito() {
+      // Lógica para enviar la solicitud para limpiar el carrito (puedes usar fetch o axios)
+    }
+  </script>
+</body>
