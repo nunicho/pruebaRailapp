@@ -360,7 +360,7 @@ router.get(
 
         productosEnCarrito.push({
           id: productoId,
-          nombre: producto.title,
+          title: producto.title,
           cantidad: product.cantidad,
           precioUnitario: producto.price,
           imagen: producto.thumbnail,

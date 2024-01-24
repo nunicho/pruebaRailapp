@@ -1496,3 +1496,20 @@
 {"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading '_id')","timestamp":"2024-01-23T19:18:54.222Z"}
 {"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading '_id')","timestamp":"2024-01-23T19:19:36.201Z"}
 {"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of undefined (reading '_id')","timestamp":"2024-01-23T19:27:42.324Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-23T19:33:45.771Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-23T19:33:53.774Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-23T19:34:02.123Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-23T19:34:02.621Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: javier@gmail.com","timestamp":"2024-01-23T19:34:12.561Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-23T19:34:15.225Z"}
+{"level":"info","message":"Logout exitoso - Mail: javier@gmail.com","timestamp":"2024-01-23T19:37:48.167Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-23T19:37:48.649Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-23T19:37:55.022Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-23T19:37:55.483Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-23T19:38:02.186Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: mauricio@gmail.com","timestamp":"2024-01-23T19:38:55.224Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-24T01:08:59.717Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-24T01:09:07.329Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-24T01:09:14.959Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-24T01:12:22.405Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-24T01:12:33.728Z"}

@@ -1,4 +1,4 @@
-<span><a  href="/">Regresar</a></span>
+<span><a href="/">Regresar</a></span>
 
 <head>
   <title>Carrito de Compras</title>
@@ -11,13 +11,13 @@
     <ul>
       {{#each carrito.productos}}
         <li>
-          <span>{{this.cantidad}} x {{this.producto.title}} - Precio Unitario: {{this.producto.price}}</span>
-          <button onclick="quitarProducto('{{this.producto._id}}')">Quitar</button>
+          <span>{{this.cantidad}} x {{this.title}} - Precio Unitario: $ {{this.precioUnitario}}. Subtotal: $ {{this.subtotal}} </span>
+          <button onclick="quitarProducto('{{this.id}}')">Quitar</button>
         </li>
       {{/each}}
     </ul>
 
-    <p>Total del Carrito: {{carrito.amount}}</p>
+    <p>Total del Carrito: {{carrito.total}}</p>
 
     <button onclick="limpiarCarrito()">Limpiar Carrito</button>
   {{else}}
