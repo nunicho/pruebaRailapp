@@ -393,12 +393,14 @@ router.get(
     res.header("Content-type", "text/html");
     res.status(200).render("carrito", {
       carrito: carritoDB,
-      estilo: "DBcartDetails.css", // Ajusta esto según tus necesidades
+      userId: req.params.id,
+      estilo: "DBcartDetails.css",
     });
   }
 );
 
-module.exports = router;
+
+
 
 //---------------------------------------------------------------- RUTAS PARA EL CHAT --------------- //
 
