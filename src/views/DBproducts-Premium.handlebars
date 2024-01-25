@@ -52,7 +52,8 @@
            <a href="editarProducto-Premium/{{ this._id }}" class="editar-producto">Editar Producto</a>
           <a href="eliminarProducto-Premium/" class="eliminar-producto" data-product-id="{{ this._id }}">Eliminar</a>
            {{else}}
-          <a href="#" data-product-id="{{ this._id }}" data-product-name="{{ this.title }}" data-product-price="{{ this.price }}">Agregar al Carrito</a>
+           <a href="#" data-product-id="{{ this._id }}" data-product-name="{{ this.title }}" data-product-price="{{ this.price }}" data-product-stock="{{ this.stock }}">Agregar al Carrito</a>
+    <input type="number" id="quantityInput{{ this._id }}" min="1" max="{{ this.stock }}" value="1">
           
           {{/compareOwners}}
           
@@ -119,8 +120,7 @@
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const agregarAlCarritoBotones =
-    document.querySelectorAll("[data-product-id]");
+  const agregarAlCarritoBotones = document.querySelectorAll("[data-product-id]");
 
   agregarAlCarritoBotones.forEach((boton) => {
     boton.addEventListener("click", function (event) {
@@ -129,21 +129,29 @@ document.addEventListener("DOMContentLoaded", function () {
       const productId = this.getAttribute("data-product-id");
       const productName = this.getAttribute("data-product-name");
       const productPrice = this.getAttribute("data-product-price");
+      const productStock = this.getAttribute("data-product-stock");
+      const productQuantityInput = document.getElementById(`quantityInput${productId}`);
+      const productQuantity = productQuantityInput.value;
+
+      if (productQuantity > productStock) {
+        alert(`¡Stock insuficiente! La cantidad seleccionada excede el stock disponible (${productStock} unidades).`);
+        return;
+      }
 
       const userId = document.getElementById("userId").dataset.userId;
-      console.log("userId:", userId);
+
       fetch(`/api/carts/${userId}/agregarProducto`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          products: [{ productoId: productId, quantity: 1 }],
+          products: [{ productoId: productId, quantity: productQuantity }],
         }),
       })
         .then((response) => {
           if (response.status === 200) {
-            alert(`${productName} agregado al carrito con éxito`);
+            alert(`${productName} (${productQuantity} unidades) agregado al carrito con éxito`);
           } else {
             alert(`Error al agregar ${productName} al carrito`);
           }
