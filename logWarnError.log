@@ -1587,3 +1587,20 @@
 {"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-25T04:49:09.281Z"}
 {"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-25T04:50:57.311Z"}
 {"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-25T04:51:34.794Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-25T05:04:19.755Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-25T05:13:08.392Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-25T05:13:26.808Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-25T05:13:35.494Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-25T05:14:49.373Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-25T05:17:06.748Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-25T05:17:38.951Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-25T05:18:23.414Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-25T05:22:53.034Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-25T05:25:42.371Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-25T05:26:34.763Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-25T05:27:32.160Z"}
+{"level":"error","message":"Error al acceder a productos - Detalle: Cannot read properties of undefined (reading '_id')","timestamp":"2024-01-25T05:34:00.053Z"}
+{"level":"error","message":"Error al acceder a productos - Detalle: Cannot read properties of undefined (reading '_id')","timestamp":"2024-01-25T05:34:06.491Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-25T05:35:59.786Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-25T05:36:22.714Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-25T05:36:50.453Z"}

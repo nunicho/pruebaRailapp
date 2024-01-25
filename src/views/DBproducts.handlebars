@@ -1,18 +1,9 @@
 <span><a  href="/">Regresar</a></span> <span><button id="printButton">Imprimir Lista</button></span>
 <br/>
 
-<div id="carritoContainer">
-  <h2>Carrito de Compras</h2>
-  <div id="carritoProductos">
-    <!-- Los productos seleccionados se agregarán aquí -->
-  </div>
-  <div id="totalCarrito">Total: $0.00</div> <!-- Contenedor para mostrar el total -->
-  <button id="limpiarCarrito">Limpiar Carrito</button>
-  <button id="finalizarCompra">Finalizar Compra</button>
-</div>
 
 <h1>Lista de productos en nuestro catálogo</h1>
-
+ <div id="userId" data-user-id="{{userId}}"></div>
 <form action="/DBproducts" method="GET" id="filtroForm">
   <label for="filtro">Filtrar por nombre:</label>
   <input type="text" id="filtro" name="filtro" value="{{filtro}}" /> <!-- Establece el valor del filtro -->
@@ -81,40 +72,52 @@
 
  </div>
 
-<!-- Ventana modal para AGREGAR PRODUCTOS -->
-<div id="modal" class="modal">
-  <div class="modal-scrollable-content">
-    <span class="close" id="cerrarModal">&times;</span>
-    <h2>Ingresar Producto</h2>
-    <form id="productForm" action="/DBProducts" method="POST">
-      <label for="title">Título:</label>
-      <input type="text" id="title" name="title" required />
-
-      <label for="description">Descripción:</label>
-      <input id="description" name="description" required></input>
-
-      <label for="price">Precio:</label>
-      <input type="number" id="price" name="price" step="0.01" required />
-
-      <label for="thumbnail">URL de la Imagen:</label>
-      <input type="url" id="thumbnail" name="thumbnail" required />
-
-      <label for="code">Código:</label>
-      <input type="text" id="code" name="code" required />
-
-      <label for="stock">Stock:</label>
-      <input type="number" id="stock" name="stock" required />
-      <button type="submit">Agregar Producto</button>
-    </form>
-  </div>
-</div>
 
 
-<script src="assets/scripts/modalAddProduct.js"></script>
-<script type="module" src="assets/scripts/deleteProduct.js"></script> 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const agregarAlCarritoBotones =
+    document.querySelectorAll("[data-product-id]");
+
+  agregarAlCarritoBotones.forEach((boton) => {
+    boton.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const productId = this.getAttribute("data-product-id");
+      const productName = this.getAttribute("data-product-name");
+      const productPrice = this.getAttribute("data-product-price");
+
+      const userId = document.getElementById("userId").dataset.userId;
+      console.log("userId:", userId);
+      fetch(`/api/carts/${userId}/agregarProducto`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          products: [{ productoId: productId, quantity: 1 }],
+        }),
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            alert(`${productName} agregado al carrito con éxito`);
+          } else {
+            alert(`Error al agregar ${productName} al carrito`);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(`Error al agregar ${productName} al carrito`);
+        });
+    });
+  });
+});
+
+</script>
 <script type="module" src="assets/scripts/print.js"></script> 
-<script type="module" src="assets/scripts/dbProductsfilter.js"></script> 
-<script type="module" src="assets/scripts/addToCart.js"></script> 
+<script type="module" src="assets/scripts/dbProductsfilter.js"></script>
+  
+
 
 
 

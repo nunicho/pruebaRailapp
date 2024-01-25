@@ -70,6 +70,7 @@ router.get(
         codeFilter: req.query.codeFilter || "",
         sort: req.query.sort || "",
         limit: req.query.limit || 10,
+        userId: req.session.usuario._id
       });
       req.logger.info(`Acceso exitoso a productos - Usuario`);
     } catch (error) {
@@ -107,6 +108,7 @@ router.get(
         codeFilter: req.query.codeFilter || "",
         sort: req.query.sort || "",
         limit: req.query.limit || 10,
+        userId: req.session.usuario._id,
       });
       req.logger.info(`Acceso exitoso a productos - Usuario`);
     } catch (error) {
