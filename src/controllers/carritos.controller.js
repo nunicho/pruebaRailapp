@@ -328,7 +328,7 @@ async function realizarCompra(req, res) {
 
       if (!producto || producto.stock < cantidadDeseada) {
         return res.status(400).json({
-          mensaje: `No hay suficiente stock para el producto con ID ${productoId}`,
+          mensaje: `No hay suficiente stock para el producto con ID ${productoId}, ${producto.title}`,
         });
       }
       producto.stock -= cantidadDeseada;
@@ -353,7 +353,11 @@ async function realizarCompra(req, res) {
 
     return res
       .status(200)
-      .json({ mensaje: "Compra realizada con éxito", ticket: ticketInsertado });
+      .json({
+        mensaje:
+          `Compra realizada con éxito, se generó el ticket`,
+        ticket: ticketInsertado,
+      });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ mensaje: "Error interno del servidor" });
