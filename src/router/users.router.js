@@ -3,6 +3,9 @@ const router = Router();
 const multer = require("multer");
 const UsersController = require("../controllers/users.controller.js");
 const multerMiddleware = require("../middleware/multerMiddleware.js");
+const getUsersDTO = require("../dto/dtoGetUsers.js");
+const CustomError = require("../utils/customError.js");
+const tiposDeError = require("../utils/tiposDeError.js");
 
 // ---------------- MULTER ----------------------------///
 
@@ -150,6 +153,22 @@ router.post(
 router.get("/premium/:id", UsersController.getUserRoleById);
 
 router.post("/premium/:id/changeRole", UsersController.changeUserRole);
+
+
+// ----------------  DTO GetUsers ----------------------------///
+
+/*
+router.get("/", async (req, res) => {
+  try {
+    const users = await UsersController.getUsers();
+    const usersDTO = getUsersDTO(users);
+    res.status(200).json(usersDTO);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+*/
+router.get("/", UsersController.DTOgetUsers);
 
 
 module.exports = router;

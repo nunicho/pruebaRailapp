@@ -11,6 +11,8 @@ const jwt = require("jsonwebtoken");
 const CustomError = require("../utils/customError.js");
 const tiposDeError = require("../utils/tiposDeError.js");
 
+const getUsersDTO = require("../dto/dtoGetUsers.js")
+
 const createUser = async (userData) => {
   try {
     const { password } = userData;
@@ -74,6 +76,22 @@ const getUsers = async (req, res) => {
   try {
     const users = await UsersRepository.getUsers();
     res.status(200).json(users);
+  } catch (error) {
+    throw new CustomError(
+      "ERROR_OBTENER_USUARIOS",
+      "Error al obtener usuarios",
+      tiposDeError.ERROR_INTERNO_SERVIDOR,
+      error.message
+    );
+  }
+};
+
+const DTOgetUsers = async (req, res) => {
+  try {
+    const users = await UsersRepository.getUsers();
+    const usersDTO = getUsersDTO(users);
+
+    res.status(200).json(usersDTO);
   } catch (error) {
     throw new CustomError(
       "ERROR_OBTENER_USUARIOS",
@@ -513,4 +531,5 @@ module.exports = {
   getUserByGithubEmail,
   createUserFromGithub,
   getUserByIdGithub,
+  DTOgetUsers,
 };
