@@ -31,11 +31,21 @@ router.get("/:cid", async (req, res) => {
 
 router.post("/:id/purchase", carritosController.realizarCompra);
 
+
 router.post(
   "/:id/agregarProducto",
-  usersController.getUserById,
+  usersController.getUserById,  
   carritosController.agregarProducto
 );
+
+
+router.post(
+  "/:id/agregarProductoGithub",
+  usersController.getUserByIdGithub,
+  carritosController.agregarProductoGithub
+);
+
+
 
 router.post(
   "/:id/quitarProducto",

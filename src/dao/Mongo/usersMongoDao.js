@@ -74,7 +74,7 @@ class UsersMongoDao {
 
   async createUserGithub(userData) {
     try {
-      const user = await modeloUsuariosGithub.create(userData);
+      const user = await UserModel.create(userData);
       return user;
     } catch (error) {
       throw new Error(

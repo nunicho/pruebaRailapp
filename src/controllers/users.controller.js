@@ -44,6 +44,7 @@ const getUserByEmail = async (email) => {
   }
 };
 
+
 const getUserById = async (req, res, next) => {
   try {
     let id = req.params.id;

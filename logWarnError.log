@@ -1658,3 +1658,53 @@
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:07:20.738Z"}
 {"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T06:07:53.778Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:07:54.181Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T06:09:56.682Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T06:35:21.423Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T06:35:35.883Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:35:36.393Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-26T06:35:42.958Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T06:35:45.562Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-26T06:37:29.348Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:37:29.786Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T06:37:39.152Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T06:40:09.511Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:40:09.930Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T06:40:58.302Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:40:58.716Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:41:04.812Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T06:41:46.362Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of null (reading 'cart')","timestamp":"2024-01-26T06:41:58.837Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: nunicho@yahoo.com.ar","timestamp":"2024-01-26T06:43:42.921Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T06:49:40.196Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:49:40.683Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T06:51:00.902Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:51:01.365Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T06:51:08.940Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T06:53:31.980Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:53:32.426Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-26T06:53:41.096Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T06:53:44.805Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-26T07:06:47.572Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T07:06:47.990Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T07:06:58.157Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T07:07:20.918Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T07:07:21.352Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-26T07:07:27.181Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T07:07:32.341Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-26T07:09:44.660Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T07:09:45.118Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-26T07:09:51.862Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T07:09:56.111Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-26T07:10:06.816Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T07:10:07.214Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T07:10:15.512Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T07:15:28.210Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T07:15:28.670Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-26T07:15:34.519Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T07:15:38.130Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-26T07:15:49.279Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T07:15:49.704Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T07:21:43.065Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T07:21:43.532Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T07:25:05.052Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T08:05:29.508Z"}
