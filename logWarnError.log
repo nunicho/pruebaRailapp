@@ -1631,3 +1631,30 @@
 {"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-26T04:20:45.773Z"}
 {"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-26T04:20:51.388Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T04:20:51.826Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T05:33:43.071Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T05:33:54.923Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T05:33:55.330Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T05:39:13.487Z"}
+{"level":"error","message":"Error al mostrar el carrito - Detalle: Cannot read properties of null (reading 'cart')","timestamp":"2024-01-26T05:39:32.975Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T05:39:51.777Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T05:39:52.192Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T05:45:17.332Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T05:45:17.806Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T05:46:39.839Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T05:46:40.285Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T05:47:34.393Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T05:47:34.885Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T05:56:50.797Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T05:56:51.269Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T05:59:15.063Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T05:59:15.490Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T06:04:32.695Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:04:33.162Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T06:04:43.413Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:04:43.835Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-26T06:06:35.197Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-26T06:06:38.940Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-26T06:06:43.746Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:07:20.738Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T06:07:53.778Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T06:07:54.181Z"}

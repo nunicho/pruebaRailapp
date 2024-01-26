@@ -122,10 +122,14 @@ const inicializaPassport = () => {
         try {          
           let usuario = await usersController.getUserByGithubEmail(profile._json.email);
           if (!usuario) {
+            const cartId = await carritosController.createEmptyCart();
             usuario = await usersController.createUserFromGithub({
-              nombre: profile._json.name,
+              first_name: profile._json.name,
+              last_name: profile._json.name,
               email: profile._json.email,
+              age: 99,
               github: profile,
+              cart: cartId,
               role: "user",
             });
           }
