@@ -1,5 +1,5 @@
 const UserModel = require("./models/users.modelo.js");
-const modeloUsuariosGithub = require("./models/usuariosGithub.modelo.js");
+
 
 class UsersMongoDao {
   async createUser(userData) {
@@ -63,7 +63,7 @@ class UsersMongoDao {
   }
   async getUserByGithubEmail(githubEmail) {
     try {
-      const user = await modeloUsuariosGithub.findOne({ email: githubEmail });
+      const user = await UserModel.findOne({ email: githubEmail });
       return user;
     } catch (error) {
       throw new Error(
@@ -84,7 +84,7 @@ class UsersMongoDao {
   }
   async getUserByIdGithub(userId) {
     try {
-      const user = await modeloUsuariosGithub.findById(userId);
+      const user = await UserModel.findById(userId);
       return user;
     } catch (error) {
       throw new Error(
@@ -116,7 +116,7 @@ class UsersMongoDao {
   }
   async updateLastConnectionGithub(email) {
     try {
-      const updatedUser = await modeloUsuariosGithub.findOneAndUpdate(
+      const updatedUser = await UserModel.findOneAndUpdate(
         { email: email },
         { last_connection: new Date() },
         { new: true }

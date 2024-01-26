@@ -11,7 +11,6 @@ const tiposDeError = require("../utils/tiposDeError.js");
 const Carrito = require("../dao/Mongo/models/carritos.modelo.js");
 const Producto = require("../dao/Mongo/models/productos.modelo.js");
 const Usuario = require("../dao/Mongo/models/users.modelo.js");
-const UsuarioGithub = require("../dao/Mongo/models/usuariosGithub.modelo.js")
 
 const verCarritos = async (req, res) => {
   try {
@@ -81,88 +80,6 @@ async function agregarProducto(req, res) {
         .json({ mensaje: "Formato de productos incorrecto" });
     }
     const usuario = await Usuario.findById(id).populate("cart");
-    let carrito = usuario.cart;
-
-    if (!carrito) {
-      carrito = await createEmptyCart();
-      usuario.cart = carrito;
-      await usuario.save();
-    }
-    const productosConsolidados = {};
-    products.forEach((product) => {
-      const productoId = product.productoId;
-      const cantidad = product.quantity;
-      if (productosConsolidados[productoId]) {
-        productosConsolidados[productoId] += cantidad;
-      } else {
-        productosConsolidados[productoId] = cantidad;
-      }
-    });
-    let totalCarrito = carrito.amount || 0;
-    for (const [productoId, cantidad] of Object.entries(
-      productosConsolidados
-    )) {
-      console.log("El producto Id es:" + productoId);
-      console.log("La cantidad es:" + cantidad);
-      const producto = await productosController.obtenerProductoById(
-        productoId
-      );
-
-      console.log("Producto encontrado:", producto);
-
-      if (!producto) {
-        console.log("Producto no encontrado. Producto:", producto);
-        return res.status(400).json({ mensaje: "Producto no encontrado" });
-      }
-      const cantidadTotal =
-        cantidad +
-        carrito.productos
-          .filter((item) => item.producto.toString() === productoId)
-          .reduce((total, item) => total + item.cantidad, 0);
-      if (producto.stock < cantidadTotal) {
-        console.log("Stock insuficiente. Producto:", producto);
-        return res.status(400).json({
-          mensaje: `No hay suficiente stock para el producto con ID ${productoId}`,
-        });
-      }
-      const productoExistente = carrito.productos.find(
-        (item) => item.producto.toString() === productoId
-      );
-      if (productoExistente) {
-        productoExistente.cantidad += cantidad;
-      } else {
-        carrito.productos.push({ producto: productoId, cantidad });
-      }
-      totalCarrito += producto.price * cantidad;
-    }
-    carrito.amount = totalCarrito;
-    await carrito.save();
-
-    console.log(
-      "Productos agregados al carrito con éxito. Carrito actualizado:",
-      carrito
-    );
-
-    return res
-      .status(200)
-      .json({ mensaje: "Productos agregados al carrito con éxito" });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ mensaje: "Error interno del servidor" });
-  }
-}
-
-async function agregarProductoGithub(req, res) {
-  try {
-    const { id } = req.params;
-    const products = req.body.products;
-
-    if (!Array.isArray(products) || products.length === 0) {
-      return res
-        .status(400)
-        .json({ mensaje: "Formato de productos incorrecto" });
-    }
-    const usuario = await UsuarioGithub.findById(id).populate("cart");
     let carrito = usuario.cart;
 
     if (!carrito) {
@@ -422,6 +339,5 @@ module.exports = {
   realizarCompra,
   quitarProducto,
   limpiarCarrito,
-  mostrarCarrito,
-  agregarProductoGithub,
+  mostrarCarrito, 
 };

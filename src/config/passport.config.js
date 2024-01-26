@@ -96,7 +96,7 @@ const inicializaPassport = () => {
           await usuario.save();
 
           usuario = {
-            nombre: usuario.first_name,
+            first_name : usuario.first_name,
             email: usuario.email,
             _id: usuario._id,
             role: usuario.role,
@@ -136,6 +136,15 @@ const inicializaPassport = () => {
 
           usuario.last_connection = new Date();
           await usuario.save();
+
+                usuario = {
+                  first_name: usuario.first_name,
+                  email: usuario.email,
+                  _id: usuario._id,
+                  role: usuario.role,
+                  last_connection: usuario.last_connection,
+                };
+
 
           done(null, usuario);
         } catch (error) {

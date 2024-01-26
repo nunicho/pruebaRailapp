@@ -40,14 +40,6 @@ router.post(
 
 
 router.post(
-  "/:id/agregarProductoGithub",
-  usersController.getUserByIdGithub,
-  carritosController.agregarProductoGithub
-);
-
-
-
-router.post(
   "/:id/quitarProducto",
   usersController.getUserById,
   carritosController.quitarProducto

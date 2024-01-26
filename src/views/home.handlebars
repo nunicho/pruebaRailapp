@@ -1,13 +1,13 @@
 <body>
     
     {{#ifEquals usuario.role 'administrador'}}
-            <h2>Bienvenido, ADMINISTRADOR {{usuario.nombre}}!</h2>
+            <h2>Bienvenido, ADMINISTRADOR {{usuario.first_name}}!</h2>
     {{/ifEquals}}
     {{#ifEquals usuario.role 'user'}}
-        <h2>Bienvenido, Usuario {{usuario.nombre}}!</h2>
+        <h2>Bienvenido, Usuario {{usuario.first_name}}!</h2>
     {{/ifEquals}}
     {{#ifEquals usuario.role 'premium'}}
-        <h2>Bienvenido, Usuario Premium {{usuario.nombre}}!</h2>
+        <h2>Bienvenido, Usuario Premium {{usuario.first_name}}!</h2>
     {{/ifEquals}}
     
 

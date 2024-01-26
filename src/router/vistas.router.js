@@ -409,7 +409,7 @@ router.get(
 router.get(
   "/chat",
   authMiddleware.auth,
-  authMiddleware.authRol(["user"]),
+  //authMiddleware.authRol(["user"]),
   (req, res) => {
     try {
       req.logger.info(

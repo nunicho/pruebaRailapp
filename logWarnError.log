@@ -1708,3 +1708,56 @@
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T07:21:43.532Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T07:25:05.052Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T08:05:29.508Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T08:17:36.341Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-26T08:18:25.187Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-26T08:18:30.917Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T18:59:45.211Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:07:41.974Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-26T19:08:00.974Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-26T19:08:08.154Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: nunicho@yahoo.com.ar","timestamp":"2024-01-26T19:09:26.449Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:09:36.262Z"}
+{"level":"info","message":"Producto creado correctamente - Id: TA-24r Nombre: Producto Github","timestamp":"2024-01-26T19:10:09.592Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:10:16.292Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:10:39.081Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:10:44.298Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:11:08.472Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:11:14.523Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:11:27.111Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:11:33.947Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T19:11:44.863Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T19:11:45.882Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-26T19:11:53.897Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:12:00.493Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-26T19:12:20.021Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-26T19:12:32.768Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:12:42.645Z"}
+{"level":"info","message":"Producto creado correctamente - Id: TA-22323 Nombre: PRobando user Normal","timestamp":"2024-01-26T19:13:10.548Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:13:15.796Z"}
+{"level":"info","message":"Acceso exitoso a detalle producto Id: 65b40445d0ee3d02a9265eed - Nombre: PRobando user Normal","timestamp":"2024-01-26T19:13:59.566Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:14:09.301Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-26T19:14:25.476Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T19:14:26.129Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-26T19:18:02.402Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-26T19:18:15.808Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-26T19:19:11.025Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T19:20:53.471Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T19:20:54.122Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-26T19:21:00.709Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-26T19:21:05.151Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T19:21:05.592Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T19:26:50.850Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T19:26:51.610Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-26T19:26:58.725Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: mauricio@gmail.com","timestamp":"2024-01-26T19:27:27.669Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-26T19:27:33.496Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T19:27:34.215Z"}
+{"level":"info","message":"Ingreso al chat exitoso - Usuario nunicho@yahoo.com.ar","timestamp":"2024-01-26T19:27:47.154Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: nunicho@yahoo.com.ar","timestamp":"2024-01-26T19:28:46.755Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T19:28:58.571Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T19:28:59.234Z"}
+{"level":"info","message":"Ingreso al chat exitoso - Usuario nunicho@yahoo.com.ar","timestamp":"2024-01-26T19:31:22.966Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T19:31:56.790Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T19:31:57.413Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T19:32:04.584Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: nunicho@yahoo.com.ar","timestamp":"2024-01-26T19:32:15.625Z"}
