@@ -678,17 +678,22 @@ router.get("/subirArchivos", (req, res) => {
 //------------------------------------------------------------MANEJO DE USUARIOS --------//
 
 
-router.get("/adminUsers", async (req, res) => {
-  try {
-    const users = await UsersController.DTOgetUsers(req, res);
-    res.header("Content-type", "text/html");
-    res.status(200).render("adminUsers", { users, estilo: "adminUsers.css" });
-  } catch (error) {
-    console.error("Error al procesar la solicitud:", error);
-    // Puedes manejar el error de otra manera, como enviar una respuesta de error al cliente
-    res.status(500).send("Error interno del servidor");
+router.get(
+  "/adminUsers",
+  authMiddleware.auth,
+  authMiddleware.authRol(["administrador"]),
+  async (req, res) => {
+    try {
+      const users = await UsersController.DTOgetUsers(req, res);
+      res.header("Content-type", "text/html");
+      res.status(200).render("adminUsers", { users, estilo: "adminUsers.css" });
+    } catch (error) {
+      console.error("Error al procesar la solicitud:", error);
+      // Puedes manejar el error de otra manera, como enviar una respuesta de error al cliente
+      res.status(500).send("Error interno del servidor");
+    }
   }
-});
+);
 
 
 
