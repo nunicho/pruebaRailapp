@@ -73,6 +73,58 @@ router.get("/logout", async (req, res) => {
   try {
     const usuario = req.session.usuario;
     if (usuario && usuario.email) {
+      if (usuario.role && usuario.role === "administrador") {
+        // Si es un administrador, simplemente realizar el logout sin el updateLastConnection
+        req.logger.info(
+          `Logout exitoso como administrador - Mail: ${usuario.email}`
+        );
+      } else {
+        // No es un administrador, realizar el updateLastConnection
+        if (usuario.github) {
+          await usersController.updateLastConnectionGithub(usuario.email);
+        } else {
+          // Verificar si la propiedad updateLastConnection existe en usersController
+          if (usersController.updateLastConnection) {
+            await usersController.updateLastConnection(usuario.email);
+          } else {
+            // Si no existe la propiedad, hacer algo (puedes loggear un mensaje, por ejemplo)
+            req.logger.warn(
+              "La propiedad updateLastConnection no está definida en usersController"
+            );
+          }
+        }
+        req.logger.info(`Logout exitoso - Mail: ${usuario.email}`);
+      }
+
+      req.session.destroy((e) => {
+        if (e) {
+          req.logger.error(
+            `Error al destruir la sesión - Detalle: ${e.message}`
+          );
+          res.status(500).send("Error interno del servidor");
+        } else {
+          res.redirect("/login?mensaje=Logout correcto!");
+        }
+      });
+    } else {
+      req.logger.error(
+        `No se encontró información de usuario en la sesión durante el logout`
+      );
+      res.status(500).send("Error interno del servidor");
+    }
+  } catch (error) {
+    req.logger.error(
+      `Error al manejar la ruta de logout - Detalle: ${error.message}`
+    );
+    res.status(500).send("Error interno del servidor");
+  }
+});
+
+/*
+router.get("/logout", async (req, res) => {
+  try {
+    const usuario = req.session.usuario;
+    if (usuario && usuario.email) {
       if (usuario.github) {
         await usersController.updateLastConnectionGithub(usuario.email);
       } else {
@@ -103,7 +155,7 @@ router.get("/logout", async (req, res) => {
     res.status(500).send("Error interno del servidor");
   }
 });
-
+*/
 router.get(
   "/github",
   (req, res, next) => {

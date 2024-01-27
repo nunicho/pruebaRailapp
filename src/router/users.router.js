@@ -157,19 +157,21 @@ router.post("/premium/:id/changeRole", UsersController.changeUserRole);
 
 // ----------------  DTO GetUsers ----------------------------///
 
-/*
-router.get("/", async (req, res) => {
-  try {
-    const users = await UsersController.getUsers();
-    const usersDTO = getUsersDTO(users);
-    res.status(200).json(usersDTO);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-*/
+
 router.get("/", UsersController.DTOgetUsers);
 
+// ----------------  Delete Users / 2 días ----------------------------///
+
+router.delete("/", async (req, res) => {
+  try {
+    await UsersController.deleteInactiveUsers();
+    res
+      .status(200)
+      .json({ message: "Usuarios inactivos eliminados exitosamente." });
+  } catch (error) {
+    res.status(500).json({ error: "Error al eliminar usuarios inactivos." });
+  }
+});
 
 module.exports = router;
 

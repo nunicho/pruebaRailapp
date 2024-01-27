@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const UsersRepository = require("../dao/repository/users.repository");
+const Users = require("../dao/Mongo/models/users.modelo.js")
 
 const bcrypt = require("bcrypt");
 
@@ -514,6 +515,42 @@ const getUserByIdGithub = async (userId) => {
   }
 };
 
+
+const deleteInactiveUsers = async () => {
+  try {
+    const thirtyMinutesAgo = new Date();
+    thirtyMinutesAgo.setMinutes(thirtyMinutesAgo.getMinutes() - 30);
+
+    // Buscar y eliminar usuarios que no han tenido conexión en los últimos 30 minutos
+    const result = await Users.deleteMany({
+      last_connection: { $lt: thirtyMinutesAgo },
+    });
+
+    console.log(`${result.deletedCount} usuarios eliminados.`);
+  } catch (error) {
+    console.error("Error al eliminar usuarios inactivos:", error.message);
+  }
+};
+
+/*
+const deleteInactiveUsers = async () => {
+  try {
+    const twoDaysAgo = new Date();
+    twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+
+    // Buscar y eliminar usuarios que no han tenido conexión en los últimos 2 días
+    const result = await Users.deleteMany({
+      last_connection: { $lt: twoDaysAgo },
+    });
+
+    console.log(`${result.deletedCount} usuarios eliminados.`);
+  } catch (error) {
+    console.error("Error al eliminar usuarios inactivos:", error.message);
+  }
+};
+*/
+
+
 module.exports = {
   createUser,
   getUserByEmail,
@@ -533,4 +570,5 @@ module.exports = {
   createUserFromGithub,
   getUserByIdGithub,
   DTOgetUsers,
+  deleteInactiveUsers,
 };

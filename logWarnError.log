@@ -1761,3 +1761,19 @@
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T19:31:57.413Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T19:32:04.584Z"}
 {"level":"info","message":"Acceso exitoso al perfil - Usuario: nunicho@yahoo.com.ar","timestamp":"2024-01-26T19:32:15.625Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: nunicho@yahoo.com.ar","timestamp":"2024-01-26T19:34:54.651Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-26T19:35:03.653Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-26T19:35:04.253Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T05:13:32.150Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-27T05:13:37.904Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T05:13:56.855Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: noborrar@gmail.com","timestamp":"2024-01-27T05:14:06.937Z"}
+{"level":"info","message":"Logout exitoso - Mail: noborrar@gmail.com","timestamp":"2024-01-27T05:14:10.079Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T05:14:10.575Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-27T05:35:04.268Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-27T05:35:36.762Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-27T05:35:40.607Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-27T05:52:00.444Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-27T05:52:07.131Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-27T06:00:22.489Z"}
+{"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-27T06:00:32.368Z"}

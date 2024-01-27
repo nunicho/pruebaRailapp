@@ -18,7 +18,10 @@
 
     {{#ifEquals usuario.role 'administrador'}}
         <div>
-            <a href="/DBproducts-Admin">Productos</a>
+            <a href="/DBproducts-Admin">Administrar Productos</a>
+        </div>
+        <div>
+            <a href="/adminUsers">Administrar Usuarios</a>
         </div>
     {{/ifEquals}}
     {{#ifEquals usuario.role 'user'}}

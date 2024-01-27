@@ -675,4 +675,12 @@ router.get("/subirArchivos", (req, res) => {
   res.render("subirArchivos");
 });
 
+//------------------------------------------------------------MANEJO DE USUARIOS --------//
+
+
+router.get("/adminUsers", UsersController.DTOgetUsers, (req, res) => {
+  const users = res.locals.users; // Obtén los usuarios desde el middleware DTOgetUsers
+  res.render("adminUsers", { users});
+});
+
 module.exports = router;
