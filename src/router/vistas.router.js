@@ -678,9 +678,18 @@ router.get("/subirArchivos", (req, res) => {
 //------------------------------------------------------------MANEJO DE USUARIOS --------//
 
 
-router.get("/adminUsers", UsersController.DTOgetUsers, (req, res) => {
-  const users = res.locals.users; // Obtén los usuarios desde el middleware DTOgetUsers
-  res.render("adminUsers", { users});
+router.get("/adminUsers", async (req, res) => {
+  try {
+    const users = await UsersController.DTOgetUsers(req, res);
+    res.header("Content-type", "text/html");
+    res.status(200).render("adminUsers", { users, estilo: "adminUsers.css" });
+  } catch (error) {
+    console.error("Error al procesar la solicitud:", error);
+    // Puedes manejar el error de otra manera, como enviar una respuesta de error al cliente
+    res.status(500).send("Error interno del servidor");
+  }
 });
+
+
 
 module.exports = router;

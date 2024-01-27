@@ -1,7 +1,50 @@
-<head>
-  <link rel="stylesheet" href="../public/assets/css/adminUsers.css">
-</head>
+<span><a href="/">Regresar</a></span>
 
+<h1>Lista de Usuarios Registrados</h1>
+
+{{#if users.length}}
+  <ul>
+    {{#each users}}
+      <li>
+        <strong>Nombre:</strong> {{this.first_name}} {{this.last_name}}<br>
+        <strong>Correo Electrónico:</strong> {{this.email}}
+        <!-- Agrega más campos según sea necesario -->
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No hay usuarios registrados.</p>
+{{/if}}
+
+<button id="eliminarUsuariosBtn">Eliminar Usuarios Inactivos</button>
+
+<script>
+document.getElementById('eliminarUsuariosBtn').addEventListener('click', function() {
+  if (confirm('¿Seguro que deseas eliminar usuarios inactivos?')) {
+    fetch('/api/users', {
+      method: 'DELETE',
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error al eliminar usuarios inactivos');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data.message); // Mensaje de éxito
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+});
+</script>
+
+  <!-- Agrega más contenido según tus necesidades -->
+
+
+
+{{!-- <span><a  href="/">Regresar</a></span>
 
   <h1>Lista de Usuarios Registrados</h1>
 
@@ -21,7 +64,4 @@
 
   <form action="/api/users" method="POST">
     <button type="submit">Eliminar Usuarios Inactivos</button>
-  </form>
-
-  <!-- Agrega más contenido según tus necesidades -->
-
+  </form> --}}

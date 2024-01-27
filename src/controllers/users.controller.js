@@ -88,12 +88,11 @@ const getUsers = async (req, res) => {
   }
 };
 
-const DTOgetUsers = async (req, res) => {
+const DTOgetUsers = async () => {
   try {
     const users = await UsersRepository.getUsers();
     const usersDTO = getUsersDTO(users);
-
-    res.status(200).json(usersDTO);
+    return usersDTO;
   } catch (error) {
     throw new CustomError(
       "ERROR_OBTENER_USUARIOS",

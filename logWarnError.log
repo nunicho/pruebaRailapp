@@ -1777,3 +1777,36 @@
 {"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-27T05:52:07.131Z"}
 {"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-27T06:00:22.489Z"}
 {"level":"error","message":"Error al manejar la ruta de logout - Detalle: Error al actualizar last_connection: Error al actualizar last_connection: Error al actualizar last_connection en la base de datos: Usuario no encontrado al intentar actualizar last_connection","timestamp":"2024-01-27T06:00:32.368Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoderPrueba@coder.com","timestamp":"2024-01-27T06:14:05.393Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T06:14:06.011Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T06:14:14.900Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: noborrar@gmail.com","timestamp":"2024-01-27T06:14:28.311Z"}
+{"level":"info","message":"Logout exitoso - Mail: noborrar@gmail.com","timestamp":"2024-01-27T06:14:33.057Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T06:14:33.512Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T06:14:41.101Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-27T06:14:56.420Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T06:14:56.845Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-27T06:15:00.558Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-27T06:15:30.811Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoderPrueba@coder.com","timestamp":"2024-01-27T06:15:48.224Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T06:15:48.676Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-27T06:15:52.591Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-27T06:16:06.704Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T06:26:14.957Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-27T06:26:17.236Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-27T06:26:39.044Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T06:26:39.531Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-27T06:26:43.313Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-27T06:26:56.170Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-27T06:52:59.057Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoderPrueba@coder.com","timestamp":"2024-01-27T06:58:32.755Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T06:58:33.226Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-27T06:58:36.700Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T06:58:52.349Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-27T06:59:02.186Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T06:59:02.664Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: fiore@gmail.com","timestamp":"2024-01-27T06:59:11.016Z"}
+{"level":"info","message":"Logout exitoso - Mail: fiore@gmail.com","timestamp":"2024-01-27T06:59:14.353Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-27T06:59:14.795Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-27T06:59:16.702Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-27T06:59:37.223Z"}
