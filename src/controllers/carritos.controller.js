@@ -2,12 +2,10 @@ const mongoose = require("mongoose");
 const carritosRepository = require("../dao/repository/carritos.repository.js");
 const ticketController = require("../controllers/tickets.controller.js");
 const usersController = require("../controllers/users.controller.js");
-
 const productosController = require("../controllers/productos.controller.js");
-
+const SendMail = require("../config/nodemailer-jwt.config.js");
 const CustomError = require("../utils/customError.js");
 const tiposDeError = require("../utils/tiposDeError.js");
-
 const Carrito = require("../dao/Mongo/models/carritos.modelo.js");
 const Producto = require("../dao/Mongo/models/productos.modelo.js");
 const Usuario = require("../dao/Mongo/models/users.modelo.js");
@@ -151,13 +149,12 @@ async function agregarProducto(req, res) {
   }
 }
 
-
 async function realizarCompra(req, res) {
   try {
     const { id } = req.params;
     const usuario = await Usuario.findById(id).populate("cart");
     let carrito = usuario.cart;
-
+    console.log(carrito);
     if (!carrito || carrito.productos.length === 0) {
       return res.status(400).json({ mensaje: "El carrito está vacío" });
     }
@@ -181,29 +178,42 @@ async function realizarCompra(req, res) {
       await producto.save();
       totalCarrito += producto.price * cantidadDeseada;
     }
-
     const ticketInsertado = await ticketController.createTicket(
       totalCarrito,
       usuario.email
     );
+    console.log(carrito.productos);
+    const detalleProductos = carrito.productos.map(async (product) => {
+      const productoId = product.producto.toString();
 
+      const producto = await productosController.obtenerProductoById(
+        productoId
+      );
+      return `${product.cantidad} - ${producto.title}`;
+    });
+
+    const productosDetalles = await Promise.all(detalleProductos);
+    const detalleProductosTexto = productosDetalles.join("\n");
     if (!ticketInsertado) {
       return res.status(500).json({ mensaje: "Error al generar el ticket" });
     }
+
     carrito.amount = totalCarrito;
 
+    await SendMail.sendCompraEmail(
+      usuario.email,
+      "Compra realizada con éxito",
+      `Gracias por tu compra. Se ha generado un ticket con éxito. Detalles de la compra:\n\n${detalleProductosTexto}`
+    );
     carrito.productos = [];
     carrito.amount = 0;
 
     await carrito.save();
 
-    return res
-      .status(200)
-      .json({
-        mensaje:
-          `Compra realizada con éxito, se generó el ticket`,
-        ticket: ticketInsertado,
-      });
+    return res.status(200).json({
+      mensaje: `Compra realizada con éxito, se generó el ticket`,
+      ticket: ticketInsertado,
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ mensaje: "Error interno del servidor" });
@@ -339,5 +349,5 @@ module.exports = {
   realizarCompra,
   quitarProducto,
   limpiarCarrito,
-  mostrarCarrito, 
+  mostrarCarrito,
 };
