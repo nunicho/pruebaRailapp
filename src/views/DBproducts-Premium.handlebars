@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const productPrice = this.getAttribute("data-product-price");
       const productStock = this.getAttribute("data-product-stock");
       const productQuantityInput = document.getElementById(`quantityInput${productId}`);
-      const productQuantity = productQuantityInput.value;
+      const productQuantity = parseInt(productQuantityInput.value);
 
       // Validar que la cantidad sea mayor o igual a 1
       if (productQuantity < 1) {
