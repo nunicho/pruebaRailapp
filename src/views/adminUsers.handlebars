@@ -5,9 +5,12 @@
 {{#if users.length}}
   <ul>
     {{#each users}}
-      <li>
+      <li>             
+        <strong>Id:</strong> {{this.id}}<br>     
         <strong>Nombre:</strong> {{this.first_name}} {{this.last_name}}<br>
-        <strong>Correo Electrónico:</strong> {{this.email}}
+        <strong>Correo Electrónico:</strong> {{this.email}}<br>
+        <strong>Rol:</strong> {{this.role}}<br>
+        <button class="eliminarUsuarioIndividualBtn" data-user-id="{{this._id}}">Eliminar Usuario</button>
         <!-- Agrega más campos según sea necesario -->
       </li>
     {{/each}}
@@ -19,24 +22,152 @@
 <button id="eliminarUsuariosBtn">Eliminar Usuarios Inactivos</button>
 
 <script>
-document.getElementById('eliminarUsuariosBtn').addEventListener('click', function() {
-  if (confirm('¿Seguro que deseas eliminar usuarios inactivos?')) {
-    fetch('/api/users', {
-      method: 'DELETE',
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Error al eliminar usuarios inactivos');
-      }
-      return response.json();
-    })
+  document.getElementById('eliminarUsuariosBtn').addEventListener('click', function() {
+    if (confirm('¿Seguro que deseas eliminar usuarios inactivos?')) {
+      fetch('/api/users', {
+        method: 'DELETE',
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error al eliminar usuarios inactivos');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data.message); // Mensaje de éxito
+        location.reload(); // Recargar la página
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  });
+</script>
+
+<script>
+ const eliminarUsuarioBtns = document.querySelectorAll('.eliminarUsuarioIndividualBtn');
+
+eliminarUsuarioBtns.forEach(btn => {
+  btn.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    // Encuentra el elemento padre (li) y busca el contenido de Id dentro de ese elemento
+    const userId = findUserIdFromParent(this);
+
+    if (userId && confirm(`¿Seguro que deseas eliminar al usuario con ID ${userId}?`)) {
+      console.log(userId);
+      eliminarUsuario(userId);
+    }
+  });
+});
+
+function findUserIdFromParent(element) {
+  // Encuentra el elemento padre (li)
+  const listItem = element.closest('li');
+
+  if (listItem) {
+    // Busca todos los elementos strong dentro del elemento padre
+    const strongElements = listItem.querySelectorAll('strong');
+
+    // Encuentra el strong que contiene 'Id:' en su texto
+    const idElement = Array.from(strongElements).find(strong => strong.textContent.includes('Id:'));
+
+    if (idElement) {
+      // Extrae el valor de Id
+      const userId = idElement.nextSibling.nodeValue.trim();
+      return userId;
+    }
+  }
+
+  return null;
+}
+
+function eliminarUsuario(userId) {
+  fetch(`/api/users/${userId}`, {
+    method: 'DELETE'
+  })
+    .then(response => response.json())
     .then(data => {
-      console.log(data.message); // Mensaje de éxito
+      console.log(data.mensaje); // Mensaje de éxito
       location.reload(); // Recargar la página
     })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  }
-});
+    .catch(error => console.error('Error:', error));
+}
 </script>
+
+
+{{!-- 
+
+
+<span><a href="/">Regresar</a></span>
+
+<h1>Lista de Usuarios Registrados</h1>
+
+{{#if users.length}}
+  <ul>
+    {{#each users}}
+      <li>
+        <strong>Nombre:</strong> {{this.first_name}} {{this.last_name}}<br>
+        <strong>Correo Electrónico:</strong> {{this.email}}<br>
+        <strong>Rol:</strong> {{this.role}}<br>
+        <button class="eliminarUsuarioBtn" data-id="{{this._id}}">Eliminar Usuario</button>
+        <!-- Agrega más campos según sea necesario -->
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No hay usuarios registrados.</p>
+{{/if}}
+
+<button id="eliminarUsuariosBtn">Eliminar Usuarios Inactivos</button>
+
+<script>
+  document.getElementById('eliminarUsuariosBtn').addEventListener('click', function() {
+    if (confirm('¿Seguro que deseas eliminar usuarios inactivos?')) {
+      fetch('/api/users', {
+        method: 'DELETE',
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error al eliminar usuarios inactivos');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data.message); // Mensaje de éxito
+        location.reload(); // Recargar la página
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  });
+</script>
+
+<script>
+  document.querySelectorAll('.eliminarUsuarioBtn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      console.log('Botón clickeado');
+      const userId = this.getAttribute('data-id');
+      console.log(userId)
+      if (confirm(`¿Seguro que deseas eliminar al usuario con ID ${userId}?`)) {
+        fetch(`/api/users/${userId}`, {
+          method: 'DELETE',
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Error al eliminar el usuario');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log(data.mensaje); // Mensaje de éxito
+          location.reload(); // Recargar la página
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      }
+    });
+  });
+</script> --}}

@@ -82,6 +82,7 @@ const getUsers = async (req, res) => {
   try {
     const users = await UsersRepository.getUsers();
     res.status(200).json(users);
+    return(users)
   } catch (error) {
     throw new CustomError(
       "ERROR_OBTENER_USUARIOS",

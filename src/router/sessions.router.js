@@ -120,42 +120,6 @@ router.get("/logout", async (req, res) => {
   }
 });
 
-/*
-router.get("/logout", async (req, res) => {
-  try {
-    const usuario = req.session.usuario;
-    if (usuario && usuario.email) {
-      if (usuario.github) {
-        await usersController.updateLastConnectionGithub(usuario.email);
-      } else {
-        await usersController.updateLastConnection(usuario.email);
-      }
-
-      req.logger.info(`Logout exitoso - Mail: ${usuario.email}`);
-      req.session.destroy((e) => {
-        if (e) {
-          req.logger.error(
-            `Error al destruir la sesión - Detalle: ${e.message}`
-          );
-          res.status(500).send("Error interno del servidor");
-        } else {
-          res.redirect("/login?mensaje=Logout correcto!");
-        }
-      });
-    } else {
-      req.logger.error(
-        `No se encontró información de usuario en la sesión durante el logout`
-      );
-      res.status(500).send("Error interno del servidor");
-    }
-  } catch (error) {
-    req.logger.error(
-      `Error al manejar la ruta de logout - Detalle: ${error.message}`
-    );
-    res.status(500).send("Error interno del servidor");
-  }
-});
-*/
 router.get(
   "/github",
   (req, res, next) => {
@@ -236,43 +200,7 @@ router.post("/loginAdmin", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
-  try {
-    await usersController.getUsers(req, res);
-  } catch (error) {
-    console.error("Error al procesar la solicitud:", error);
-    res.status(500).json({ error: "Error interno del servidor" });
-  }
-});
 
-router.get("/:id", usersController.getUserById, (req, res) => {
-  try {
-    const usuarioDB = res.locals.usuarioDB;
-    if (!usuarioDB) {
-      return res.status(404).send("Usuario no encontrado");
-    }
-    res.header("Content-type", "application/json");
-    res.status(200).json({ usuarioDB });
-  } catch (error) {
-    res.status(500).json({ error: "Error interno del servidor" });
-  }
-});
-
-router.put("/:id", async (req, res) => {
-  try {
-    await usersController.updateUser(req, res);
-  } catch (error) {
-    res.status(500).json({ error: "Error inesperado", detalle: error.message });
-  }
-});
-
-router.delete("/:id", async (req, res) => {
-  try {
-    await usersController.deleteUser(req, res);
-  } catch (error) {
-    res.status(500).json({ error: "Error inesperado", detalle: error.message });
-  }
-});
 
 router.post("/forgotPassword", async (req, res) => {
   try {
@@ -303,6 +231,16 @@ router.post("/forgotPassword", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Error interno del servidor");
+  }
+});
+
+router.get("/", async (req, res) => {
+  try {
+    const users = await usersController.getUsers(req, res);
+     res.status(200).json(users);
+  } catch (error) {
+    console.error("Error al procesar la solicitud:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 });
 

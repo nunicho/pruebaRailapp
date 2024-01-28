@@ -7,6 +7,24 @@ const getUsersDTO = require("../dto/dtoGetUsers.js");
 const CustomError = require("../utils/customError.js");
 const tiposDeError = require("../utils/tiposDeError.js");
 
+
+
+
+
+router.get("/:id", UsersController.getUserById, (req, res) => {
+  try {
+    const usuarioDB = res.locals.usuarioDB;
+    if (!usuarioDB) {
+      return res.status(404).send("Usuario no encontrado");
+    }
+    res.header("Content-type", "application/json");
+    res.status(200).json({ usuarioDB });
+  } catch (error) {
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+
 // ---------------- MULTER ----------------------------///
 
 router.post(
@@ -158,7 +176,35 @@ router.post("/premium/:id/changeRole", UsersController.changeUserRole);
 // ----------------  DTO GetUsers ----------------------------///
 
 
-router.get("/", UsersController.DTOgetUsers);
+router.get("/", async (req, res) => {
+  try {
+    const users = await UsersController.DTOgetUsers();
+    res.status(200).json(users); // Envia los usuarios como JSON al cliente
+  } catch (error) {
+    console.error("Error al obtener usuarios:", error);
+    res.status(500).send("Error interno del servidor");
+  }
+});
+
+// ---------------- Edit and Delete Users ----------------------///
+
+
+router.put("/:id", async (req, res) => {
+  try {
+    await UsersController.updateUser(req, res);
+  } catch (error) {
+    res.status(500).json({ error: "Error inesperado", detalle: error.message });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    await UsersController.deleteUser(req, res);
+  } catch (error) {
+    res.status(500).json({ error: "Error inesperado", detalle: error.message });
+  }
+});
+
 
 // ----------------  Delete Users / 2 días ----------------------------///
 
