@@ -2317,3 +2317,39 @@
 {"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:17:35.860Z"}
 {"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:17:43.876Z"}
 {"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:17:48.571Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:18:50.988Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:18:56.351Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:20:13.981Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:20:17.716Z"}
+{"level":"info","message":"Logout exitoso - Mail: conta.alonso@gmail.com","timestamp":"2024-01-28T22:20:24.445Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T22:20:24.848Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: conta.alonso@gmail.com","timestamp":"2024-01-28T22:20:36.826Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:20:39.476Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:22:31.291Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:23:01.227Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:23:06.095Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:23:15.976Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:23:25.012Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:23:28.613Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:38:01.551Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:38:10.697Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:38:47.797Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:38:55.680Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:41:00.235Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:41:19.949Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:41:23.712Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:41:27.508Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:42:14.887Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:43:31.091Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:44:12.660Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:44:16.726Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:44:29.860Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:44:34.708Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:44:43.535Z"}
+{"level":"info","message":"Logout exitoso - Mail: conta.alonso@gmail.com","timestamp":"2024-01-28T22:44:59.955Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T22:45:00.397Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-28T22:45:06.029Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-28T22:45:16.521Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoderPrueba@coder.com","timestamp":"2024-01-28T22:45:28.804Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T22:45:29.180Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: conta.alonso@gmail.com","timestamp":"2024-01-28T22:45:35.386Z"}
