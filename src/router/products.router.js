@@ -70,4 +70,12 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.delete("/Premium/:id", async (req, res) => {
+  try {
+    await productosController.borrarProductoPorUsuarioPremium(req, res);
+  } catch (error) {
+    res.status(500).json({ error: "Error inesperado", detalle: error.message });
+  }
+});
+
 module.exports = router;

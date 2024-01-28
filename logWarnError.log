@@ -2101,3 +2101,38 @@
 {"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-28T17:35:51.513Z"}
 {"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:35:54.330Z"}
 {"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:35:58.505Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:41:23.105Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoderPrueba@coder.com","timestamp":"2024-01-28T17:41:29.995Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T17:41:30.389Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: conta.alonso@gmail.com","timestamp":"2024-01-28T17:41:36.639Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:41:40.617Z"}
+{"level":"info","message":"Producto creado correctamente - Id: TA-18012 Nombre: Producto a SUPER BORRAR","timestamp":"2024-01-28T17:42:03.174Z"}
+{"level":"info","message":"Logout exitoso - Mail: conta.alonso@gmail.com","timestamp":"2024-01-28T17:42:09.915Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T17:42:10.295Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-28T17:42:14.466Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-28T17:42:24.091Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:42:26.531Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:42:30.669Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:42:38.043Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:47:34.945Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:47:50.061Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:48:23.628Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoderPrueba@coder.com","timestamp":"2024-01-28T17:54:53.563Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T17:54:53.945Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: conta.alonso@gmail.com","timestamp":"2024-01-28T17:55:00.317Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:55:08.345Z"}
+{"level":"info","message":"Producto creado correctamente - Id: TA-1801w1 Nombre: EDITAME","timestamp":"2024-01-28T17:55:26.594Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:55:49.068Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:55:53.538Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:56:11.831Z"}
+{"level":"info","message":"Producto creado correctamente - Id: TA-3343 Nombre: EDITAME","timestamp":"2024-01-28T17:57:32.529Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:57:38.383Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:57:44.465Z"}
+{"level":"info","message":"Logout exitoso - Mail: conta.alonso@gmail.com","timestamp":"2024-01-28T17:57:56.823Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T17:57:57.206Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-28T17:57:59.735Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-28T17:58:25.153Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:58:28.225Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:58:32.044Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T18:05:19.011Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T18:05:23.021Z"}

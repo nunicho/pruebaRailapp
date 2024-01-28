@@ -195,6 +195,51 @@ const borrarProducto = async (req, res, next) => {
   }
 };
 
+const borrarProductoPorUsuarioPremium = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new CustomError(
+        "ERROR_DATOS",
+        "ID inválido",
+        tiposDeError.ERROR_DATOS,
+        "El ID proporcionado no es válido."
+      );
+    }
+
+    const producto = await ProductosRepository.obtenerProducto(id);
+
+    if (!producto) {
+      throw new CustomError(
+        "PRODUCTO_NO_ENCONTRADO",
+        "Producto no encontrado",
+        tiposDeError.PRODUCTO_NO_ENCONTRADO,
+        `El producto con ID ${id} no existe.`
+      );
+    }
+
+    await SendMail.sendProductDeletedEmail(
+        producto.owner, // Utiliza el correo electrónico del propietario
+        "Tu producto ha sido eliminado.",
+        `Estimado/a usuario/a: tu producto "${producto.title}" ha sido eliminado.`
+      );
+      console.log("Correo enviado al propietario:", producto.owner);
+    
+
+    res.locals.nombreProducto = producto.title;
+    const resultado = await ProductosRepository.borrarProducto(id);
+
+    res
+      .status(200)
+      .json({ mensaje: "El producto fue correctamente eliminado", resultado });
+  } catch (error) {
+    res.status(404).json({
+      mensaje: "Error, el producto solicitado no pudo ser eliminado",
+    });
+  }
+};
+
 const editarProducto = async (req, res) => {
   try {
     const id = req.params.id;
@@ -210,7 +255,7 @@ const editarProducto = async (req, res) => {
     }
 
     const productoDB = await ProductosRepository.obtenerProducto(id);
-
+        
     if (!productoDB) {
       throw new CustomError(
         "PRODUCTO_NO_ENCONTRADO",
@@ -250,6 +295,15 @@ const editarProducto = async (req, res) => {
       }
     }
 
+     if (producto.owner !== "admin") {
+       await SendMail.sendProductEditedEmail(
+         productoDB.owner, // Utiliza el correo electrónico del propietario
+         "Tu producto ha sido editado",
+         `Estimado/a usuario/a: Se ha editado tu producto "${producto.title}". Gracias por usar nuestro servicio.`
+       );
+       console.log("Correo enviado al propietario:", producto.owner);
+     }
+
     const productoEditado = await ProductosRepository.editarProducto(
       id,
       producto
@@ -270,5 +324,6 @@ module.exports = {
   obtenerProducto,
   obtenerProductoById,
   borrarProducto,
-  editarProducto
+  editarProducto,
+  borrarProductoPorUsuarioPremium
 };
