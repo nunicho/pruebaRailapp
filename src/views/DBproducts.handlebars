@@ -81,6 +81,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const productQuantityInput = document.getElementById(`quantityInput${productId}`);
       const productQuantity = productQuantityInput.value;
 
+      // Validar que la cantidad sea mayor o igual a 1
+      if (productQuantity < 1) {
+        alert(`La cantidad debe ser mayor o igual a 1`);
+        return;
+      }
+
       if (productQuantity > productStock) {
         alert(`¡Stock insuficiente! La cantidad seleccionada excede el stock disponible (${productStock} unidades).`);
         return;
