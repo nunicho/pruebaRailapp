@@ -149,6 +149,7 @@ async function agregarProducto(req, res) {
   }
 }
 
+
 async function realizarCompra(req, res) {
   try {
     const { id } = req.params;
@@ -178,22 +179,29 @@ async function realizarCompra(req, res) {
       await producto.save();
       totalCarrito += producto.price * cantidadDeseada;
     }
+
     const ticketInsertado = await ticketController.createTicket(
       totalCarrito,
       usuario.email
     );
     console.log(carrito.productos);
+
     const detalleProductos = carrito.productos.map(async (product) => {
       const productoId = product.producto.toString();
 
       const producto = await productosController.obtenerProductoById(
         productoId
       );
-      return `${product.cantidad} - ${producto.title}`;
+
+      // Calcula el total por producto
+      const totalProducto = producto.price * product.cantidad;
+
+      return `Cantidad: ${product.cantidad} - Producto: ${producto.title} - Precio Unitario: ${producto.price} - Total: ${totalProducto}`;
     });
 
     const productosDetalles = await Promise.all(detalleProductos);
     const detalleProductosTexto = productosDetalles.join("\n");
+
     if (!ticketInsertado) {
       return res.status(500).json({ mensaje: "Error al generar el ticket" });
     }
@@ -203,8 +211,9 @@ async function realizarCompra(req, res) {
     await SendMail.sendCompraEmail(
       usuario.email,
       "Compra realizada con éxito",
-      `Gracias por tu compra. Se ha generado un ticket con éxito. Detalles de la compra:\n\n${detalleProductosTexto}`
+      `Gracias por tu compra. Se ha generado un ticket con éxito. Detalles de la compra:\n\n${detalleProductosTexto}\n\nTotal de la compra: ${totalCarrito}`
     );
+
     carrito.productos = [];
     carrito.amount = 0;
 
