@@ -1936,3 +1936,28 @@
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T01:42:37.523Z"}
 {"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-28T01:42:39.157Z"}
 {"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-28T01:42:49.364Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoderPrueba@coder.com","timestamp":"2024-01-28T01:43:54.300Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T01:43:54.680Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-28T01:43:57.570Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T01:44:08.081Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-28T01:44:18.028Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-28T01:44:54.333Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T01:44:54.721Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-28T01:44:56.946Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T01:46:01.511Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-28T01:46:04.781Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: cuentajardin.cintianagy@gmail.com","timestamp":"2024-01-28T01:46:13.768Z"}
+{"level":"info","message":"Logout exitoso - Mail: cuentajardin.cintianagy@gmail.com","timestamp":"2024-01-28T01:46:16.389Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T01:46:16.786Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-28T01:46:24.302Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-28T01:46:35.659Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoderPrueba@coder.com","timestamp":"2024-01-28T01:51:32.195Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T01:51:32.590Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-28T01:56:36.871Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-28T01:56:43.836Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T01:56:51.764Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: conta.alonso@gmail.com","timestamp":"2024-01-28T01:56:57.104Z"}
+{"level":"info","message":"Logout exitoso - Mail: conta.alonso@gmail.com","timestamp":"2024-01-28T01:56:59.102Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T01:56:59.500Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-28T01:57:01.412Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-28T01:57:11.759Z"}
