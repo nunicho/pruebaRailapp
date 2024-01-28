@@ -521,18 +521,18 @@ const getUserByIdGithub = async (userId) => {
 
 const deleteInactiveUsers = async () => {
   try {
-    const fiveSecondsAgo = new Date();
-    fiveSecondsAgo.setSeconds(fiveSecondsAgo.getSeconds() - 5);
+    const twoDaysAgo = new Date();
+    twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
 
-    // Buscar y eliminar usuarios que no han tenido conexión en los últimos 5 segundos
+    // Buscar y eliminar usuarios que no han tenido conexión en los últimos 2 días
     const deletedUsers = await Users.find({
-      last_connection: { $lt: fiveSecondsAgo },
+      last_connection: { $lt: twoDaysAgo },
     });
 
     const userEmails = deletedUsers.map((user) => user.email);
 
     const result = await Users.deleteMany({
-      last_connection: { $lt: fiveSecondsAgo },
+      last_connection: { $lt: twoDaysAgo },
     });
 
     console.log(`${result.deletedCount} usuarios eliminados.`);
@@ -541,7 +541,7 @@ const deleteInactiveUsers = async () => {
       await SendMail.sendInactiveUserEmail(
         userEmail,
         "Tu cuenta ha sido eliminada por inactividad.",
-        `Estimado/a usuario/a: Lamentablemente tu Tu cuenta ha sido eliminada por inactividad. Gracias por usar nuestro servicio.`
+        `Estimado/a usuario/a: Lamentablemente tu cuenta ha sido eliminada por inactividad. Gracias por usar nuestro servicio.`
       );
     }
   } catch (error) {

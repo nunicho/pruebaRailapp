@@ -53,6 +53,10 @@ const inicializaPassport = () => {
             role,
           });
 
+          // Establecer last_connection al momento del registro
+          usuario.last_connection = new Date();
+          await usuario.save();
+
           return done(null, usuario);
         } catch (error) {
           return done(error, false, {
