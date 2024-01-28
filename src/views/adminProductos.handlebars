@@ -6,7 +6,7 @@
 
 <h1>Lista de productos en Base de Datos</h1>
 
-<form action="/DBproducts-Admin" method="GET" id="filtroForm">
+<form action="/adminProductos" method="GET" id="filtroForm">
   <label for="filtro">Filtrar por nombre:</label>
   <input type="text" id="filtro" name="filtro" value="{{filtro}}" /> <!-- Establece el valor del filtro -->
   <label for="codeFilter">Filtrar por código:</label>
@@ -57,21 +57,21 @@
     <h1> ¡No se encontraron productos! </h1>
     {{/if}}
 <br>
-  <a href="/DBProducts-Admin?pagina=1">Pág. 1</a>
+  <a href="/adminProductos?pagina=1">Pág. 1</a>
 
   {{#if hasPrevPage}}
-      <a href="/DBProducts-Admin?pagina={{prevPage}}">Prev. Pág</a>
+      <a href="/adminProductos?pagina={{prevPage}}">Prev. Pág</a>
   {{else}}
   <span>Prev. Pág.</span>
   {{/if}}
 
   {{#if hasNextPage}}
-      <a href="/DBProducts-Admin?pagina={{nextPage}}">Next. Pág</a>
+      <a href="/adminProductos?pagina={{nextPage}}">Next. Pág</a>
   {{else}}
   <span>Next. Pág.</span>
   {{/if}}
 
-    <a href="/DBProducts-Admin?pagina={{totalPages}}">Ult. página</a>
+    <a href="/adminProductos?pagina={{totalPages}}">Ult. página</a>
  </div> 
 
 <!-- Ventana modal para AGREGAR PRODUCTOS -->

@@ -121,7 +121,7 @@ router.get(
 );
 
 router.get(
-  "/DBproducts-Admin",
+  "/adminProductos",
   authMiddleware.auth,
   authMiddleware.authRol(["administrador"]),
   async (req, res) => {
@@ -129,7 +129,7 @@ router.get(
       const productos = await productosController.listarProductos(req, res);
 
       res.header("Content-type", "text/html");
-      res.status(200).render("DBproducts-Admin", {
+      res.status(200).render("adminProductos", {
         productos: productos.docs,
         hasProducts: productos.docs.length > 0,
         // activeProduct: true,
