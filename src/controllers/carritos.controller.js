@@ -67,6 +67,103 @@ async function createEmptyCart() {
   return carrito;
 }
 
+
+async function agregarProducto(req, res) {
+  try {
+    const { id } = req.params;
+    const products = req.body.products;
+
+    if (!Array.isArray(products) || products.length === 0) {
+      return res
+        .status(400)
+        .json({ mensaje: "Formato de productos incorrecto" });
+    }
+
+    const usuario = await Usuario.findById(id).populate("cart");
+    let carrito = usuario.cart;
+
+    if (!carrito) {
+      carrito = await createEmptyCart();
+      usuario.cart = carrito;
+      await usuario.save();
+    }
+
+    const productosConsolidados = {};
+
+    for (const product of products) {
+      const productoId = product.productoId;
+      const cantidad = product.quantity;
+
+      // Validar que la cantidad sea mayor o igual a 1
+      if (cantidad < 1) {
+        return res.status(400).json({
+          mensaje: "La cantidad debe ser mayor o igual a 1",
+        });
+      }
+
+      if (productosConsolidados[productoId]) {
+        productosConsolidados[productoId] += cantidad;
+      } else {
+        productosConsolidados[productoId] = cantidad;
+      }
+    }
+
+    let totalCarrito = carrito.amount || 0;
+
+    for (const [productoId, cantidad] of Object.entries(
+      productosConsolidados
+    )) {
+      const producto = await productosController.obtenerProductoById(
+        productoId
+      );
+
+      if (!producto) {
+        return res.status(400).json({ mensaje: "Producto no encontrado" });
+      }
+
+      const cantidadTotal =
+        cantidad +
+        carrito.productos
+          .filter((item) => item.producto.toString() === productoId)
+          .reduce((total, item) => total + item.cantidad, 0);
+
+      if (producto.stock < cantidadTotal) {
+        return res.status(400).json({
+          mensaje: `No hay suficiente stock para el producto con ID ${productoId}`,
+        });
+      }
+
+      const productoExistente = carrito.productos.find(
+        (item) => item.producto.toString() === productoId
+      );
+
+      if (productoExistente) {
+        productoExistente.cantidad += cantidad;
+      } else {
+        carrito.productos.push({ producto: productoId, cantidad });
+      }
+
+      totalCarrito += producto.price * cantidad;
+    }
+
+    carrito.amount = totalCarrito;
+    await carrito.save();
+
+    console.log(
+      "Productos agregados al carrito con éxito. Carrito actualizado:",
+      carrito
+    );
+
+    return res
+      .status(200)
+      .json({ mensaje: "Productos agregados al carrito con éxito" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ mensaje: "Error interno del servidor" });
+  }
+}
+
+/*
 async function agregarProducto(req, res) {
   try {
     const { id } = req.params;
@@ -148,7 +245,7 @@ async function agregarProducto(req, res) {
     return res.status(500).json({ mensaje: "Error interno del servidor" });
   }
 }
-
+*/
 
 async function realizarCompra(req, res) {
   try {

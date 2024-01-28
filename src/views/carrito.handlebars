@@ -105,3 +105,113 @@
     });
   </script>
 </body>
+
+
+{{!-- 
+<span><a href="/">Regresar</a></span>
+
+<head>
+  <title>Carrito de Compras</title>
+</head>
+
+<body>
+  <h1>Carrito de Compras</h1>
+  <div id="userId" data-user-id="{{userId}}"></div>
+  {{#if carrito.productos.length}}
+    <ul>
+      {{#each carrito.productos}}
+        <li>
+          <span>{{this.cantidad}} x {{this.title}} - Precio Unitario: $ {{this.precioUnitario}}. Subtotal: $ {{this.subtotal}} </span>
+          <button class="quitar-producto-btn" data-product-id="{{this.id}}">Quitar</button>
+        </li>
+      {{/each}}
+    </ul>
+
+    <p>Total del Carrito: {{carrito.total}}</p>
+    <button id="comprarBtn">Comprar</button>
+    <button id="limpiarCarritoBtn">Limpiar Carrito</button>
+  {{else}}
+    <p>El carrito está vacío.</p>
+  {{/if}}
+
+  <script>
+    const quitarBotones = document.querySelectorAll(".quitar-producto-btn");
+    quitarBotones.forEach((boton) => {
+      boton.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const productId = this.getAttribute("data-product-id");
+        const userId = document.getElementById("userId").dataset.userId;
+
+        fetch(`/api/carts/${userId}/quitarProducto`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ productId: productId }),
+        })
+          .then((response) => {
+            if (response.status === 200) {
+              window.location.reload(); 
+            } else {
+              // Manejar errores si es necesario
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+    });
+
+    const limpiarCarritoBtn = document.querySelector("#limpiarCarritoBtn");
+    limpiarCarritoBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const userId = document.getElementById("userId").dataset.userId;
+
+      fetch(`/api/carts/${userId}/limpiarCarrito`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            window.location.reload();
+          } else {
+            // Manejar errores si es necesario
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
+
+    const comprarBtn = document.querySelector("#comprarBtn");
+    comprarBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const userId = document.getElementById("userId").dataset.userId;
+
+      fetch(`/api/carts/${userId}/purchase`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then(async (response) => {
+          const data = await response.json();
+          if (response.status === 200) {
+            alert(`Compra realizada con éxito. Se generó el ticket: ${data.ticket}`);
+            window.location.reload();
+          } else {
+            alert(`Error: ${data.mensaje}`);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Error al realizar la compra");
+        });
+    });
+  </script>
+</body> --}}

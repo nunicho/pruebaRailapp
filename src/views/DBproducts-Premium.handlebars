@@ -133,6 +133,65 @@ document.addEventListener("DOMContentLoaded", function () {
       const productQuantityInput = document.getElementById(`quantityInput${productId}`);
       const productQuantity = productQuantityInput.value;
 
+      // Validar que la cantidad sea mayor o igual a 1
+      if (productQuantity < 1) {
+        alert(`La cantidad debe ser mayor o igual a 1`);
+        return;
+      }
+
+      if (productQuantity > productStock) {
+        alert(`¡Stock insuficiente! La cantidad seleccionada excede el stock disponible (${productStock} unidades).`);
+        return;
+      }
+
+      const userId = document.getElementById("userId").dataset.userId;
+
+      fetch(`/api/carts/${userId}/agregarProducto`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          products: [{ productoId: productId, quantity: productQuantity }],
+        }),
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            alert(`${productName} (${productQuantity} unidades) agregado al carrito con éxito`);
+          } else {
+            alert(`Error al agregar ${productName} al carrito`);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(`Error al agregar ${productName} al carrito`);
+        });
+    });
+  });
+});
+</script>
+<script src="assets/scripts/modalAddProduct.js"></script>
+<script type="module" src="assets/scripts/deleteProduct-Premium.js"></script> 
+<script type="module" src="assets/scripts/print.js"></script> 
+<script type="module" src="assets/scripts/dbProductsfilter.js"></script> 
+
+{{!-- 
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const agregarAlCarritoBotones = document.querySelectorAll("[data-product-id]");
+
+  agregarAlCarritoBotones.forEach((boton) => {
+    boton.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const productId = this.getAttribute("data-product-id");
+      const productName = this.getAttribute("data-product-name");
+      const productPrice = this.getAttribute("data-product-price");
+      const productStock = this.getAttribute("data-product-stock");
+      const productQuantityInput = document.getElementById(`quantityInput${productId}`);
+      const productQuantity = productQuantityInput.value;
+
       if (productQuantity > productStock) {
         alert(`¡Stock insuficiente! La cantidad seleccionada excede el stock disponible (${productStock} unidades).`);
         return;
@@ -164,10 +223,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-</script>
-
-<script src="assets/scripts/modalAddProduct.js"></script>
-<script type="module" src="assets/scripts/deleteProduct-Premium.js"></script> 
-<script type="module" src="assets/scripts/print.js"></script> 
-<script type="module" src="assets/scripts/dbProductsfilter.js"></script> 
-
+</script> --}}
