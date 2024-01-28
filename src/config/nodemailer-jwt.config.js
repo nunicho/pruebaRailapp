@@ -57,10 +57,26 @@ const sendUserDeletedEmail = async (to, subject, text) => {
 };
 
 
+const sendProductDeletedEmail = async (to, subject, text) => {
+  const mailOptions = {
+    from: entornoConfig.SMTP_USER,
+    to,
+    subject,
+    text,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log(`Email enviado a ${to}`);
+  } catch (error) {
+    console.error(`Error al enviar email a ${to}:`, error.message);
+  }
+};
 
 module.exports = {
   transporter,
   createResetToken,
   sendInactiveUserEmail,
   sendUserDeletedEmail,
+  sendProductDeletedEmail,
 };

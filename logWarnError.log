@@ -2058,3 +2058,46 @@
 {"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:01:23.970Z"}
 {"level":"info","message":"Acceso exitoso al perfil - Usuario: adminCoderPrueba@coder.com","timestamp":"2024-01-28T17:01:44.226Z"}
 {"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:02:24.633Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:04:02.338Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:04:06.805Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:04:13.912Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:04:17.519Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:04:20.151Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:04:23.543Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoderPrueba@coder.com","timestamp":"2024-01-28T17:05:10.718Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T17:05:11.117Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T17:05:16.308Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-28T17:05:18.105Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T17:05:30.626Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: mauricio@gmail.com","timestamp":"2024-01-28T17:05:38.628Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:05:42.487Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:05:46.926Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:05:50.690Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:05:53.423Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:05:58.396Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:06:02.340Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:06:06.154Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:06:10.251Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:06:14.026Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:06:17.801Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:06:21.852Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:06:25.179Z"}
+{"level":"info","message":"Logout exitoso - Mail: mauricio@gmail.com","timestamp":"2024-01-28T17:06:35.269Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T17:06:35.754Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: conta.alonso@gmail.com","timestamp":"2024-01-28T17:06:42.143Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:06:56.173Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:07:01.114Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:07:05.553Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:07:11.774Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:07:14.489Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:07:17.016Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:07:20.554Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:07:23.798Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T17:35:06.939Z"}
+{"level":"info","message":"Producto creado correctamente - Id: TA-22323 Nombre: PRODUCTO A BORRAR","timestamp":"2024-01-28T17:35:31.159Z"}
+{"level":"info","message":"Logout exitoso - Mail: conta.alonso@gmail.com","timestamp":"2024-01-28T17:35:39.123Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T17:35:39.507Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-28T17:35:41.843Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-28T17:35:51.513Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:35:54.330Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-28T17:35:58.505Z"}

@@ -4,6 +4,8 @@ const ProductosRepository = require("../dao/repository/productos.repository.js")
 const CustomError = require("../utils/customError.js");
 const tiposDeError = require("../utils/tiposDeError.js");
 
+const SendMail = require("../config/nodemailer-jwt.config.js");
+
 const listarProductos = async (req, res) => {
   try {
     let pagina = req.query.pagina || 1;
@@ -166,12 +168,26 @@ const borrarProducto = async (req, res, next) => {
         `El producto con ID ${id} no existe.`
       );
     }
+
+     if (producto.owner !== "admin") {
+      
+       await SendMail.sendProductDeletedEmail(
+         producto.owner, // Utiliza el correo electrónico del propietario
+         "Tu producto ha sido eliminado por decisión administrativa.",
+         `Estimado/a usuario/a: Lamentablemente tu producto "${producto.title}" ha sido eliminado por decisión administrativa. Gracias por usar nuestro servicio.`
+       );
+       console.log("Correo enviado al propietario:", producto.owner);
+     }
+
     res.locals.nombreProducto = producto.title;
     const resultado = await ProductosRepository.borrarProducto(id);
 
     res
       .status(200)
       .json({ mensaje: "El producto fue correctamente eliminado", resultado });
+
+    
+
   } catch (error) {
     res.status(404).json({
       mensaje: "Error, el producto solicitado no pudo ser eliminado",
