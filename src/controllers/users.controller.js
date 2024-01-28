@@ -188,6 +188,53 @@ const deleteUser = async (req, res) => {
         `El usuario con ID ${id} no existe.`
       );
     }
+
+    // Guardar el email antes de eliminar el usuario
+    const userEmail = user.email;
+
+    const resultado = await UsersRepository.deleteUser(id);
+
+    // Envía un correo electrónico al usuario eliminado
+    await SendMail.sendUserDeletedEmail(
+      userEmail,
+      "Tu cuenta ha sido eliminada por decisión administrativa.",
+      `Estimado/a usuario/a: Lamentablemente tu cuenta ha sido eliminada por decisión administrativa. Gracias por usar nuestro servicio.`
+    );
+
+    res
+      .status(200)
+      .json({ mensaje: "El Usuario fue correctamente eliminado", resultado });
+  } catch (error) {
+    res.status(404).json({
+      mensaje: "Error, el usuario solicitado no pudo ser eliminado",
+    });
+  }
+};
+
+/*
+const deleteUser = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new CustomError(
+        "ERROR_DATOS",
+        "ID inválido",
+        tiposDeError.ERROR_DATOS,
+        "El ID proporcionado no es válido."
+      );
+    }
+
+    const user = await UsersRepository.getUserById(id);
+
+    if (!user) {
+      throw new CustomError(
+        "USUARIO_NO_ENCONTRADO",
+        "Usuario no encontrado",
+        tiposDeError.PRODUCTO_NO_ENCONTRADO,
+        `El usuario con ID ${id} no existe.`
+      );
+    }
     res.locals.nombreUsuario = user.email;
     const resultado = await UsersRepository.deleteUser(id);
 
@@ -200,7 +247,7 @@ const deleteUser = async (req, res) => {
     });
   }
 };
-
+*/
 const secret = entornoConfig.SECRET;
 
 const updatePassword = async (req, res) => {
@@ -549,33 +596,6 @@ const deleteInactiveUsers = async () => {
     console.error("Error al eliminar usuarios inactivos:", error.message);
   }
 };
-/*
-const deleteInactiveUsers = async () => {
-  try {
-    const thirtyMinutesAgo = new Date();
-    thirtyMinutesAgo.setMinutes(thirtyMinutesAgo.getMinutes() - 30);
-
-    // Buscar y eliminar usuarios que no han tenido conexión en los últimos 30 minutos
-    const result = await Users.deleteMany({
-      last_connection: { $lt: thirtyMinutesAgo },
-    });
-
-    console.log(`${result.deletedCount} usuarios eliminados.`);
-    const deletedUsers = await Users.find({
-         last_connection: { $lt: thirtyMinutesAgo },
-       });
-
-       deletedUsers.forEach(async (user) => {
-         await SendMail.InactiveUserSendEmail(
-           user.email,
-           "Tu cuenta ha sido eliminada por inactividad."
-         );
-       });
-  } catch (error) {
-    console.error("Error al eliminar usuarios inactivos:", error.message);
-  }
-};
-*/
 
 
 module.exports = {
