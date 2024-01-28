@@ -403,11 +403,17 @@ const changeUserRole = async (req, res) => {
         if (!hasDni) missingDocuments.push("DNI");
         if (!hasCuenta) missingDocuments.push("CUENTA");
         if (!hasDomicilio) missingDocuments.push("DOMICILIO");
-
+        
+        return res.status(400).json({
+        error: "El usuario no ha terminado de procesar su documentación",
+       missingDocuments,
+       });    
+        /*
         return res.status(400).json({
           error: "El usuario no ha terminado de procesar su documentación",
           missingDocuments,
         });
+        */
       }
     }
     usuario.role = usuario.role === "user" ? "premium" : "user";

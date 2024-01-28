@@ -11,6 +11,7 @@
         <strong>Correo Electrónico:</strong> {{this.email}}<br>
         <strong>Rol:</strong> {{this.role}}<br>
         <button class="eliminarUsuarioIndividualBtn" data-user-id="{{this._id}}">Eliminar Usuario</button>
+        <button class="cambiarRolBtn" data-user-id="{{this._id}}">Cambiar Rol</button>
         <!-- Agrega más campos según sea necesario -->
       </li>
     {{/each}}
@@ -95,79 +96,54 @@ function eliminarUsuario(userId) {
 }
 </script>
 
-
-{{!-- 
-
-
-<span><a href="/">Regresar</a></span>
-
-<h1>Lista de Usuarios Registrados</h1>
-
-{{#if users.length}}
-  <ul>
-    {{#each users}}
-      <li>
-        <strong>Nombre:</strong> {{this.first_name}} {{this.last_name}}<br>
-        <strong>Correo Electrónico:</strong> {{this.email}}<br>
-        <strong>Rol:</strong> {{this.role}}<br>
-        <button class="eliminarUsuarioBtn" data-id="{{this._id}}">Eliminar Usuario</button>
-        <!-- Agrega más campos según sea necesario -->
-      </li>
-    {{/each}}
-  </ul>
-{{else}}
-  <p>No hay usuarios registrados.</p>
-{{/if}}
-
-<button id="eliminarUsuariosBtn">Eliminar Usuarios Inactivos</button>
-
+ 
 <script>
-  document.getElementById('eliminarUsuariosBtn').addEventListener('click', function() {
-    if (confirm('¿Seguro que deseas eliminar usuarios inactivos?')) {
-      fetch('/api/users', {
-        method: 'DELETE',
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Error al eliminar usuarios inactivos');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log(data.message); // Mensaje de éxito
-        location.reload(); // Recargar la página
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+function findUserIdForChangeRole(element) {
+  const listItem = element.closest('li');
+
+  if (listItem) {
+    const strongElements = listItem.querySelectorAll('strong');
+    const idElement = Array.from(strongElements).find(strong => strong.textContent.includes('Id:'));
+
+    if (idElement) {  
+      const userId = idElement.nextSibling.nodeValue.trim();
+      return userId;
+    }
+  }
+
+  return null;
+}
+
+const cambiarRolBtns = document.querySelectorAll('.cambiarRolBtn');
+
+
+cambiarRolBtns.forEach(btn => {
+  btn.addEventListener('click', function(event) {
+    event.preventDefault(); 
+    const userId = findUserIdForChangeRole(this);
+    if (userId && confirm(`¿Seguro que deseas cambiar el rol del usuario con ID ${userId}?`)) {
+      fetch(`/api/users/premium/${userId}/changeRole`, {
+  method: 'POST',
+})
+  .then(response => {
+    if (!response.ok) {
+       alert('Error al cambiar el rol del usuario')
+    }
+    return response.json(); 
+  })
+  .then(data => {
+    console.log('El data es'+data); 
+
+    if (data.error === "El usuario no ha terminado de procesar su documentación") {
+      alert(data.error);
+    } else {
+      location.reload(); 
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
     }
   });
-</script>
-
-<script>
-  document.querySelectorAll('.eliminarUsuarioBtn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      console.log('Botón clickeado');
-      const userId = this.getAttribute('data-id');
-      console.log(userId)
-      if (confirm(`¿Seguro que deseas eliminar al usuario con ID ${userId}?`)) {
-        fetch(`/api/users/${userId}`, {
-          method: 'DELETE',
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Error al eliminar el usuario');
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log(data.mensaje); // Mensaje de éxito
-          location.reload(); // Recargar la página
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-      }
-    });
-  });
-</script> --}}
+});
+</script> 
