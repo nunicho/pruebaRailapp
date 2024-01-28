@@ -2353,3 +2353,12 @@
 {"level":"info","message":"Logout exitoso como administrador - Mail: adminCoderPrueba@coder.com","timestamp":"2024-01-28T22:45:28.804Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T22:45:29.180Z"}
 {"level":"info","message":"Inicio de sesión exitoso - Usuario: conta.alonso@gmail.com","timestamp":"2024-01-28T22:45:35.386Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:46:25.840Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:47:31.860Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:47:42.993Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-28T22:47:51.580Z"}
+{"level":"info","message":"Logout exitoso - Mail: conta.alonso@gmail.com","timestamp":"2024-01-28T22:48:09.387Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-28T22:48:09.827Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: conta.alonso@gmail.com","timestamp":"2024-01-28T22:48:17.983Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-28T22:54:52.576Z"}
+{"level":"info","message":"Acceso exitoso al perfil - Usuario: conta.alonso@gmail.com","timestamp":"2024-01-28T22:57:50.973Z"}
