@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
 const UsersRepository = require("../dao/repository/users.repository");
 const Users = require("../dao/Mongo/models/users.modelo.js")
+const SendMail = require("../config/nodemailer-jwt.config.js")
 
 const bcrypt = require("bcrypt");
+
+//NODEMAILER
+const nodemailer = require("nodemailer");
 
 // DOTENV
 const entornoConfig = require("../config/entorno.config.js");
@@ -517,6 +521,36 @@ const getUserByIdGithub = async (userId) => {
 
 const deleteInactiveUsers = async () => {
   try {
+    const fiveSecondsAgo = new Date();
+    fiveSecondsAgo.setSeconds(fiveSecondsAgo.getSeconds() - 5);
+
+    // Buscar y eliminar usuarios que no han tenido conexión en los últimos 5 segundos
+    const deletedUsers = await Users.find({
+      last_connection: { $lt: fiveSecondsAgo },
+    });
+
+    const userEmails = deletedUsers.map((user) => user.email);
+
+    const result = await Users.deleteMany({
+      last_connection: { $lt: fiveSecondsAgo },
+    });
+
+    console.log(`${result.deletedCount} usuarios eliminados.`);
+
+    for (const userEmail of userEmails) {
+      await SendMail.sendInactiveUserEmail(
+        userEmail,
+        "Tu cuenta ha sido eliminada por inactividad.",
+        `Estimado/a usuario/a: Lamentablemente tu Tu cuenta ha sido eliminada por inactividad. Gracias por usar nuestro servicio.`
+      );
+    }
+  } catch (error) {
+    console.error("Error al eliminar usuarios inactivos:", error.message);
+  }
+};
+/*
+const deleteInactiveUsers = async () => {
+  try {
     const thirtyMinutesAgo = new Date();
     thirtyMinutesAgo.setMinutes(thirtyMinutesAgo.getMinutes() - 30);
 
@@ -526,23 +560,16 @@ const deleteInactiveUsers = async () => {
     });
 
     console.log(`${result.deletedCount} usuarios eliminados.`);
-  } catch (error) {
-    console.error("Error al eliminar usuarios inactivos:", error.message);
-  }
-};
+    const deletedUsers = await Users.find({
+         last_connection: { $lt: thirtyMinutesAgo },
+       });
 
-/*
-const deleteInactiveUsers = async () => {
-  try {
-    const twoDaysAgo = new Date();
-    twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
-
-    // Buscar y eliminar usuarios que no han tenido conexión en los últimos 2 días
-    const result = await Users.deleteMany({
-      last_connection: { $lt: twoDaysAgo },
-    });
-
-    console.log(`${result.deletedCount} usuarios eliminados.`);
+       deletedUsers.forEach(async (user) => {
+         await SendMail.InactiveUserSendEmail(
+           user.email,
+           "Tu cuenta ha sido eliminada por inactividad."
+         );
+       });
   } catch (error) {
     console.error("Error al eliminar usuarios inactivos:", error.message);
   }
