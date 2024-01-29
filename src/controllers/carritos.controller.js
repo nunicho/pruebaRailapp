@@ -307,8 +307,8 @@ async function realizarCompra(req, res) {
 
     await SendMail.sendCompraEmail(
       usuario.email,
-      `Compra realizada con éxito - Ticket N°: ${ticketInsertado._id}`,
-      `Gracias por tu compra. Se ha generado un ticket con éxito. Detalles de la compra:\n\n${detalleProductosTexto}\n\nTotal de la compra: ${totalCarrito}`
+      `Compra realizada con éxito - Código Ticket: ${ticketInsertado.code}`,
+      `Gracias por tu compra. Se ha generado un ticket con éxito. Detalle de la compra:\n\n${detalleProductosTexto}\n\nTotal de la compra: ${totalCarrito}`
     );
 
     carrito.productos = [];
