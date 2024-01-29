@@ -253,3 +253,10 @@ components:
           description: Mensaje indicando el éxito de la compra
         ticket:
           $ref: '#/components/schemas/Ticket'
+    Ticket:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Código del ticket
+      
