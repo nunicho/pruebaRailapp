@@ -2391,3 +2391,8 @@
 {"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-29T00:40:15.885Z"}
 {"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-29T00:40:33.273Z"}
 {"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-29T00:40:40.203Z"}
+{"level":"info","message":"Acceso exitoso a la ruta de ver carritos","timestamp":"2024-01-29T01:25:29.734Z"}
+{"level":"info","message":"Logout exitoso - Mail: conta.alonso@gmail.com","timestamp":"2024-01-29T01:30:27.859Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-29T01:30:28.250Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-29T01:30:31.180Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-29T01:30:58.625Z"}
