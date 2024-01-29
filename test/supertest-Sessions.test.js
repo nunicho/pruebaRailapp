@@ -8,7 +8,7 @@ async function runTests() {
   await mongoose.connect(config.MONGO_URL, { dbName: config.DB_NAME });
 
   const expect = chai.expect;
-  const requester = supertest("http://localhost:8080");
+  const requester = supertest(config.DIRECCION_TEST_LOCALHOST);
 
   describe("SUPERTEST - Pruebas al proceso de autenticación usando Sessions", function () {
     this.timeout(6000);
