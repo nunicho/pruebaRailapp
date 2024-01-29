@@ -2465,3 +2465,8 @@
 {"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-29T23:07:50.781Z"}
 {"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoder@coder.com","timestamp":"2024-01-29T23:08:42.231Z"}
 {"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:09:01.320Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoder@coder.com","timestamp":"2024-01-29T23:28:45.495Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-29T23:28:45.915Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: javier@gmail.com","timestamp":"2024-01-29T23:28:55.201Z"}
+{"level":"info","message":"Logout exitoso - Mail: javier@gmail.com","timestamp":"2024-01-29T23:29:01.154Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-29T23:29:01.550Z"}

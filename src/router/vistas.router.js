@@ -13,13 +13,11 @@ const tiposDeError = require("../utils/tiposDeError.js");
 
 const Usuario = require("../dao/Mongo/models/users.modelo.js")
 
-//DTO para la vista CURRENT
+
 const dtoUsuarios = require("../dto/dtoUsuarios.js");
 
-// FAKER
 const fakeDataGenerator = require("../public/assets/scripts/fakeDataGenerator.js");
 
-const mongoose = require("mongoose");
 
 router.use((req, res, next) => {
   res.locals.usuario = req.session.usuario; // Pasar el usuario a res.locals
@@ -32,7 +30,6 @@ router.get("/", authMiddleware.auth, (req, res) => {
     if (req.session.usuario) {
       verLogin = false;
     }
-    //req.logger.info(`Login exitoso`);
     res.status(200).render("home", {
       verLogin,
       titlePage: "Home Page de la ferretería El Tornillo",
@@ -56,8 +53,7 @@ router.get(
       res.header("Content-type", "text/html");
       res.status(200).render("DBproducts", {
         productos: productos.docs,
-        hasProducts: productos.docs.length > 0,
-        // activeProduct: true,
+        hasProducts: productos.docs.length > 0,    
         status: productos.docs.status,
         pageTitle: "Catálogo de",
         estilo: "productsStyles.css",
@@ -95,7 +91,6 @@ router.get(
         logueado: premiumLogueado.email,
         productos: productos.docs,
         hasProducts: productos.docs.length > 0,
-        // activeProduct: true,
         status: productos.docs.status,
         pageTitle: "Catálogo de",
         estilo: "productsStyles.css",
@@ -131,8 +126,7 @@ router.get(
       res.header("Content-type", "text/html");
       res.status(200).render("adminProductos", {
         productos: productos.docs,
-        hasProducts: productos.docs.length > 0,
-        // activeProduct: true,
+        hasProducts: productos.docs.length > 0,      
         status: productos.docs.status,
         pageTitle: "Productos en DATABASE",
         estilo: "productsStyles.css",
@@ -324,7 +318,7 @@ router
     }
   });
 
-//---------------------------------------------------------------- RUTAS PARA CARRITOS--------------- //
+
 router.get(
   "/mi-carrito/:id",
   authMiddleware.auth,
@@ -373,19 +367,19 @@ router.get(
 
       const totalCarrito = carrito.amount || 0;
 
-      // Almacenar el carrito en res.locals para que pueda ser accedido en el siguiente middleware
+  
       res.locals.carritoDB = {
         productos: productosEnCarrito,
         total: totalCarrito,
       };
 
-      next(); // Llamar al siguiente middleware
+      next(); 
     } catch (error) {
       console.error(error);
       req.logger.error(
         `Error al mostrar el carrito - Detalle: ${error.message}`
       );
-      next(error); // Llamar al siguiente middleware con el error
+      next(error); 
     }
   },
   (req, res) => {
@@ -403,13 +397,9 @@ router.get(
 
 
 
-
-//---------------------------------------------------------------- RUTAS PARA EL CHAT --------------- //
-
 router.get(
   "/chat",
   authMiddleware.auth,
-  //authMiddleware.authRol(["user"]),
   (req, res) => {
     try {
       req.logger.info(
@@ -427,7 +417,6 @@ router.get(
   }
 );
 
-//---------------------------------------------------------------- RUTAS PARA EL USERS ---------------//
 
 router.get("/registro", authMiddleware.auth2, (req, res) => {
   try {
@@ -478,8 +467,7 @@ router.get("/login", authMiddleware.auth2, (req, res) => {
       usuarioCreadoDetalle,
       error,
       errorDetalle,
-      estilo: "login.css",
-      //estilo: "../public/assets/css/login",
+      estilo: "login.css",    
     });
   } catch (error) {
     req.logger.fatal(
@@ -528,7 +516,6 @@ router.get("/loginAdmin", (req, res) => {
   }
 });
 
-//---------------------------------------------------------------- RUTA CURRENT ---------------//
 
 router.get("/current", (req, res) => {
   const user = req.session.usuario;
@@ -547,7 +534,6 @@ router.get("/current", (req, res) => {
   });
 });
 
-//---------------------------------------------------------------- RUTA FAKER---------------//
 
 router.get("/mockingproducts", (req, res) => {
   try {
@@ -588,7 +574,6 @@ router.get("/mockingproducts/:id", (req, res) => {
   }
 });
 
-//---------------------------------------------------------------- RUTA LOGS---------------//
 
 router.post("/logs", (req, res) => {
   res.setHeader("Content-type", "application/json");
@@ -637,7 +622,6 @@ router.get("/loggerTest", (req, res) => {
   }
 });
 
-//---------------------------------------------------------------- RUTA RECUPERAR CONTRASEÑA---------------//
 
 router.get("/forgotPassword", (req, res) => {
   res.render("forgotPassword");
@@ -653,15 +637,6 @@ router.get("/resetPassword", (req, res) => {
 
 router.post("/updatePassword/:token", UsersController.updatePassword);
 
-//---------------------------------------------------------------- RUTA PARA CAMBIAR ROLE---------------//
-
-const renderCambiaRole = (res, options) => {
-  res.render("cambiaRole", options);
-};
-
-router.get("/api/users/premium/", authMiddleware.auth, (req, res) => {
-  UsersController.userRoleVista(req, res, renderCambiaRole);
-});
 
 router.post(
   "/api/users/premium/:id",
@@ -669,13 +644,12 @@ router.post(
   UsersController.changeUserRoleEnVista
 );
 
-//---------------------------------------------------------------- MULTER ---------------//
+
 
 router.get("/subirArchivos", (req, res) => {
   res.render("subirArchivos");
 });
 
-//------------------------------------------------------------MANEJO DE USUARIOS --------//
 
 
 router.get(
@@ -688,8 +662,7 @@ router.get(
       res.header("Content-type", "text/html");
       res.status(200).render("adminUsers", { users, estilo: "adminUsers.css" });
     } catch (error) {
-      console.error("Error al procesar la solicitud:", error);
-      // Puedes manejar el error de otra manera, como enviar una respuesta de error al cliente
+      console.error("Error al procesar la solicitud:", error);    
       res.status(500).send("Error interno del servidor");
     }
   }
