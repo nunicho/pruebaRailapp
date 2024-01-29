@@ -15,7 +15,23 @@ paths:
                   $ref: '#/components/schemas/User'
         "500":
           description: Error interno del servidor
-
+    delete:
+      summary: Elimina usuarios inactivos que no se hayan registrado o abierto sesion en los último 2 días.
+      tags:
+        - Usuarios
+      responses:
+        "200":
+          description: Usuarios inactivos eliminados con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de éxito
+        "500":
+          description: Error interno del servidor
   /api/users/{id}:
     get:
       summary: Obtiene un usuario por ID
@@ -37,6 +53,79 @@ paths:
                 $ref: '#/components/schemas/User'
         "404":
           description: El usuario con ID X no existe.
+        "500":
+          description: Error interno del servidor
+    put:
+      summary: Actualiza un usuario por ID
+      tags:
+        - Usuarios
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario que se quiere actualizar
+          schema:
+            type: string
+      requestBody:
+        description: Datos del usuario a actualizar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        "200":
+          description: Usuario actualizado con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userEditado:
+                    $ref: '#/components/schemas/User'
+        "400":
+          description: ID inválido o faltan datos obligatorios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Descripción del error
+                  detalle:
+                    type: string
+                    description: Detalles adicionales del error
+        "404":
+          description: Usuario no encontrado
+        "500":
+          description: Error interno del servidor
+    delete:
+      summary: Elimina un usuario por ID
+      tags:
+        - Usuarios
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario que se quiere eliminar
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Usuario eliminado con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensaje:
+                    type: string
+                    description: Mensaje de éxito
+                  resultado:
+                    $ref: '#/components/schemas/User'  # O ajusta el tipo según lo que devuelva tu método deleteUser
+        "404":
+          description: Usuario no encontrado
         "500":
           description: Error interno del servidor
   /api/users/{id}/documents:
@@ -338,7 +427,7 @@ paths:
         "404":
           description: Usuario no encontrado
         "500":
-          description: Error interno del servido
+          description: Error interno del servidor
 components:
   schemas:
     User:
@@ -383,3 +472,33 @@ components:
           type: string
           format: date
           description: Última conexión del usuario
+    UpdateUserRequest:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        age:
+          type: number
+        password:
+          type: string
+        role:
+          type: string
+          enum: ["user", "premium"]
+      required:
+        - first_name
+        - last_name
+        - email
+        - age
+        - cart
+        - role
+      example:
+        first_name: "John"
+        last_name: "Doe"
+        email: "john.doe@example.com"
+        age: 30
+        password: "newpassword"        
+        role: "user"
