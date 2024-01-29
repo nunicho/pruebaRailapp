@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
-const config = require("../src/config/config.js");
+const config = require("../src/config/entorno.config.js");
 const Assert = require("assert");
-const UsersMongoDao = require("../src/dao/usersMongoDao.js");
+//const UsersMongoDao = require("../src/dao/usersMongoDao.js");
+const UsersMongoDao = require("../src/dao/Mongo/usersMongoDao.js");
 const {describe, it} = require("mocha")
 
 

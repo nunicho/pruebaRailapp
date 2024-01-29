@@ -2,7 +2,7 @@ const supertest = require("supertest");
 const chai = require("chai");
 const mongoose = require("mongoose");
 const { describe, it } = require("mocha");
-const config = require("../src/config/config.js");
+const config = require("../src/config/entorno.config.js");
 
 
 async function runTests() {

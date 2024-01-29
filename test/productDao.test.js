@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
-const config = require("../src/config/config.js");
+const config = require("../src/config/entorno.config.js");
 const Assert = require("assert");
-const ProductosMongoDao = require("../src/dao/productosMongoDao.js");
+const ProductosMongoDao = require("../src/dao/Mongo/productosMongoDao.js")
+//const ProductosMongoDao = require("../src/dao/productosMongoDao.js");
 const { describe, it } = require("mocha");
 
 mongoose.connect(config.MONGO_URL, { dbName: config.DB_NAME });
