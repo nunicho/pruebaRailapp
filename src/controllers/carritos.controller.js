@@ -205,8 +205,6 @@ async function realizarCompra(req, res) {
       const producto = await productosController.obtenerProductoById(
         productoId
       );
-
-      // Calcula el total por producto
       const totalProducto = producto.price * product.cantidad;
 
       return `Cantidad: ${product.cantidad} - Producto: ${producto.title} - Precio Unitario: ${producto.price} - Total: ${totalProducto}`;

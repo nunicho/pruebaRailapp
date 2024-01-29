@@ -47,6 +47,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product'
+        "400":
+          description: El producto con ID X no existe / El id proporcionado no es válido.`
         "500":
           description: Error interno del servidor
     post:
@@ -63,7 +65,7 @@ paths:
         "201":
           description: Producto creado      
         "400":
-          description: "El código proporcionado ya está en uso por otro producto."
+          description: "El código proporcionado ya está en uso por otro producto. / Faltan datos obligatorios para crear el producto."
         "500":
           description: Error interno del servidor
 
@@ -83,7 +85,7 @@ paths:
         "200":
           description: Recupera un producto de la DB, según el id que enviamos en la ruta como parámetro
         "500":
-          description: Error interno del servidor
+          description: Error interno del servidor / Ha ocurrido un error interno al obtener el producto por ID.
     put:
       summary: Actualiza un producto existente por ID
       tags:
@@ -94,13 +96,7 @@ paths:
           required: true
           description: ID del producto que se está editando
           schema:
-            type: string
-        # - in: header
-          # name: Authorization
-          # description: Token de autenticación
-          # required: true
-          # schema:
-          #   type: string
+            type: string        
       requestBody:
         required: true
         content:

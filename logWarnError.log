@@ -2446,3 +2446,8 @@
 {"level":"info","message":"Acceso exitoso a la ruta de ver carritos","timestamp":"2024-01-29T21:46:37.117Z"}
 {"level":"info","message":"Acceso exitoso a la ruta de ver carrito","timestamp":"2024-01-29T21:46:37.531Z"}
 {"level":"info","message":"Inicio de sesión exitoso - Usuario: messi@test.com","timestamp":"2024-01-29T21:46:49.827Z"}
+{"level":"info","message":"Logout exitoso - Mail: conta.alonso@gmail.com","timestamp":"2024-01-29T21:53:12.664Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-29T21:53:13.079Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-29T21:53:15.691Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-29T21:53:30.598Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: javier@gmail.com","timestamp":"2024-01-29T21:54:21.703Z"}

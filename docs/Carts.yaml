@@ -58,7 +58,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CarritoMostrado'
         "400":
-          description: El carrito no existe
+          description: "El cid proporcionado no es válido"
         "500":
           description: Error interno del servidor
   /api/carts/{id}/agregarProducto:
@@ -82,9 +82,9 @@ paths:
               $ref: '#/components/schemas/AddProductRequest'
       responses:
         "200":
-          description: Productos agregados al carrito con éxito
+          description:  "Productos agregados al carrito con éxito""
         "400":
-          description: Solicitud incorrecta (puede incluir detalles en el cuerpo de la respuesta)
+          description: "No hay suficiente stock para el producto con ID X / Producto no encontrado / La cantidad debe ser mayor o igual a 1",
         "404":
           description: Usuario no encontrado
         "500":
@@ -112,9 +112,9 @@ paths:
         "200":
           description: Producto quitado del carrito con éxito
         "400":
-          description: Solicitud incorrecta (puede incluir detalles en el cuerpo de la respuesta)
+          description: ID de producto no proporcionado / El carrito no existe / Producto no encontrado 
         "404":
-          description: Usuario no encontrado o producto no encontrado en el carrito
+          description: Producto no encontrado en el carrito
         "500":
           description: Error interno del servidor
   /api/carts/{id}/limpiarCarrito:
@@ -150,15 +150,15 @@ paths:
             type: string
       responses:
         "200":
-          description: Compra realizada con éxito
+          description: Compra realizada con éxito, se generó el ticket
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CompraExitosa'
         "400":
-          description: El carrito está vacío o hay productos no disponibles
+          description: El carrito está vacío / No hay suficiente stock para el producto con ID X
         "500":
-          description: Error interno del servidor
+          description: Error al generar el ticket / Error interno del servidor
 components:
   schemas:
     Cart:
@@ -220,7 +220,7 @@ components:
       type: object
       properties:
         products:
-          type: array  # Cambiado a array ya que en tu ejemplo `products` es un array
+          type: array  
           items:
             type: object
             properties:

@@ -46,8 +46,7 @@ const listarProductos = async (req, res) => {
 
     let { totalPages, hasPrevPage, hasNextPage, prevPage, nextPage } =
       productos;
-
-    // Puedes devolver los productos o cualquier información adicional que necesites
+    
     return productos;
   } catch (error) {
     res
