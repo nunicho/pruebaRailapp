@@ -12,7 +12,6 @@
         <strong>Rol:</strong> {{this.role}}<br>
         <button class="eliminarUsuarioIndividualBtn" data-user-id="{{this._id}}">Eliminar Usuario</button>
         <button class="cambiarRolBtn" data-user-id="{{this._id}}">Cambiar Rol</button>
-        <!-- Agrega más campos según sea necesario -->
       </li>
     {{/each}}
   </ul>
@@ -35,8 +34,8 @@
         return response.json();
       })
       .then(data => {
-        console.log(data.message); // Mensaje de éxito
-        location.reload(); // Recargar la página
+        console.log(data.message); 
+        location.reload(); 
       })
       .catch(error => {
         console.error('Error:', error);
@@ -50,9 +49,7 @@
 
 eliminarUsuarioBtns.forEach(btn => {
   btn.addEventListener('click', function(event) {
-    event.preventDefault();
-
-    // Encuentra el elemento padre (li) y busca el contenido de Id dentro de ese elemento
+    event.preventDefault();    
     const userId = findUserIdFromParent(this);
 
     if (userId && confirm(`¿Seguro que deseas eliminar al usuario con ID ${userId}?`)) {
@@ -63,18 +60,15 @@ eliminarUsuarioBtns.forEach(btn => {
 });
 
 function findUserIdFromParent(element) {
-  // Encuentra el elemento padre (li)
+
   const listItem = element.closest('li');
 
   if (listItem) {
-    // Busca todos los elementos strong dentro del elemento padre
+   
     const strongElements = listItem.querySelectorAll('strong');
-
-    // Encuentra el strong que contiene 'Id:' en su texto
     const idElement = Array.from(strongElements).find(strong => strong.textContent.includes('Id:'));
 
     if (idElement) {
-      // Extrae el valor de Id
       const userId = idElement.nextSibling.nodeValue.trim();
       return userId;
     }
@@ -89,8 +83,8 @@ function eliminarUsuario(userId) {
   })
     .then(response => response.json())
     .then(data => {
-      console.log(data.mensaje); // Mensaje de éxito
-      location.reload(); // Recargar la página
+      console.log(data.mensaje); 
+      location.reload(); 
     })
     .catch(error => console.error('Error:', error));
 }

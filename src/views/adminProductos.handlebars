@@ -8,9 +8,9 @@
 
 <form action="/adminProductos" method="GET" id="filtroForm">
   <label for="filtro">Filtrar por nombre:</label>
-  <input type="text" id="filtro" name="filtro" value="{{filtro}}" /> <!-- Establece el valor del filtro -->
+  <input type="text" id="filtro" name="filtro" value="{{filtro}}" /> 
   <label for="codeFilter">Filtrar por código:</label>
-  <input type="text" id="codeFilter" name="codeFilter" value="{{codeFilter}}" /> <!-- Establece el valor del filtro de código -->
+  <input type="text" id="codeFilter" name="codeFilter" value="{{codeFilter}}" /> 
   
   
     <label for="sort">Ordenar por:</label>
@@ -24,7 +24,7 @@
   <input type="number" id="limit" name="limit" value="{{limit}}" />
   
   <button type="submit">Filtrar</button>
-  <button type="button" id="limpiarFiltros">Limpiar</button> <!-- Botón para limpiar el formulario -->
+  <button type="button" id="limpiarFiltros">Limpiar</button> 
 </form>
 
 <div>
@@ -74,7 +74,7 @@
     <a href="/adminProductos?pagina={{totalPages}}">Ult. página</a>
  </div> 
 
-<!-- Ventana modal para AGREGAR PRODUCTOS -->
+
 <div id="modal" class="modal">
   <div class="modal-scrollable-content">
     <span class="close" id="cerrarModal">&times;</span>

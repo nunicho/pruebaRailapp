@@ -23,7 +23,7 @@ const passportCall = (estrategia) => {
       }
 
       if (!usuario) {
-        const error = info || {}; // Accede al objeto de error
+        const error = info || {}; 
         const errorMessage = encodeURIComponent(
           error.message || "Error desconocido"
         );
@@ -48,7 +48,7 @@ const passportCallRegister = (estrategia) => {
       }
 
       if (!usuario) {
-        const error = info || {}; // Accede al objeto de error
+        const error = info || {}; 
         const errorMessage = encodeURIComponent(
           error.message || "Error desconocido"
         );
@@ -90,10 +90,7 @@ const logger = winston.createLogger({
     new winston.transports.File({
       filename: "./logWarnError.log",
       level: "info",
-      format: winston.format.combine(
-        // winston.format.colorize({
-        //   colors: customLevels.colores
-        // }),
+      format: winston.format.combine(       
         winston.format.timestamp(),
         winston.format.json()
       ),

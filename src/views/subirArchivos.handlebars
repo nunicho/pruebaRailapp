@@ -41,59 +41,16 @@
 </form>
 
 <script>
-  // Agrega un evento 'submit' a todos los formularios con la clase 'document-form' o 'premium-form'
+ 
   document.querySelectorAll('.document-form, .premium-form').forEach(form => {
     form.addEventListener('submit', function(event) {
       const nombreInput = this.querySelector('input[name="nombre"]');
       
       if (!nombreInput.value.trim()) {
         alert('Por favor, completa el campo  antes de enviar el formulario.');
-        event.preventDefault(); // Evita que el formulario se envíe
+        event.preventDefault();
       }
     });
   });
 </script>
 
-
-
-        {{!-- <span><a href="/">Regresar</a></span>
-
-    <h1>subir archivos</h1>
-
-    <form action="/api/users/{{usuario._id}}/documents" method="post" enctype="multipart/form-data">
-        <input type="file" name="foto" />
-        <input type="text" name="nombre" placeholder="Documentos">
-        <input type="submit" value="Registrar">
-    </form>
-
-    <form action="/api/users/{{usuario._id}}/documents/products" method="post" enctype="multipart/form-data">
-        <input type="file" name="foto" />
-        <input type="text" name="nombre" placeholder="Foto de producto">
-        <input type="submit" value="Registrar">
-    </form>
-       
-
-    <form action="/api/users/{{usuario._id}}/documents/profiles" method="post" enctype="multipart/form-data">
-        <input type="file" name="foto" />
-        <input type="text" name="nombre" placeholder="Foto de profile">
-        <input type="submit" value="Registrar">
-    </form>
-    
- <h1>Subir documentación necesaria para ser PREMIUM</h1>
-
-    <form action="/api/users/{{usuario._id}}/documents/identificacion" method="post" enctype="multipart/form-data">
-        <input type="file" name="foto" />
-        <input type="text" name="nombre" placeholder="DNI">
-        <input type="submit" value="Registrar">
-    </form>
-
-    <form action="/api/users/{{usuario._id}}/documents/domicilio" method="post" enctype="multipart/form-data">
-        <input type="file" name="foto" />
-        <input type="text" name="nombre" placeholder="Comprobante Domicilio">
-        <input type="submit" value="Registrar">
-    </form>
-    <form action="/api/users/{{usuario._id}}/documents/cuenta" method="post" enctype="multipart/form-data">
-        <input type="file" name="foto" />
-        <input type="text" name="nombre" placeholder="Estado de Cuenta">
-        <input type="submit" value="Registrar">
-    </form> --}}

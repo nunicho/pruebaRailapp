@@ -55,26 +55,21 @@ inicializaPassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
-// PARA EL MANEJO DE COOKIES
+
 app.use(cookieParser());
 
-// Inicialización de routers
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/api/sessions", sessionsRouter);
 app.use("/api/users", usersRouter);
 app.use("/", vistasRouter);
 
-//MULTER
-const multer = require("multer");
-
-// HANDLEBARS - inicialización
 const hbs = configureHandlebars();
 app.engine("handlebars", hbs.engine);
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
-//app.use(express.static(__dirname + "/public"));
+
 app.use(express.static(path.join(__dirname, "public")));
 
 const PORT = config.PORT;
@@ -84,7 +79,7 @@ const serverExpress = app.listen(PORT, () => {
 
 connectToDatabase();
 
-// WEBSOCKET Y CHAT
+
 configureChat(serverExpress);
 
 app.use(errorHandler);
