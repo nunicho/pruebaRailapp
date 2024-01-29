@@ -2451,3 +2451,6 @@
 {"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-29T21:53:15.691Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-29T21:53:30.598Z"}
 {"level":"info","message":"Inicio de sesión exitoso - Usuario: javier@gmail.com","timestamp":"2024-01-29T21:54:21.703Z"}
+{"level":"info","message":"Logout exitoso - Mail: javier@gmail.com","timestamp":"2024-01-29T22:37:52.088Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-29T22:37:52.483Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-29T22:37:54.987Z"}

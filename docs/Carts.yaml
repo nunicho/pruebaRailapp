@@ -82,9 +82,9 @@ paths:
               $ref: '#/components/schemas/AddProductRequest'
       responses:
         "200":
-          description:  "Productos agregados al carrito con éxito""
+          description: "Productos agregados con éxito"
         "400":
-          description: "No hay suficiente stock para el producto con ID X / Producto no encontrado / La cantidad debe ser mayor o igual a 1",
+          description: "No hay suficiente stock para el producto con ID X  Producto no encontrado  La cantidad debe ser mayor o igual a 1"
         "404":
           description: Usuario no encontrado
         "500":
