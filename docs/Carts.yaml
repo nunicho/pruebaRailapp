@@ -138,7 +138,7 @@ paths:
           description: Error interno del servidor
   /api/carts/{id}/purchase:
     post:
-      summary: Realiza una compra con los productos en el carrito
+      summary: Realiza una compra con los productos en el carrito de un usuario determinado
       tags:
         - Carritos
       parameters:
