@@ -67,6 +67,34 @@ paths:
           description: Usuario no encontrado
         "500":
           description: Error interno del servidor
+  /api/carts/{id}/quitarProducto:
+    post:
+      summary: Quita productos del carrito
+      tags:
+        - Carritos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario al que se le está quitando el producto del carrito
+          schema:
+            type: string
+      requestBody:
+        description: Datos del producto a quitar del carrito
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveProductRequest'
+      responses:
+        "200":
+          description: Producto quitado del carrito con éxito
+        "400":
+          description: Solicitud incorrecta (puede incluir detalles en el cuerpo de la respuesta)
+        "404":
+          description: Usuario no encontrado o producto no encontrado en el carrito
+        "500":
+          description: Error interno del servidor
 components:
   schemas:
     Cart:
@@ -108,3 +136,13 @@ components:
         products:
           - productoId: "6574bb0e0b46a1b44e031eab"
             quantity: 1
+    RemoveProductRequest:
+      type: object
+      properties:
+        productId:
+          type: string
+          description: ID del producto a quitar del carrito
+      required:
+        - productId
+      example:
+        productId: "6574bb0e0b46a1b44e031eab"
