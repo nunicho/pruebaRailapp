@@ -8,49 +8,27 @@ const sessionsConfig = require("./config/sessions.config.js");
 const session = require("express-session");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+
 const app = express();
 
-
-// Routers de MongoDB (DB)
 const productsRouter = require("./router/products.router.js");
 const cartsRouter = require("./router/carts.router.js");
-
-// Router de Handlebars
 const vistasRouter = require("./router/vistas.router.js");
-
-// Router de Users
 const usersRouter = require("./router/users.router.js");
-
-// Router de Session
 const sessionsRouter = require("./router/sessions.router.js");
-const { json } = require("body-parser");
-const { prototype } = require("module");
-
-//MANEJO DE ERRORES
 const errorHandler = require("./middleware/errorHandler.js");
-
-// DOTENV
 const config = require("./config/entorno.config.js");
-
-//PASSPORT
 const inicializaPassport = require("./config/passport.config.js");
 const passport = require("passport");
-
-// LOGGER
 const { middLog } = require("./util.js");
 app.use(middLog);
-
-//SWAGGER
 const specs = configureSwagger();
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-//PARA SESSION Y LOGIN
 app.use(session(sessionsConfig));
 
-//PARA INICIAR PASSPORT
 inicializaPassport();
 app.use(passport.initialize());
 app.use(passport.session());
