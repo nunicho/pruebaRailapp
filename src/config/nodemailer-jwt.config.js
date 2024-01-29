@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const entornoConfig = require("./entorno.config.js");
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: entornoConfig.NODEMAILER_SERVICE,
   auth: {
     user: entornoConfig.SMTP_USER,
     pass: entornoConfig.SMTP_PASSWORD,
@@ -18,6 +18,7 @@ const createResetToken = (user) => {
     id: user._id,
   };
   const expirationTime = 3600;
+  console.log("Expiration Time:", expirationTime);
   const resetToken = jwt.sign(tokenObject, secret, {
     expiresIn: expirationTime,
   });
