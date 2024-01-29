@@ -136,6 +136,29 @@ paths:
           description: El carrito no existe
         "500":
           description: Error interno del servidor
+  /api/carts/{id}/purchase:
+    post:
+      summary: Realiza una compra con los productos en el carrito
+      tags:
+        - Carritos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario que está realizando la compra
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Compra realizada con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompraExitosa'
+        "400":
+          description: El carrito está vacío o hay productos no disponibles
+        "500":
+          description: Error interno del servidor
 components:
   schemas:
     Cart:
@@ -222,3 +245,11 @@ components:
         - productId
       example:
         productId: "6574bb0e0b46a1b44e031eab"
+    CompraExitosa:
+      type: object
+      properties:
+        mensaje:
+          type: string
+          description: Mensaje indicando el éxito de la compra
+        ticket:
+          $ref: '#/components/schemas/Ticket'
