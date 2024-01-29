@@ -2,15 +2,8 @@ const mongoose = require("mongoose");
 const UsersRepository = require("../dao/repository/users.repository");
 const Users = require("../dao/Mongo/models/users.modelo.js")
 const SendMail = require("../config/nodemailer-jwt.config.js")
-
 const bcrypt = require("bcrypt");
-
-//NODEMAILER
-const nodemailer = require("nodemailer");
-
-// DOTENV
 const entornoConfig = require("../config/entorno.config.js");
-
 const jwt = require("jsonwebtoken");
 
 const CustomError = require("../utils/customError.js");
@@ -188,13 +181,9 @@ const deleteUser = async (req, res) => {
         `El usuario con ID ${id} no existe.`
       );
     }
-
-    // Guardar el email antes de eliminar el usuario
     const userEmail = user.email;
 
     const resultado = await UsersRepository.deleteUser(id);
-
-    // Envía un correo electrónico al usuario eliminado
     await SendMail.sendUserDeletedEmail(
       userEmail,
       "Tu cuenta ha sido eliminada por decisión administrativa.",
@@ -211,43 +200,6 @@ const deleteUser = async (req, res) => {
   }
 };
 
-/*
-const deleteUser = async (req, res) => {
-  try {
-    const id = req.params.id;
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      throw new CustomError(
-        "ERROR_DATOS",
-        "ID inválido",
-        tiposDeError.ERROR_DATOS,
-        "El ID proporcionado no es válido."
-      );
-    }
-
-    const user = await UsersRepository.getUserById(id);
-
-    if (!user) {
-      throw new CustomError(
-        "USUARIO_NO_ENCONTRADO",
-        "Usuario no encontrado",
-        tiposDeError.PRODUCTO_NO_ENCONTRADO,
-        `El usuario con ID ${id} no existe.`
-      );
-    }
-    res.locals.nombreUsuario = user.email;
-    const resultado = await UsersRepository.deleteUser(id);
-
-    res
-      .status(200)
-      .json({ mensaje: "El Usuario fue correctamente eliminado", resultado });
-  } catch (error) {
-    res.status(404).json({
-      mensaje: "Error, el usuario solicitado no pudo ser eliminado",
-    });
-  }
-};
-*/
 const secret = entornoConfig.SECRET;
 
 const updatePassword = async (req, res) => {
@@ -407,13 +359,7 @@ const changeUserRole = async (req, res) => {
         return res.status(400).json({
         error: "El usuario no ha terminado de procesar su documentación",
        missingDocuments,
-       });    
-        /*
-        return res.status(400).json({
-          error: "El usuario no ha terminado de procesar su documentación",
-          missingDocuments,
-        });
-        */
+       });  
       }
     }
     usuario.role = usuario.role === "user" ? "premium" : "user";
@@ -447,7 +393,6 @@ const changeUserRoleEnVista = async (req, res) => {
     }
 
     if (newRole === "premium") {
-      // Solo verificamos documentos si el usuario está pasando de "user" a "premium"
       const hasDni = usuario.documents.some((doc) =>
         doc.reference.includes("DNI")
       );
@@ -458,8 +403,7 @@ const changeUserRoleEnVista = async (req, res) => {
         doc.reference.includes("DOMICILIO")
       );
 
-      if (!hasDni || !hasCuenta || !hasDomicilio) {
-        // El usuario no tiene todos los documentos requeridos
+      if (!hasDni || !hasCuenta || !hasDomicilio) {     
         const missingDocuments = [];
         if (!hasDni) missingDocuments.push("DNI");
         if (!hasCuenta) missingDocuments.push("CUENTA");
@@ -473,8 +417,6 @@ const changeUserRoleEnVista = async (req, res) => {
         });
       }
     }
-
-    // Cambiar el rol del usuario
     usuario.role = newRole;
 
     await usuario.save();
@@ -519,7 +461,6 @@ const handleDocumentUpload = async (userId, file) => {
     };
     user.documents.push(newDocument);
     await user.save();
-    //return user;
     const message = `El documento "${newDocument.name}" se ha subido correctamente.`;
     return { message };
   } catch (error) {
@@ -577,14 +518,10 @@ const deleteInactiveUsers = async () => {
   try {
     const twoDaysAgo = new Date();
     twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
-
-    // Buscar y eliminar usuarios que no han tenido conexión en los últimos 2 días
     const deletedUsers = await Users.find({
       last_connection: { $lt: twoDaysAgo },
     });
-
     const userEmails = deletedUsers.map((user) => user.email);
-
     const result = await Users.deleteMany({
       last_connection: { $lt: twoDaysAgo },
     });

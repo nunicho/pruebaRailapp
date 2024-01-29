@@ -1,13 +1,10 @@
 const mongoose = require("mongoose");
 const carritosRepository = require("../dao/repository/carritos.repository.js");
 const ticketController = require("../controllers/tickets.controller.js");
-const usersController = require("../controllers/users.controller.js");
 const productosController = require("../controllers/productos.controller.js");
 const SendMail = require("../config/nodemailer-jwt.config.js");
 const CustomError = require("../utils/customError.js");
 const tiposDeError = require("../utils/tiposDeError.js");
-const Carrito = require("../dao/Mongo/models/carritos.modelo.js");
-const Producto = require("../dao/Mongo/models/productos.modelo.js");
 const Usuario = require("../dao/Mongo/models/users.modelo.js");
 
 const verCarritos = async (req, res) => {

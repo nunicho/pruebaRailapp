@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
 const ProductosRepository = require("../dao/repository/productos.repository.js");
-
 const CustomError = require("../utils/customError.js");
 const tiposDeError = require("../utils/tiposDeError.js");
-
 const SendMail = require("../config/nodemailer-jwt.config.js");
 
 const listarProductos = async (req, res) => {
@@ -171,7 +169,7 @@ const borrarProducto = async (req, res, next) => {
      if (producto.owner !== "admin") {
       
        await SendMail.sendProductDeletedEmail(
-         producto.owner, // Utiliza el correo electrónico del propietario
+         producto.owner, 
          "Tu producto ha sido eliminado por decisión administrativa.",
          `Estimado/a usuario/a: Lamentablemente tu producto "${producto.title}" ha sido eliminado por decisión administrativa. Gracias por usar nuestro servicio.`
        );
@@ -219,7 +217,7 @@ const borrarProductoPorUsuarioPremium = async (req, res, next) => {
     }
 
     await SendMail.sendProductDeletedEmail(
-        producto.owner, // Utiliza el correo electrónico del propietario
+        producto.owner, 
         "Tu producto ha sido eliminado.",
         `Estimado/a usuario/a: tu producto "${producto.title}" ha sido eliminado.`
       );
@@ -296,7 +294,7 @@ const editarProducto = async (req, res) => {
 
      if (producto.owner !== "admin") {
        await SendMail.sendProductEditedEmail(
-         productoDB.owner, // Utiliza el correo electrónico del propietario
+         productoDB.owner, 
          "Tu producto ha sido editado",
          `Estimado/a usuario/a: Se ha editado tu producto "${producto.title}". Gracias por usar nuestro servicio.`
        );

@@ -108,7 +108,6 @@ class UsersMongoDao {
 
       return updatedUser;
     } catch (error) {
-      // Manejar el error según tus necesidades
       throw new Error(
         `Error al actualizar last_connection en la base de datos: ${error.message}`
       );

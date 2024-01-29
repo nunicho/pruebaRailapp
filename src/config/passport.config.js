@@ -3,7 +3,7 @@ const passport = require("passport");
 const local = require("passport-local");
 const github = require("passport-github2");
 
-//const crypto = require("crypto");
+
 const util = require("../util.js");
 
 const usersController = require("../controllers/users.controller.js");
@@ -52,8 +52,7 @@ const inicializaPassport = () => {
             cart: cartId,
             role,
           });
-
-          // Establecer last_connection al momento del registro
+    
           usuario.last_connection = new Date();
           await usuario.save();
 
@@ -167,13 +166,5 @@ const inicializaPassport = () => {
     return done(null, usuario);
   });
 };
-
-// FUNCION PARA ASIGNAR UN ID ÚNICO A CART
-
-function generateCustomCartId() {
-  const randomNumber = Math.floor(Math.random() * 1000) + 1;
-  const cartId = `${Date.now().toString()}-${randomNumber}`;
-  return cartId;
-}
 
 module.exports = inicializaPassport;

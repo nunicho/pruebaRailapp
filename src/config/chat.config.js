@@ -27,8 +27,7 @@ const configureChat = (serverExpress) => {
     });
 
     socket.on("nuevoMensaje", (mensaje) => {
-      // Guarda el mensaje en MongoDB
-      const newMessage = new MessageModel({
+        const newMessage = new MessageModel({
         user: mensaje.emisor,
         message: mensaje.mensaje,
       });
@@ -38,8 +37,6 @@ const configureChat = (serverExpress) => {
       mensajes.push(mensaje);
       serverSocketChat.emit("llegoMensaje", mensaje);
     });
-
-    // PARA HACER UN USUARIO QUE SE DESCONECTÓ
     socket.on("disconnect", () => {
       let indice = usuarios.findIndex((usuario) => usuario.id === socket.id);
       let usuario = usuarios[indice];

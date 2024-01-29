@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const entornoConfig = require("./entorno.config.js"); // Asume que config.js contiene las configuraciones generales
-
+const entornoConfig = require("./entorno.config.js"); 
 const connectToDatabase = async () => {
   try {
     await mongoose.connect(entornoConfig.MONGO_URL, {

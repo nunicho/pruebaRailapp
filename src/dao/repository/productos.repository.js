@@ -68,13 +68,11 @@ class ProductosRepository {
 
   async editarProducto(id, producto) {
     try {
-      // Verifica si el producto existe antes de intentar editarlo
+     
       const productoExistente = await ProductosMongoDao.obtenerProducto(id);
       if (!productoExistente) {
         throw new Error(`Producto con id ${id} inexistente`);
       }
-
-      // Actualiza el producto en la base de datos usando el método en ProductosMongoDao
       const productoEditado = await ProductosMongoDao.editarProducto(
         id,
         producto
