@@ -17,8 +17,7 @@ const createResetToken = (user) => {
     email: user.email,
     id: user._id,
   };
-  const expirationTime = 3600;
-  console.log("Expiration Time:", expirationTime);
+  const expirationTime = 3600;  
   const resetToken = jwt.sign(tokenObject, secret, {
     expiresIn: expirationTime,
   });
@@ -34,8 +33,7 @@ const sendInactiveUserEmail = async (to, subject, text) => {
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log(`Email enviado a ${to}`);
+    await transporter.sendMail(mailOptions);    
   } catch (error) {
     console.error(`Error al enviar email a ${to}:`, error.message);
   }
@@ -51,7 +49,7 @@ const sendUserDeletedEmail = async (to, subject, text) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log(`Email enviado a ${to}`);
+    
   } catch (error) {
     console.error(`Error al enviar email a ${to}:`, error.message);
   }
@@ -68,7 +66,7 @@ const sendProductDeletedEmail = async (to, subject, text) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log(`Email enviado a ${to}`);
+    
   } catch (error) {
     console.error(`Error al enviar email a ${to}:`, error.message);
   }
@@ -84,7 +82,7 @@ const sendProductEditedEmail = async (to, subject, text) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log(`Email enviado a ${to}`);
+    
   } catch (error) {
     console.error(`Error al enviar email a ${to}:`, error.message);
   }
@@ -99,8 +97,7 @@ const sendCompraEmail = async (to, subject, text) => {
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log(`Email enviado a ${to}`);
+    await transporter.sendMail(mailOptions);    
   } catch (error) {
     console.error(`Error al enviar email a ${to}:`, error.message);
   }

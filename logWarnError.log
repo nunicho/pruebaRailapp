@@ -2454,3 +2454,14 @@
 {"level":"info","message":"Logout exitoso - Mail: javier@gmail.com","timestamp":"2024-01-29T22:37:52.088Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-29T22:37:52.483Z"}
 {"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-29T22:37:54.987Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: conta.alonso@gmail.com","timestamp":"2024-01-29T23:05:38.770Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-29T23:05:42.457Z"}
+{"level":"info","message":"Ingreso al chat exitoso - Usuario conta.alonso@gmail.com","timestamp":"2024-01-29T23:06:21.353Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-29T23:06:34.839Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-29T23:06:48.918Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-29T23:06:58.201Z"}
+{"level":"info","message":"Logout exitoso - Mail: conta.alonso@gmail.com","timestamp":"2024-01-29T23:07:48.358Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-29T23:07:48.742Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-29T23:07:50.781Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoder@coder.com","timestamp":"2024-01-29T23:08:42.231Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:09:01.320Z"}

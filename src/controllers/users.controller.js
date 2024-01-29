@@ -526,7 +526,6 @@ const deleteInactiveUsers = async () => {
       last_connection: { $lt: twoDaysAgo },
     });
 
-    console.log(`${result.deletedCount} usuarios eliminados.`);
 
     for (const userEmail of userEmails) {
       await SendMail.sendInactiveUserEmail(

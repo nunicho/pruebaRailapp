@@ -146,11 +146,6 @@ async function agregarProducto(req, res) {
     carrito.amount = totalCarrito;
     await carrito.save();
 
-    console.log(
-      "Productos agregados al carrito con éxito. Carrito actualizado:",
-      carrito
-    );
-
     return res
       .status(200)
       .json({ mensaje: "Productos agregados al carrito con éxito" });
@@ -165,7 +160,7 @@ async function realizarCompra(req, res) {
     const { id } = req.params;
     const usuario = await Usuario.findById(id).populate("cart");
     let carrito = usuario.cart;
-    console.log(carrito);
+
     if (!carrito || carrito.productos.length === 0) {
       return res.status(400).json({ mensaje: "El carrito está vacío" });
     }
@@ -194,7 +189,7 @@ async function realizarCompra(req, res) {
       totalCarrito,
       usuario.email
     );
-    console.log(carrito.productos);
+   
 
     const detalleProductos = carrito.productos.map(async (product) => {
       const productoId = product.producto.toString();

@@ -173,7 +173,7 @@ const borrarProducto = async (req, res, next) => {
          "Tu producto ha sido eliminado por decisión administrativa.",
          `Estimado/a usuario/a: Lamentablemente tu producto "${producto.title}" ha sido eliminado por decisión administrativa. Gracias por usar nuestro servicio.`
        );
-       console.log("Correo enviado al propietario:", producto.owner);
+    
      }
 
     res.locals.nombreProducto = producto.title;
@@ -221,7 +221,7 @@ const borrarProductoPorUsuarioPremium = async (req, res, next) => {
         "Tu producto ha sido eliminado.",
         `Estimado/a usuario/a: tu producto "${producto.title}" ha sido eliminado.`
       );
-      console.log("Correo enviado al propietario:", producto.owner);
+    
     
 
     res.locals.nombreProducto = producto.title;
@@ -298,7 +298,7 @@ const editarProducto = async (req, res) => {
          "Tu producto ha sido editado",
          `Estimado/a usuario/a: Se ha editado tu producto "${producto.title}". Gracias por usar nuestro servicio.`
        );
-       console.log("Correo enviado al propietario:", producto.owner);
+     
      }
 
     const productoEditado = await ProductosRepository.editarProducto(
