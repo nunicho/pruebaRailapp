@@ -1,0 +1,307 @@
+paths:
+  /api/users:
+    get:
+      summary: Obtiene todos los usuarios - Utilizando patrón DTO (filtra Id, first_name, last_name, email, role)
+      tags:
+        - Usuarios
+      responses:
+        "200":
+          description: Lista de usuarios obtenida correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        "500":
+          description: Error interno del servidor
+
+  /api/users/{id}:
+    get:
+      summary: Obtiene un usuario por ID
+      tags:
+        - Usuarios
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario que se está solicitando
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Usuario obtenido correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: El usuario con ID X no existe.
+        "500":
+          description: Error interno del servidor
+  /api/users/{id}/documents:
+    post:
+      summary: Sube un documento según id del usuario, usando MULTER.
+      tags:
+        - Usuarios
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario al que se le está subiendo el documento
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                foto:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Documento subido exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de éxito
+                  user:
+                    $ref: '#/components/schemas/User'
+        "500":
+          description: Error interno del servidor
+  /api/users/{id}/documents/products:
+    post:
+      summary: Sube un documento relacionado a un producto según id del usuario, usando MULTER.
+      tags:
+        - Usuarios
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario al que se le está subiendo el documento del producto
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                foto:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Producto subido exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de éxito
+                  user:
+                    $ref: '#/components/schemas/User'
+        "500":
+          description: Error interno del servidor
+  /api/users/{id}/documents/profiles:
+    post:
+      summary: Sube un documento relacionado a un perfil según id del usuario, usando MULTER.
+      tags:
+        - Usuarios
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario al que se le está subiendo el documento de perfil
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                foto:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Profile subido exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de éxito
+                  user:
+                    $ref: '#/components/schemas/User'
+        "500":
+          description: Error interno del servidor
+  /api/users/{id}/documents/identificacion:
+    post:
+      summary: Sube un documento relacionado a la identificación de un usuario, según id del usuario, usando MULTER.
+      tags:
+        - Usuarios
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario al que se le está subiendo el documento de identificación
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                foto:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Identificación subida exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de éxito
+                  user:
+                    $ref: '#/components/schemas/User'
+        "500":
+          description: Error interno del servidor
+  /api/users/{id}/documents/domicilio:
+    post:
+      summary: Sube un documento relacionado a al domicilio de un usuario, según id del usuario, usando MULTER.
+      tags:
+        - Usuarios
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario al que se le está subiendo el comprobante de domicilio
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                foto:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Comprobante de domicilio subido exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de éxito
+                  user:
+                    $ref: '#/components/schemas/User'
+        "500":
+          description: Error interno del servidor
+  /api/users/{id}/documents/cuenta:
+    post:
+      summary: Sube un documento relacionado a al cuenta de un usuario, según id del usuario, usando MULTER.
+      tags:
+        - Usuarios
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario al que se le está subiendo el estado de cuenta
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                foto:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Estado de cuenta subido exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de éxito
+                  user:
+                    $ref: '#/components/schemas/User'
+        "500":
+          description: Error interno del servidor
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID del usuario
+        first_name:
+          type: string
+          description: Nombre del usuario
+        last_name:
+          type: string
+          description: Apellido del usuario
+        email:
+          type: string
+          description: Correo electrónico del usuario
+        age:
+          type: integer
+          description: Edad del usuario
+        password:
+          type: string
+          description: Contraseña del usuario
+        cart:
+          type: string
+          description: ID del carrito asociado al usuario
+        role:
+          type: string
+          description: Rol del usuario (user, premium, etc.)
+        documents:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Nombre del documento
+              reference:
+                type: string
+                description: Referencia del documento
+        last_connection:
+          type: string
+          format: date
+          description: Última conexión del usuario
