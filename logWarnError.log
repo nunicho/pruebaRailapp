@@ -2539,3 +2539,40 @@
 {"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-30T00:23:03.447Z"}
 {"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-30T00:23:36.511Z"}
 {"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-30T00:23:44.167Z"}
+{"level":"info","message":"Acceso exitoso a la ruta de ver carritos","timestamp":"2024-01-30T00:25:34.882Z"}
+{"level":"info","message":"Acceso exitoso a la ruta de ver carrito","timestamp":"2024-01-30T00:25:35.270Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: messi@test.com","timestamp":"2024-01-30T00:25:48.313Z"}
+{"level":"info","message":"Logout exitoso - Mail: may@gmail.com","timestamp":"2024-01-30T00:27:11.550Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:27:11.941Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-30T00:27:29.094Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:28:00.709Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: giardino@gmail.com","timestamp":"2024-01-30T00:28:09.831Z"}
+{"level":"info","message":"Logout exitoso - Mail: giardino@gmail.com","timestamp":"2024-01-30T00:33:38.366Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:33:38.767Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-30T00:33:41.250Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoder@coder.com","timestamp":"2024-01-30T00:34:09.484Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoder@coder.com","timestamp":"2024-01-30T00:34:31.138Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:34:31.524Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: giardino@gmail.com","timestamp":"2024-01-30T00:34:42.095Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-30T00:34:44.293Z"}
+{"level":"info","message":"Producto creado correctamente - Id: giardino1 Nombre: GUITARRA ELÉCTRICA ","timestamp":"2024-01-30T00:35:53.926Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-30T00:36:00.963Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-30T00:36:06.317Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-30T00:36:10.136Z"}
+{"level":"info","message":"Logout exitoso - Mail: giardino@gmail.com","timestamp":"2024-01-30T00:36:33.454Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:36:33.845Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: conta.alonso@gmail.com","timestamp":"2024-01-30T00:36:48.287Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-30T00:36:50.305Z"}
+{"level":"info","message":"Producto creado correctamente - Id: blabla Nombre: prueba","timestamp":"2024-01-30T00:37:05.537Z"}
+{"level":"info","message":"Logout exitoso - Mail: conta.alonso@gmail.com","timestamp":"2024-01-30T00:37:10.958Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:37:11.335Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:37:32.794Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-30T00:37:38.132Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoder@coder.com","timestamp":"2024-01-30T00:37:53.508Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-30T00:37:55.810Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-30T00:37:59.328Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-30T00:38:06.378Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoder@coder.com","timestamp":"2024-01-30T00:38:21.438Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:38:21.845Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:38:53.380Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:39:23.432Z"}
