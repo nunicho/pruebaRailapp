@@ -2576,3 +2576,35 @@
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:38:21.845Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:38:53.380Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:39:23.432Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:48:54.517Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-30T00:49:04.221Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-30T00:49:18.447Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-30T00:49:26.033Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-30T00:49:42.720Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:49:43.100Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:53:13.722Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-30T00:53:33.581Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-30T00:53:36.927Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-30T00:53:50.575Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-30T00:53:52.848Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-30T00:54:02.910Z"}
+{"level":"info","message":"Producto creado correctamente - Id: TA-2 Nombre: producto de prueba","timestamp":"2024-01-30T00:54:18.832Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-30T00:54:22.954Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoderPrueba@coder.com","timestamp":"2024-01-30T00:54:29.609Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:54:30.012Z"}
+{"level":"info","message":"Logout exitoso - Mail: nunicho@yahoo.com.ar","timestamp":"2024-01-30T00:54:40.028Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:54:40.433Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-30T00:54:49.693Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:55:08.812Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: conta.alonso@gmail.com","timestamp":"2024-01-30T00:55:16.859Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-30T00:55:19.539Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-30T00:55:29.973Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-30T00:55:37.744Z"}
+{"level":"info","message":"Ingreso al chat exitoso - Usuario conta.alonso@gmail.com","timestamp":"2024-01-30T00:55:40.297Z"}
+{"level":"info","message":"Logout exitoso - Mail: conta.alonso@gmail.com","timestamp":"2024-01-30T00:57:11.159Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:57:11.549Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-30T00:57:15.385Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoderPrueba@coder.com","timestamp":"2024-01-30T00:57:26.136Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-30T00:57:28.918Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoderPrueba@coder.com","timestamp":"2024-01-30T00:57:51.783Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:57:52.158Z"}
