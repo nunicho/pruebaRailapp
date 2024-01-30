@@ -32,7 +32,7 @@ router.get("/", authMiddleware.auth, (req, res) => {
     }
     res.status(200).render("home", {
       verLogin,
-      titlePage: "Home Page de la ferretería El Tornillo",
+      titlePage: "Home Page de Power Pedal",
       estilo: "styles.css",
     });
   } catch (error) {

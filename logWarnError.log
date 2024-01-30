@@ -2470,3 +2470,72 @@
 {"level":"info","message":"Inicio de sesión exitoso - Usuario: javier@gmail.com","timestamp":"2024-01-29T23:28:55.201Z"}
 {"level":"info","message":"Logout exitoso - Mail: javier@gmail.com","timestamp":"2024-01-29T23:29:01.154Z"}
 {"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-29T23:29:01.550Z"}
+{"level":"info","message":"Acceso exitoso a la página de administrador","timestamp":"2024-01-29T23:43:52.933Z"}
+{"level":"info","message":"Inicio de sesión exitoso como administrador - Administrador: adminCoder@coder.com","timestamp":"2024-01-29T23:44:02.748Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:44:09.229Z"}
+{"level":"info","message":"Producto creado correctamente - Id: pedal-1 Nombre: Mooer Baby Tuner ","timestamp":"2024-01-29T23:45:05.375Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:45:09.070Z"}
+{"level":"info","message":"Acceso exitoso a detalle producto Id: 65b8388194c6122bedfc0b3f - Nombre: Mooer Baby Tuner ","timestamp":"2024-01-29T23:45:17.161Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-2 Nombre: Mooer Blade","timestamp":"2024-01-29T23:46:14.842Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:46:20.876Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-3 Nombre: Mooer Woodverb","timestamp":"2024-01-29T23:47:18.101Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\FINAL-AlonsoMauricio\\src\\router\\vistas.router.js:188:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-29T23:47:48.687Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-4 Nombre: Mooer Matchbox","timestamp":"2024-01-29T23:48:23.487Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-5 Nombre: Mooer Overdrive","timestamp":"2024-01-29T23:49:07.271Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-6 Nombre: Mooer Spark ","timestamp":"2024-01-29T23:50:12.187Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:50:15.255Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:53:01.972Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-7 Nombre: Mooer Auto Wah","timestamp":"2024-01-29T23:53:51.488Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-8 Nombre: MooerEsemble King Chorus","timestamp":"2024-01-29T23:54:46.945Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-9 Nombre: Mooer Repeater ","timestamp":"2024-01-29T23:55:40.342Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-10 Nombre: Mooer Ana Echo","timestamp":"2024-01-29T23:56:50.648Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:56:58.750Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:57:08.338Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:57:12.087Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:57:19.901Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-11 Nombre: Pedal de efecto Zoom","timestamp":"2024-01-29T23:58:36.423Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:58:52.984Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:58:57.431Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:59:01.094Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:59:05.870Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-29T23:59:09.893Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-12 Nombre: Ibanez Bt Mini","timestamp":"2024-01-30T00:00:06.790Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-13 Nombre: Ibanez Tr-mini Tremolo","timestamp":"2024-01-30T00:00:53.280Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-14 Nombre: Cuvave Cube","timestamp":"2024-01-30T00:01:48.860Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-15 Nombre: Behringer Gdi 21","timestamp":"2024-01-30T00:02:26.654Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-16 Nombre: Pedal Mxr M173 ","timestamp":"2024-01-30T00:03:30.833Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\FINAL-AlonsoMauricio\\src\\router\\vistas.router.js:188:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-30T00:04:06.136Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\FINAL-AlonsoMauricio\\src\\router\\vistas.router.js:188:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-30T00:04:06.295Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\FINAL-AlonsoMauricio\\src\\router\\vistas.router.js:188:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-30T00:04:06.511Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-30T00:04:11.829Z"}
+{"level":"error","message":"No se pudo crear correctamente el producto req.logger.warn is not a function","stack":"TypeError: req.logger.warn is not a function\n    at C:\\Users\\ACER\\Desktop\\CODER-BACKEND\\Desafíos\\FINAL-AlonsoMauricio\\src\\router\\vistas.router.js:188:18\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","timestamp":"2024-01-30T00:05:03.094Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-17 Nombre: Boss DS-2","timestamp":"2024-01-30T00:05:11.151Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-18 Nombre: Boss BD-2","timestamp":"2024-01-30T00:05:54.297Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-19 Nombre: Boss Ph3","timestamp":"2024-01-30T00:06:41.480Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Pedal-20 Nombre: Mini Stagg Blaxx Tremolo","timestamp":"2024-01-30T00:07:37.848Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Accesorio-1 Nombre: Cable Plug","timestamp":"2024-01-30T00:08:30.865Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Accesorio-2 Nombre: Funda Pedalera Headrush","timestamp":"2024-01-30T00:09:40.245Z"}
+{"level":"info","message":"Producto creado correctamente - Id: Accesorio-3 Nombre: Fuente Regulada Para Pedal Pedalera De Guitarra Bajo","timestamp":"2024-01-30T00:11:10.192Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-30T00:11:20.676Z"}
+{"level":"info","message":"Acceso exitoso a productos - Administrador","timestamp":"2024-01-30T00:11:28.523Z"}
+{"level":"info","message":"Logout exitoso como administrador - Mail: adminCoder@coder.com","timestamp":"2024-01-30T00:15:41.463Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:15:41.878Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: conta.alonso@gmail.com","timestamp":"2024-01-30T00:15:50.322Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-30T00:19:37.867Z"}
+{"level":"info","message":"Logout exitoso - Mail: conta.alonso@gmail.com","timestamp":"2024-01-30T00:19:57.468Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:19:57.848Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: javier@gmail.com","timestamp":"2024-01-30T00:20:06.636Z"}
+{"level":"info","message":"Logout exitoso - Mail: javier@gmail.com","timestamp":"2024-01-30T00:20:58.662Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:20:59.059Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-30T00:21:02.271Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:21:26.112Z"}
+{"level":"info","message":"Acceso a la página de registro","timestamp":"2024-01-30T00:21:31.031Z"}
+{"level":"info","message":"Acceso a la página de inicio de sesión","timestamp":"2024-01-30T00:22:16.586Z"}
+{"level":"info","message":"Inicio de sesión exitoso - Usuario: may@gmail.com","timestamp":"2024-01-30T00:22:27.200Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-30T00:22:30.943Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-30T00:22:52.222Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-30T00:22:57.045Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-30T00:22:59.762Z"}
+{"level":"info","message":"Acceso exitoso a productos - Usuario","timestamp":"2024-01-30T00:23:03.447Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-30T00:23:36.511Z"}
+{"level":"info","message":"Carrito encontrado exitosamente","timestamp":"2024-01-30T00:23:44.167Z"}
